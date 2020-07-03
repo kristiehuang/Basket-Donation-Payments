@@ -1,2 +1,103 @@
-# Basket-Donation-Payments
+Original App Design Project - README Template
+===
+
+# Basket -- Donation Payments
+
+## Table of Contents
+1. [Overview](#Overview)
+1. [Product Spec](#Product-Spec)
+1. [Wireframes](#Wireframes)
+2. [Schema](#Schema)
+
+## Overview
+### Description
 Donation payments app that allows users to make donations towards a cause, rather than specific nonprofits.
+Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a predetermined "Basket" of nonprofits, and donations towards the cause are automatically split evenly among the nonprofits. User has choice of reassigning split percentages.
+
+### App Evaluation
+[Evaluation of your app across the following attributes]
+- **Category:** Finance + Productivity + Lifestyle
+- **Mobile:** Quick, one-touch donations. More convenient and phone-friendly than a website. Easy to use from social media link.
+- **Story:** Lots of important causes and nonprofits that are doing good work, but oftentimes donations aren't distributed evenly among them. This leads to nonprofits (like the Minnesota Freedom Fund) receiving way too high of a volume of incoming donations than they can reasonably handle. Also makes donating towards a cause much simpler for the consumer :) Also easy to discover new nonprofits doing work in the field!
+- **Market:** Activists, people who care about a cause. Anyone looking to donate towards a cause/mission. Anyone looking to discover new nonprofits.
+- **Habit:** Becomes the go-to donation app instead of donating on 2384 different websites; streamlined platform.
+- **Scope:** Essentially money splitter + payments API, at its core. Lots of potential features to expand on (better payments, social, adding nonprofits as users), but MVP is also worthwhile.
+
+## Product Spec
+
+### 1. User Stories (Required and Optional)
+
+**Required Must-have Stories**
+
+* User is able to signup (and adds to user database)
+* User is able to login & logout
+* User able to see Baskets on home page
+* Basket detail view displays Basket info
+* Nonprofit detail view displays nonprofit info
+* User can make donation
+    * Keypad screen, integrates with payments SDK
+* User can edit split percentages
+* Screen animates when payment complete
+* User can user camera to take profile pic
+  * Can zoom-in-out of prof pic/header pictures
+
+**Optional Nice-to-have Stories**
+
+* Profile page displays recent/fave causes/baskets
+* Add social, see friends/public activity
+* Search explore sees SearchVC for categories/recents/trending/etc
+* Can change payment source (e.g. Paypal, Venmo, Coinbase)
+    * Use cryptocurrency to pay
+* Pay in different currencies
+
+### 2. Screen Archetypes
+
+* Splash
+* Signup / Login
+    * User can signup/login
+    * (extra) Preview of Basket Explore page in background
+* Explore
+    * See baskets on homepage
+    * Search baskets
+* Basket Detail
+* Nonprofit detail
+* **Payment flow**
+    * Payment keypad screen
+    * Edit split percentage
+    * Payment SDK
+    * Thanks for donating!
+* Profile page
+    * Settings
+
+### 3. Navigation
+
+**Tab Navigation** (Tab to Screen)
+
+* Explore Feed
+* (extra) Social Feed
+* Profile
+
+**Flow Navigation** (Screen to Screen)
+
+* [list first screen here]
+   * [list screen navigation here]
+   * ...
+* [list second screen here]
+   * [list screen navigation here]
+   * ...
+
+## Wireframes
+<img src="https://i.imgur.com/95VG2iZ.jpg" width=600>
+
+### [BONUS] Digital Wireframes & Mockups
+
+### [BONUS] Interactive Prototype
+
+## Schema 
+[This section will be completed in Unit 9]
+### Models
+[Add table of models]
+### Networking
+- [Add list of network requests by screen ]
+- [Create basic snippets for each Parse network request]
+- [OPTIONAL: List endpoints if using existing API such as Yelp]
