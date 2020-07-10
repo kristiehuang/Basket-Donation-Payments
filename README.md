@@ -150,8 +150,6 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 	* percentage to nonprofit
 * timestamp (NSDate)
 
-isn’t that what a relationship is? support each other thru life??? but commitment?
-
 ### Networking
 #### List of network requests by screen
 * Signup / Login
