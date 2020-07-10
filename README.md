@@ -1,3 +1,4 @@
+
 Original App Design Project - README Template
 ===
 
@@ -31,19 +32,25 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 
 ### 1. User Stories (Required and Optional)
 **Required Must-have Stories**
-* User is able to signup (and adds to user database)
-* User is able to login & logout
-* User able to see Baskets on home page
+* Set up Parse server & deploy with Heroku
+* User is able to signup (and adds to user database) + login with PayPal
+* Nonprofit able to signup + login with PayPal to receive
+* User is able to logout
+* User able to query from Parse to see Baskets on home page
 * Basket detail view displays Basket info
 * Nonprofit detail view displays nonprofit info
 * User can make donation
-    * Keypad screen, integrates with payments SDK
-* User can edit split percentages
+    * Keypad screen, integrates with payments API
 * Screen animates when payment complete
-* User can user camera to take profile pic
-  * Can zoom-in-out of prof pic/header pictures
+* Profile screen displays nonprofit vs user status
+* User can use camera to take profile pic
+  * Can zoom-in-out of prof pic/header pictures (gesture recognizer)
+-   Your app integrates with a SDK (e.g. Google Maps SDK, Facebook SDK)
+-   Your app incorporates an external library to add visual polish
 
 **Optional Nice-to-have Stories**
+* User can edit split percentages
+* User can create new Baskets
 * Profile page displays recent/fave causes/baskets
 * Add social, see friends/public activity
 * Search explore sees SearchVC for categories/recents/trending/etc
