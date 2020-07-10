@@ -113,15 +113,13 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * lastName
 * paymentInfo
 * profilePicFile
-* isNonprofit (BOOL). ??????
+* nonprofit (nil if not nonprofit, pointer to Nonprofit object if is). ??????
 * recentDonations (Array<BasketTransaction>)
 * favoriteNonprofits (Array<Nonprofit>)
 
 #### Nonprofit
 * nonprofitId
-* username (optional)
-* password (optional)
-* name
+* nonprofitName
 * description
 * profilePicFile
 * headerPicFile
