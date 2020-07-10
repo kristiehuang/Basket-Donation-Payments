@@ -4,10 +4,14 @@ Original App Design Project - README Template
 # Basket -- Donation Payments
 
 ## Table of Contents
-1. [Overview](#Overview)
-1. [Product Spec](#Product-Spec)
-1. [Wireframes](#Wireframes)
-2. [Schema](#Schema)
+* [Overview](#Overview)
+* [Product Spec](#Product-Spec)
+* [Wireframes](#Wireframes)
+* [Schema](#Schema)
+	* [Models](#models)
+	* [Networking](#networking)
+
+---
 
 ## Overview
 ### Description
@@ -26,9 +30,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 ## Product Spec
 
 ### 1. User Stories (Required and Optional)
-
 **Required Must-have Stories**
-
 * User is able to signup (and adds to user database)
 * User is able to login & logout
 * User able to see Baskets on home page
@@ -42,7 +44,6 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
   * Can zoom-in-out of prof pic/header pictures
 
 **Optional Nice-to-have Stories**
-
 * Profile page displays recent/fave causes/baskets
 * Add social, see friends/public activity
 * Search explore sees SearchVC for categories/recents/trending/etc
@@ -51,7 +52,6 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * Pay in different currencies
 
 ### 2. Screen Archetypes
-
 * Splash
 * Signup / Login
     * User can signup/login
@@ -72,19 +72,20 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
-
 * Explore Feed
+* Search Screen
 * (extra) Social Feed
 * Profile
 
 **Flow Navigation** (Screen to Screen)
-
-* [list first screen here]
-   * [list screen navigation here]
-   * ...
-* [list second screen here]
-   * [list screen navigation here]
-   * ...
+* Login/Signup -> User Login Details -> PayPal signup -> Explore Feed
+* Explore Feed -> Basket Page
+* Search -> Basket or Nonprofit Page
+* Profile -> Change profile pic page -> Camera
+* Basket
+	* -> Nonprofit Page
+	* -> Donation Flow
+* Donation Flow -> number keypad -> edit percentages (optional) -> PayPal API sign in -> Thank you for donation -> Exit to explore feed
 
 ## Wireframes
 <img src="https://i.imgur.com/95VG2iZ.jpg" width=600>
@@ -94,7 +95,6 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 ### [BONUS] Interactive Prototype
 
 ## Schema 
-[This section will be completed in Unit 9]
 
 ### Models
 #### User
@@ -119,16 +119,20 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * headerPicFile
 * total value donated
 * belongsInBaskets (NSArray<Basket>)
-* *payments*
+* *PayPal payments*
 	* paymentId
+	* merchantId
+	* email
 * metadata:
 	* website
 	* category
+* updatedAt (joined or new activity)
 
 #### Basket
 * basketId
 * name
 * description
+* createdAt
 * headerPicFile
 * totalValueDonated
 * isFeatured (BOOL)
@@ -146,8 +150,33 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 	* percentage to nonprofit
 * timestamp (NSDate)
 
+isn’t that what a relationship is? support each other thru life??? but commitment?
 
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+#### List of network requests by screen
+* Signup / Login
+	* User login / signup (GET or PUT new user)
+	* Nonprofit login/signup (GET or PUT new nonprofit)
+	* PayPal account creation or login (GET or PUT)
+* Explore & Search
+	* (GET) Query featured baskets & recently added baskets
+* Basket Detail
+	* (GET) Query baskets & nonprofits
+	* ((FASTER TO CACHE???))
+* Nonprofit detail
+	* (GET) Nonprofit data and display
+* **Payment flow**
+    * (GET) PayPal info
+    * (POST) Create new transaction
+* Profile page
+    * Settings
+
+https://developer.paypal.com/docs/api/payments/v2/
+
+[Identity API - PayPal Developer](https://developer.paypal.com/docs/api/identity/v1/) - user authentication
+* GET */v1/identity/oauth2/userinfo*
+[Orders API - PayPal Developer](https://developer.paypal.com/docs/api/orders/v2/)
+* POST */v2/checkout/orders*
+[Payouts API - PayPal Developer](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)
+* create payment to multiple accounts
+* POST */v1/payments/payouts*
