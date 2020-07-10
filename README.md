@@ -95,8 +95,58 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 
 ## Schema 
 [This section will be completed in Unit 9]
+
 ### Models
-[Add table of models]
+#### User
+* userId
+* username
+* password
+* firstName
+* lastName
+* paymentInfo
+* profilePicFile
+* isNonprofit (BOOL). ??????
+* recentDonations (Array<BasketTransaction>)
+* favoriteNonprofits (Array<Nonprofit>)
+
+#### Nonprofit
+* nonprofitId
+* username (optional)
+* password (optional)
+* name
+* description
+* profilePicFile
+* headerPicFile
+* total value donated
+* belongsInBaskets (NSArray<Basket>)
+* *payments*
+	* paymentId
+* metadata:
+	* website
+	* category
+
+#### Basket
+* basketId
+* name
+* description
+* headerPicFile
+* totalValueDonated
+* isFeatured (BOOL)
+* nonprofits (Array<Nonprofit>)
+* createdBy (pointer to User)
+
+#### BasketTransaction
+* transactionId
+* payment method
+* user (pointer to User)
+* totalAmount
+* basketRecipient (pointer to Basket)
+* individual nonprofit txs (Array<NSDict>)
+	* nonprofit (pointer to Nonprofit)
+	* percentage to nonprofit
+* timestamp (NSDate)
+
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
