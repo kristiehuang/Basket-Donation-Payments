@@ -105,7 +105,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 ## Schema 
 
 ### Models
-#### User
+#### User (subclass of PFUser)
 * userId
 * username
 * password
@@ -124,6 +124,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * profilePicFile
 * headerPicFile
 * total value donated
+* user (pointer to User)
 * belongsInBaskets (NSArray<Basket>)
 * *PayPal payments*
 	* paymentId
@@ -146,7 +147,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * createdBy (pointer to User)
 
 #### BasketTransaction
-* transactionId
+* basketTransactionId
 * payment method
 * user (pointer to User)
 * totalAmount
@@ -154,6 +155,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * individual nonprofit txs (Array<NSDict>)
 	* nonprofit (pointer to Nonprofit)
 	* percentage to nonprofit
+	* individualTransactionId
 * timestamp (NSDate)
 
 ### Networking
@@ -170,8 +172,9 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * Nonprofit detail
 	* (GET) Nonprofit data and display
 * **Payment flow**
-    * (GET) PayPal info
-    * (POST) Create new transaction
+    * (GET) updated PayPal info for all nonprofits
+    * (POST) Create new transaction for each nonprofit (or batch tx, so you can undo entire tx if one fails)
+    * (POST to Parse) Save BasketTransaction to Parse API
 * Profile page
     * Settings
 
