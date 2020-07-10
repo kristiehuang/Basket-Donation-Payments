@@ -98,6 +98,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 <img src="https://i.imgur.com/95VG2iZ.jpg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+*[Figma Wireframe](https://www.figma.com/file/S2gC3N8WvkxmO42AhgbzSW/Basket-App-Sketch?node-id=0%3A1)*
 
 ### [BONUS] Interactive Prototype
 
