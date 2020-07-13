@@ -16,7 +16,6 @@
 		3ADA0A1F24BCEC8800627AAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1E24BCEC8800627AAD /* main.m */; };
 		3ADA0A2924BCEC8800627AAD /* Basket_Donation_PaymentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A2824BCEC8800627AAD /* Basket_Donation_PaymentsTests.m */; };
 		3ADA0A3424BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */; };
-		3ADA0A4424BCED1200627AAD /* APIKeysSecret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A4324BCED1200627AAD /* APIKeysSecret.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +54,6 @@
 		3ADA0A2F24BCEC8800627AAD /* Basket Donation PaymentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Basket Donation PaymentsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Basket_Donation_PaymentsUITests.m; sourceTree = "<group>"; };
 		3ADA0A3524BCEC8800627AAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3ADA0A4324BCED1200627AAD /* APIKeysSecret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeysSecret.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +116,6 @@
 				3ADA0A1824BCEC8800627AAD /* Assets.xcassets */,
 				3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */,
 				3ADA0A1D24BCEC8800627AAD /* Info.plist */,
-				3ADA0A4324BCED1200627AAD /* APIKeysSecret.plist */,
 				3ADA0A1E24BCEC8800627AAD /* main.m */,
 			);
 			path = "Basket Donation Payments";
@@ -260,7 +257,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ADA0A1C24BCEC8800627AAD /* LaunchScreen.storyboard in Resources */,
-				3ADA0A4424BCED1200627AAD /* APIKeysSecret.plist in Resources */,
 				3ADA0A1924BCEC8800627AAD /* Assets.xcassets in Resources */,
 				3ADA0A1724BCEC8700627AAD /* Main.storyboard in Resources */,
 			);
