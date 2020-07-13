@@ -1,2 +1,5 @@
 # ignore the file named APIKeysSecret.plist
 APIKeysSecret.plist
+
+# ignore annoying DS_Store
+.DS_Store
