@@ -1,0 +1,6 @@
+framework module Pods_Basket_Donation_PaymentsTests {
+  umbrella header "Pods-Basket Donation PaymentsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

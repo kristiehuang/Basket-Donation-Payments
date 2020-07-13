@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,9 @@
 		3ADA0A2924BCEC8800627AAD /* Basket_Donation_PaymentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A2824BCEC8800627AAD /* Basket_Donation_PaymentsTests.m */; };
 		3ADA0A3424BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */; };
 		3ADA0A4824BCFA0100627AAD /* APIKeysSecret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */; };
+		877C000BF9470AABB63F80D9 /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */; };
+		A85E22FD5B54B1E7086DE619 /* Pods_Basket_Donation_Payments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */; };
+		B55DB78745BDD2AA4613205C /* Pods_Basket_Donation_PaymentsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE56A46D69B6A4177FFAADA7 /* Pods_Basket_Donation_PaymentsTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B32B1F26DF85C62506B8493 /* Pods-Basket Donation Payments-Basket Donation PaymentsUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation Payments-Basket Donation PaymentsUITests.release.xcconfig"; path = "Target Support Files/Pods-Basket Donation Payments-Basket Donation PaymentsUITests/Pods-Basket Donation Payments-Basket Donation PaymentsUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_Payments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADA0A0924BCEC8700627AAD /* Basket Donation Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Donation Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADA0A0C24BCEC8700627AAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -56,6 +61,13 @@
 		3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Basket_Donation_PaymentsUITests.m; sourceTree = "<group>"; };
 		3ADA0A3524BCEC8800627AAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeysSecret.plist; sourceTree = "<group>"; };
+		4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F3B45FADF3FA4B278BFFF5E /* Pods-Basket Donation PaymentsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation PaymentsTests.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation PaymentsTests/Pods-Basket Donation PaymentsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		78144C372F64C45CB4BE24E5 /* Pods-Basket Donation Payments.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation Payments.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments.debug.xcconfig"; sourceTree = "<group>"; };
+		8DE68129DF0121BD5BC279DB /* Pods-Basket Donation Payments.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation Payments.release.xcconfig"; path = "Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments.release.xcconfig"; sourceTree = "<group>"; };
+		AAD86B96A49921C9942DAC94 /* Pods-Basket Donation PaymentsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation PaymentsTests.release.xcconfig"; path = "Target Support Files/Pods-Basket Donation PaymentsTests/Pods-Basket Donation PaymentsTests.release.xcconfig"; sourceTree = "<group>"; };
+		CE56A46D69B6A4177FFAADA7 /* Pods_Basket_Donation_PaymentsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_PaymentsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8350393F2D511C7954E79AB /* Pods-Basket Donation Payments-Basket Donation PaymentsUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation Payments-Basket Donation PaymentsUITests.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation Payments-Basket Donation PaymentsUITests/Pods-Basket Donation Payments-Basket Donation PaymentsUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A85E22FD5B54B1E7086DE619 /* Pods_Basket_Donation_Payments.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55DB78745BDD2AA4613205C /* Pods_Basket_Donation_PaymentsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +91,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				877C000BF9470AABB63F80D9 /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06C6AA2AED98FFDB4A99B522 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */,
+				4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */,
+				CE56A46D69B6A4177FFAADA7 /* Pods_Basket_Donation_PaymentsTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3ADA0A0024BCEC8700627AAD = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +115,8 @@
 				3ADA0A2724BCEC8800627AAD /* Basket Donation PaymentsTests */,
 				3ADA0A3224BCEC8800627AAD /* Basket Donation PaymentsUITests */,
 				3ADA0A0A24BCEC8700627AAD /* Products */,
+				F14C59D741EEB1C0F8B97F47 /* Pods */,
+				06C6AA2AED98FFDB4A99B522 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +183,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		F14C59D741EEB1C0F8B97F47 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78144C372F64C45CB4BE24E5 /* Pods-Basket Donation Payments.debug.xcconfig */,
+				8DE68129DF0121BD5BC279DB /* Pods-Basket Donation Payments.release.xcconfig */,
+				D8350393F2D511C7954E79AB /* Pods-Basket Donation Payments-Basket Donation PaymentsUITests.debug.xcconfig */,
+				0B32B1F26DF85C62506B8493 /* Pods-Basket Donation Payments-Basket Donation PaymentsUITests.release.xcconfig */,
+				4F3B45FADF3FA4B278BFFF5E /* Pods-Basket Donation PaymentsTests.debug.xcconfig */,
+				AAD86B96A49921C9942DAC94 /* Pods-Basket Donation PaymentsTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,9 +203,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3ADA0A3824BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation Payments" */;
 			buildPhases = (
+				9F52CB17CB1F295705EADD2B /* [CP] Check Pods Manifest.lock */,
 				3ADA0A0524BCEC8700627AAD /* Sources */,
 				3ADA0A0624BCEC8700627AAD /* Frameworks */,
 				3ADA0A0724BCEC8700627AAD /* Resources */,
+				6FEEBEE0649195012FCCD12D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -180,6 +222,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3ADA0A3B24BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation PaymentsTests" */;
 			buildPhases = (
+				828436114D558B8412B07C17 /* [CP] Check Pods Manifest.lock */,
 				3ADA0A2024BCEC8800627AAD /* Sources */,
 				3ADA0A2124BCEC8800627AAD /* Frameworks */,
 				3ADA0A2224BCEC8800627AAD /* Resources */,
@@ -198,9 +241,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3ADA0A3E24BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation PaymentsUITests" */;
 			buildPhases = (
+				8592978D867240EEE8AD36D3 /* [CP] Check Pods Manifest.lock */,
 				3ADA0A2B24BCEC8800627AAD /* Sources */,
 				3ADA0A2C24BCEC8800627AAD /* Frameworks */,
 				3ADA0A2D24BCEC8800627AAD /* Resources */,
+				166E16CB06C078A0DCA6B04B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,6 +326,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		166E16CB06C078A0DCA6B04B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments-Basket Donation PaymentsUITests/Pods-Basket Donation Payments-Basket Donation PaymentsUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments-Basket Donation PaymentsUITests/Pods-Basket Donation Payments-Basket Donation PaymentsUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments-Basket Donation PaymentsUITests/Pods-Basket Donation Payments-Basket Donation PaymentsUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FEEBEE0649195012FCCD12D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		828436114D558B8412B07C17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Basket Donation PaymentsTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8592978D867240EEE8AD36D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Basket Donation Payments-Basket Donation PaymentsUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9F52CB17CB1F295705EADD2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Basket Donation Payments-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3ADA0A0524BCEC8700627AAD /* Sources */ = {
@@ -457,11 +605,12 @@
 		};
 		3ADA0A3924BCEC8800627AAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78144C372F64C45CB4BE24E5 /* Pods-Basket Donation Payments.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45VCQ885ZT;
-				INFOPLIST_FILE = "Basket Donation Payments/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Basket-Donation-Payments/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,11 +623,12 @@
 		};
 		3ADA0A3A24BCEC8800627AAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DE68129DF0121BD5BC279DB /* Pods-Basket Donation Payments.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45VCQ885ZT;
-				INFOPLIST_FILE = "Basket Donation Payments/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Basket-Donation-Payments/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,6 +641,7 @@
 		};
 		3ADA0A3C24BCEC8800627AAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F3B45FADF3FA4B278BFFF5E /* Pods-Basket Donation PaymentsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -511,6 +662,7 @@
 		};
 		3ADA0A3D24BCEC8800627AAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAD86B96A49921C9942DAC94 /* Pods-Basket Donation PaymentsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +683,7 @@
 		};
 		3ADA0A3F24BCEC8800627AAD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8350393F2D511C7954E79AB /* Pods-Basket Donation Payments-Basket Donation PaymentsUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45VCQ885ZT;
@@ -549,6 +702,7 @@
 		};
 		3ADA0A4024BCEC8800627AAD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B32B1F26DF85C62506B8493 /* Pods-Basket Donation Payments-Basket Donation PaymentsUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 45VCQ885ZT;
