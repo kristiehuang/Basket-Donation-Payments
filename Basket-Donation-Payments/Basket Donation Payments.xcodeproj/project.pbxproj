@@ -86,7 +86,7 @@
 		3ADA0A0024BCEC8700627AAD = {
 			isa = PBXGroup;
 			children = (
-				3ADA0A0B24BCEC8700627AAD /* Basket Donation Payments */,
+				3ADA0A0B24BCEC8700627AAD /* Basket-Donation-Payments */,
 				3ADA0A2724BCEC8800627AAD /* Basket Donation PaymentsTests */,
 				3ADA0A3224BCEC8800627AAD /* Basket Donation PaymentsUITests */,
 				3ADA0A0A24BCEC8700627AAD /* Products */,
@@ -103,7 +103,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3ADA0A0B24BCEC8700627AAD /* Basket Donation Payments */ = {
+		3ADA0A0B24BCEC8700627AAD /* Basket-Donation-Payments */ = {
 			isa = PBXGroup;
 			children = (
 				3ADA0A4224BCECB500627AAD /* Views */,
@@ -121,7 +121,7 @@
 				3ADA0A1E24BCEC8800627AAD /* main.m */,
 				3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */,
 			);
-			path = "Basket Donation Payments";
+			path = "Basket-Donation-Payments";
 			sourceTree = "<group>";
 		};
 		3ADA0A2724BCEC8800627AAD /* Basket Donation PaymentsTests */ = {
