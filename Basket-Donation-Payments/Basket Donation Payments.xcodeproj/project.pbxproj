@@ -1,0 +1,610 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */; };
+		3ADA0A1124BCEC8700627AAD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */; };
+		3ADA0A1424BCEC8700627AAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1324BCEC8700627AAD /* ViewController.m */; };
+		3ADA0A1724BCEC8700627AAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1524BCEC8700627AAD /* Main.storyboard */; };
+		3ADA0A1924BCEC8800627AAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1824BCEC8800627AAD /* Assets.xcassets */; };
+		3ADA0A1C24BCEC8800627AAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */; };
+		3ADA0A1F24BCEC8800627AAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1E24BCEC8800627AAD /* main.m */; };
+		3ADA0A2924BCEC8800627AAD /* Basket_Donation_PaymentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A2824BCEC8800627AAD /* Basket_Donation_PaymentsTests.m */; };
+		3ADA0A3424BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */; };
+		3ADA0A4824BCFA0100627AAD /* APIKeysSecret.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3ADA0A2524BCEC8800627AAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3ADA0A0124BCEC8700627AAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3ADA0A0824BCEC8700627AAD;
+			remoteInfo = "Basket Donation Payments";
+		};
+		3ADA0A3024BCEC8800627AAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3ADA0A0124BCEC8700627AAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3ADA0A0824BCEC8700627AAD;
+			remoteInfo = "Basket Donation Payments";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3ADA0A0924BCEC8700627AAD /* Basket Donation Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Donation Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ADA0A0C24BCEC8700627AAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3ADA0A0F24BCEC8700627AAD /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		3ADA0A1224BCEC8700627AAD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3ADA0A1324BCEC8700627AAD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3ADA0A1624BCEC8700627AAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3ADA0A1824BCEC8800627AAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3ADA0A1B24BCEC8800627AAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3ADA0A1D24BCEC8800627AAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3ADA0A1E24BCEC8800627AAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3ADA0A2424BCEC8800627AAD /* Basket Donation PaymentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Basket Donation PaymentsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ADA0A2824BCEC8800627AAD /* Basket_Donation_PaymentsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Basket_Donation_PaymentsTests.m; sourceTree = "<group>"; };
+		3ADA0A2A24BCEC8800627AAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3ADA0A2F24BCEC8800627AAD /* Basket Donation PaymentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Basket Donation PaymentsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Basket_Donation_PaymentsUITests.m; sourceTree = "<group>"; };
+		3ADA0A3524BCEC8800627AAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = APIKeysSecret.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3ADA0A0624BCEC8700627AAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADA0A2124BCEC8800627AAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADA0A2C24BCEC8800627AAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3ADA0A0024BCEC8700627AAD = {
+			isa = PBXGroup;
+			children = (
+				3ADA0A0B24BCEC8700627AAD /* Basket Donation Payments */,
+				3ADA0A2724BCEC8800627AAD /* Basket Donation PaymentsTests */,
+				3ADA0A3224BCEC8800627AAD /* Basket Donation PaymentsUITests */,
+				3ADA0A0A24BCEC8700627AAD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3ADA0A0A24BCEC8700627AAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3ADA0A0924BCEC8700627AAD /* Basket Donation Payments.app */,
+				3ADA0A2424BCEC8800627AAD /* Basket Donation PaymentsTests.xctest */,
+				3ADA0A2F24BCEC8800627AAD /* Basket Donation PaymentsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3ADA0A0B24BCEC8700627AAD /* Basket Donation Payments */ = {
+			isa = PBXGroup;
+			children = (
+				3ADA0A4224BCECB500627AAD /* Views */,
+				3ADA0A4124BCECAD00627AAD /* View Controllers */,
+				3ADA0A0C24BCEC8700627AAD /* AppDelegate.h */,
+				3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */,
+				3ADA0A0F24BCEC8700627AAD /* SceneDelegate.h */,
+				3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */,
+				3ADA0A1224BCEC8700627AAD /* ViewController.h */,
+				3ADA0A1324BCEC8700627AAD /* ViewController.m */,
+				3ADA0A1524BCEC8700627AAD /* Main.storyboard */,
+				3ADA0A1824BCEC8800627AAD /* Assets.xcassets */,
+				3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */,
+				3ADA0A1D24BCEC8800627AAD /* Info.plist */,
+				3ADA0A1E24BCEC8800627AAD /* main.m */,
+				3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */,
+			);
+			path = "Basket Donation Payments";
+			sourceTree = "<group>";
+		};
+		3ADA0A2724BCEC8800627AAD /* Basket Donation PaymentsTests */ = {
+			isa = PBXGroup;
+			children = (
+				3ADA0A2824BCEC8800627AAD /* Basket_Donation_PaymentsTests.m */,
+				3ADA0A2A24BCEC8800627AAD /* Info.plist */,
+			);
+			path = "Basket Donation PaymentsTests";
+			sourceTree = "<group>";
+		};
+		3ADA0A3224BCEC8800627AAD /* Basket Donation PaymentsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3ADA0A3324BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m */,
+				3ADA0A3524BCEC8800627AAD /* Info.plist */,
+			);
+			path = "Basket Donation PaymentsUITests";
+			sourceTree = "<group>";
+		};
+		3ADA0A4124BCECAD00627AAD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		3ADA0A4224BCECB500627AAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3ADA0A0824BCEC8700627AAD /* Basket Donation Payments */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3ADA0A3824BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation Payments" */;
+			buildPhases = (
+				3ADA0A0524BCEC8700627AAD /* Sources */,
+				3ADA0A0624BCEC8700627AAD /* Frameworks */,
+				3ADA0A0724BCEC8700627AAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Basket Donation Payments";
+			productName = "Basket Donation Payments";
+			productReference = 3ADA0A0924BCEC8700627AAD /* Basket Donation Payments.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3ADA0A2324BCEC8800627AAD /* Basket Donation PaymentsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3ADA0A3B24BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation PaymentsTests" */;
+			buildPhases = (
+				3ADA0A2024BCEC8800627AAD /* Sources */,
+				3ADA0A2124BCEC8800627AAD /* Frameworks */,
+				3ADA0A2224BCEC8800627AAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3ADA0A2624BCEC8800627AAD /* PBXTargetDependency */,
+			);
+			name = "Basket Donation PaymentsTests";
+			productName = "Basket Donation PaymentsTests";
+			productReference = 3ADA0A2424BCEC8800627AAD /* Basket Donation PaymentsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3ADA0A2E24BCEC8800627AAD /* Basket Donation PaymentsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3ADA0A3E24BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation PaymentsUITests" */;
+			buildPhases = (
+				3ADA0A2B24BCEC8800627AAD /* Sources */,
+				3ADA0A2C24BCEC8800627AAD /* Frameworks */,
+				3ADA0A2D24BCEC8800627AAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3ADA0A3124BCEC8800627AAD /* PBXTargetDependency */,
+			);
+			name = "Basket Donation PaymentsUITests";
+			productName = "Basket Donation PaymentsUITests";
+			productReference = 3ADA0A2F24BCEC8800627AAD /* Basket Donation PaymentsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3ADA0A0124BCEC8700627AAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Kristie Huang";
+				TargetAttributes = {
+					3ADA0A0824BCEC8700627AAD = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					3ADA0A2324BCEC8800627AAD = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3ADA0A0824BCEC8700627AAD;
+					};
+					3ADA0A2E24BCEC8800627AAD = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 3ADA0A0824BCEC8700627AAD;
+					};
+				};
+			};
+			buildConfigurationList = 3ADA0A0424BCEC8700627AAD /* Build configuration list for PBXProject "Basket Donation Payments" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3ADA0A0024BCEC8700627AAD;
+			productRefGroup = 3ADA0A0A24BCEC8700627AAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3ADA0A0824BCEC8700627AAD /* Basket Donation Payments */,
+				3ADA0A2324BCEC8800627AAD /* Basket Donation PaymentsTests */,
+				3ADA0A2E24BCEC8800627AAD /* Basket Donation PaymentsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3ADA0A0724BCEC8700627AAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADA0A1C24BCEC8800627AAD /* LaunchScreen.storyboard in Resources */,
+				3ADA0A1924BCEC8800627AAD /* Assets.xcassets in Resources */,
+				3ADA0A4824BCFA0100627AAD /* APIKeysSecret.plist in Resources */,
+				3ADA0A1724BCEC8700627AAD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADA0A2224BCEC8800627AAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADA0A2D24BCEC8800627AAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3ADA0A0524BCEC8700627AAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADA0A1424BCEC8700627AAD /* ViewController.m in Sources */,
+				3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */,
+				3ADA0A1F24BCEC8800627AAD /* main.m in Sources */,
+				3ADA0A1124BCEC8700627AAD /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADA0A2024BCEC8800627AAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADA0A2924BCEC8800627AAD /* Basket_Donation_PaymentsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3ADA0A2B24BCEC8800627AAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADA0A3424BCEC8800627AAD /* Basket_Donation_PaymentsUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3ADA0A2624BCEC8800627AAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3ADA0A0824BCEC8700627AAD /* Basket Donation Payments */;
+			targetProxy = 3ADA0A2524BCEC8800627AAD /* PBXContainerItemProxy */;
+		};
+		3ADA0A3124BCEC8800627AAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3ADA0A0824BCEC8700627AAD /* Basket Donation Payments */;
+			targetProxy = 3ADA0A3024BCEC8800627AAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3ADA0A1524BCEC8700627AAD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3ADA0A1624BCEC8700627AAD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3ADA0A1B24BCEC8800627AAD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3ADA0A3624BCEC8800627AAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3ADA0A3724BCEC8800627AAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3ADA0A3924BCEC8800627AAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VCQ885ZT;
+				INFOPLIST_FILE = "Basket Donation Payments/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kristiehuang.Basket-Donation-Payments";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3ADA0A3A24BCEC8800627AAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VCQ885ZT;
+				INFOPLIST_FILE = "Basket Donation Payments/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kristiehuang.Basket-Donation-Payments";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3ADA0A3C24BCEC8800627AAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VCQ885ZT;
+				INFOPLIST_FILE = "Basket Donation PaymentsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kristiehuang.Basket-Donation-PaymentsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Basket Donation Payments.app/Basket Donation Payments";
+			};
+			name = Debug;
+		};
+		3ADA0A3D24BCEC8800627AAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VCQ885ZT;
+				INFOPLIST_FILE = "Basket Donation PaymentsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kristiehuang.Basket-Donation-PaymentsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Basket Donation Payments.app/Basket Donation Payments";
+			};
+			name = Release;
+		};
+		3ADA0A3F24BCEC8800627AAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VCQ885ZT;
+				INFOPLIST_FILE = "Basket Donation PaymentsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kristiehuang.Basket-Donation-PaymentsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Basket Donation Payments";
+			};
+			name = Debug;
+		};
+		3ADA0A4024BCEC8800627AAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 45VCQ885ZT;
+				INFOPLIST_FILE = "Basket Donation PaymentsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kristiehuang.Basket-Donation-PaymentsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Basket Donation Payments";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3ADA0A0424BCEC8700627AAD /* Build configuration list for PBXProject "Basket Donation Payments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3ADA0A3624BCEC8800627AAD /* Debug */,
+				3ADA0A3724BCEC8800627AAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3ADA0A3824BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation Payments" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3ADA0A3924BCEC8800627AAD /* Debug */,
+				3ADA0A3A24BCEC8800627AAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3ADA0A3B24BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation PaymentsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3ADA0A3C24BCEC8800627AAD /* Debug */,
+				3ADA0A3D24BCEC8800627AAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3ADA0A3E24BCEC8800627AAD /* Build configuration list for PBXNativeTarget "Basket Donation PaymentsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3ADA0A3F24BCEC8800627AAD /* Debug */,
+				3ADA0A4024BCEC8800627AAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3ADA0A0124BCEC8700627AAD /* Project object */;
+}
