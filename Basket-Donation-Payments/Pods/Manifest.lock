@@ -1,22 +1,51 @@
 PODS:
   - Bolts/Tasks (1.9.1)
+  - Braintree (4.34.0):
+    - Braintree/Card (= 4.34.0)
+    - Braintree/Core (= 4.34.0)
+    - Braintree/PayPal (= 4.34.0)
+    - Braintree/UI (= 4.34.0)
+  - Braintree/Card (4.34.0):
+    - Braintree/Core
+  - Braintree/Core (4.34.0)
+  - Braintree/PayPal (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.34.0)
+  - Braintree/UI (4.34.0):
+    - Braintree/Card
+    - Braintree/Core
+  - Braintree/Venmo (4.34.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
 
 DEPENDENCIES:
+  - Braintree
+  - Braintree/Venmo
   - Parse
 
 SPEC REPOS:
   trunk:
     - Bolts
+    - Braintree
     - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: b6807bdddae52cb3f0d5672ee13136fb1b4a945e
+PODFILE CHECKSUM: d565787c0039cfd70cea35a60164c1884ff35071
 
 COCOAPODS: 1.9.3
