@@ -106,7 +106,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 
 ### Models
 #### User (subclass of PFUser)
-* userId (NSString)
+* objectId (NSString)
 * username (NSString)
 * password (NSString)
 * firstName (NSString)
@@ -126,13 +126,13 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 * total value donated (double)
 * user (pointer to User)
 * belongsInBaskets (NSArray<Basket>)
+* basketTransactionsMadeToNonprofit (NSArray<BasketTransaction>)
 * *PayPal payments*
 	* paymentId (NSString)
 	* merchantId (NSString)
 	* email (NSString)
-* metadata:
-	* website (NSString)
-	* category (NSString)
+* website (NSString)
+* category (NSString)
 * updatedAt (NSDate; date joined or new activity)
 
 #### Basket
@@ -156,7 +156,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 	* nonprofit (pointer to Nonprofit)
 	* percentage to nonprofit (double)
 	* individualTransactionId (NSString)
-* timestamp (NSDate)
+* createdAt (NSDate)
 
 ### Networking
 #### List of network requests by screen
