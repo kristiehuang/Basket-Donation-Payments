@@ -106,56 +106,56 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 
 ### Models
 #### User (subclass of PFUser)
-* userId
-* username
-* password
-* firstName
-* lastName
-* paymentInfo
-* profilePicFile
-* nonprofit (nil if not nonprofit, pointer to Nonprofit object if is). ??????
+* userId (NSString)
+* username (NSString)
+* password (NSString)
+* firstName (NSString)
+* lastName (NSString)
+* paymentInfo //unknown type for now, need to see how PayPal SDK works
+* profilePicFile (PFFileObject)
+* nonprofit (nil if not nonprofit, pointer to Nonprofit object if is)
 * recentDonations (Array<BasketTransaction>)
 * favoriteNonprofits (Array<Nonprofit>)
 
 #### Nonprofit
-* nonprofitId
-* nonprofitName
-* description
-* profilePicFile
-* headerPicFile
-* total value donated
+* nonprofitId (NSString)
+* nonprofitName (NSString)
+* description (NSString)
+* profilePicFile (PFFileObject)
+* headerPicFile (PFFileObject)
+* total value donated (double)
 * user (pointer to User)
 * belongsInBaskets (NSArray<Basket>)
 * *PayPal payments*
-	* paymentId
-	* merchantId
-	* email
+	* paymentId (NSString)
+	* merchantId (NSString)
+	* email (NSString)
 * metadata:
-	* website
-	* category
-* updatedAt (joined or new activity)
+	* website (NSString)
+	* category (NSString)
+* updatedAt (NSDate; date joined or new activity)
 
 #### Basket
-* basketId
-* name
-* description
-* createdAt
-* headerPicFile
-* totalValueDonated
+* basketId (NSString)
+* name (NSString)
+* description (NSString)
+* createdAt (NSDate)
+* headerPicFile (PFFileObject)
+* totalValueDonated (double)
 * isFeatured (BOOL)
 * nonprofits (Array<Nonprofit>)
 * createdBy (pointer to User)
 
 #### BasketTransaction
-* basketTransactionId
-* payment method
+* basketTransactionId (NSString)
+* payment method //unknown type yet, need to see how PayPal SDK works
 * user (pointer to User)
-* totalAmount
+* totalAmount (double)
 * basketRecipient (pointer to Basket)
 * individual nonprofit txs (Array<NSDict>)
 	* nonprofit (pointer to Nonprofit)
-	* percentage to nonprofit
-	* individualTransactionId
+	* percentage to nonprofit (double)
+	* individualTransactionId (NSString)
 * timestamp (NSDate)
 
 ### Networking
