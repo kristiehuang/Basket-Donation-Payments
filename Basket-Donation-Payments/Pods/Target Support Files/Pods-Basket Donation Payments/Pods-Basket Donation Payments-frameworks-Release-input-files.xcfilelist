@@ -1,4 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework
 ${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework
+${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework
+${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework

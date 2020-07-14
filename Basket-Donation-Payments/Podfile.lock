@@ -8,6 +8,10 @@ PODS:
   - Braintree/Card (4.34.0):
     - Braintree/Core
   - Braintree/Core (4.34.0)
+  - Braintree/PaymentFlow (4.34.0):
+    - Braintree/Card
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
   - Braintree/PayPal (4.34.0):
     - Braintree/Core
     - Braintree/PayPalOneTouch
@@ -22,9 +26,22 @@ PODS:
   - Braintree/UI (4.34.0):
     - Braintree/Card
     - Braintree/Core
+  - Braintree/UnionPay (4.34.0):
+    - Braintree/Card
+    - Braintree/Core
   - Braintree/Venmo (4.34.0):
     - Braintree/Core
     - Braintree/PayPalDataCollector
+  - BraintreeDropIn (8.1.0):
+    - BraintreeDropIn/DropIn (= 8.1.0)
+  - BraintreeDropIn/DropIn (8.1.0):
+    - Braintree/Card (~> 4.32)
+    - Braintree/Core (~> 4.32)
+    - Braintree/PaymentFlow (~> 4.32)
+    - Braintree/PayPal (~> 4.32)
+    - Braintree/UnionPay (~> 4.32)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (8.1.0)
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
@@ -33,19 +50,22 @@ PODS:
 DEPENDENCIES:
   - Braintree
   - Braintree/Venmo
+  - BraintreeDropIn
   - Parse
 
 SPEC REPOS:
   trunk:
     - Bolts
     - Braintree
+    - BraintreeDropIn
     - Parse
 
 SPEC CHECKSUMS:
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
   Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
+  BraintreeDropIn: fc3e96a8a2b5416e5e3a3beba119f0089713bc1e
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
 
-PODFILE CHECKSUM: d565787c0039cfd70cea35a60164c1884ff35071
+PODFILE CHECKSUM: ea5bd7a52dc8fa0bc776c5085d378976361a635d
 
 COCOAPODS: 1.9.3

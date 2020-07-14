@@ -9,6 +9,7 @@ target 'Basket Donation Payments' do
 	pod 'Parse'
 	pod 'Braintree'
 	pod 'Braintree/Venmo'
+	pod 'BraintreeDropIn' # for Drop-in payment UI
 	# optional: pod 'Braintree/DataCollector'
 
 	
