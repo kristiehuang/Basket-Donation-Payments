@@ -108,6 +108,7 @@ Each cause (e.g. LGQBT+, racial equality, education, etc.) is associated with a 
 #### User (subclass of PFUser)
 * objectId (NSString)
 * username (NSString)
+* email (NSString)
 * password (NSString)
 * firstName (NSString)
 * lastName (NSString)
