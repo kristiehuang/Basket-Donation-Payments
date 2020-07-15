@@ -27,7 +27,10 @@
 @dynamic createdAt;
 
 - (NSString *)parseClassName {
-    return @"User";
+    return @"_User";
 }
+
+
+
 
 @end

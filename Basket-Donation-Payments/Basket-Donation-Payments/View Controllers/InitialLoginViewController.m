@@ -57,8 +57,6 @@
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Oops, couldn't log you in." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
                 [self presentViewController:alert animated:YES completion:nil];
                 
-            } else {
-                [self performSegueWithIdentifier:@"loginSegue" sender:nil];
             }
         }];
         

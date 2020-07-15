@@ -7,6 +7,11 @@
 //
 
 #import "ProfileViewController.h"
+#import <Parse/Parse.h>
+#import "AppDelegate.h"
+#import "SceneDelegate.h"
+#import "InitialLoginViewController.h"
+#import "Utils.h"
 
 @interface ProfileViewController ()
 
@@ -17,6 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)logoutButtonTapped:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        if (error == nil) {
+            SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            InitialLoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"InitialLoginViewController"];
+            myDelegate.window.rootViewController = loginVC;
+        } else {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Cannot logout." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+
+    }];
 }
 
 /*
