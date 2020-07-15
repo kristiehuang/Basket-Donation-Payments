@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */; };
 		3ADA0A1124BCEC8700627AAD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */; };
-		3ADA0A1424BCEC8700627AAD /* InitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1324BCEC8700627AAD /* InitialViewController.m */; };
+		3ADA0A1424BCEC8700627AAD /* InitialLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1324BCEC8700627AAD /* InitialLoginViewController.m */; };
 		3ADA0A1724BCEC8700627AAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1524BCEC8700627AAD /* Main.storyboard */; };
 		3ADA0A1924BCEC8800627AAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1824BCEC8800627AAD /* Assets.xcassets */; };
 		3ADA0A1C24BCEC8800627AAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */; };
@@ -30,6 +30,7 @@
 		3ADA0A6A24BE2E5300627AAD /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A6924BE2E5300627AAD /* ProfileViewController.m */; };
 		3ADA0A6D24BE340600627AAD /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A6C24BE340600627AAD /* BasketViewController.m */; };
 		3ADA0A7024BE340D00627AAD /* NonprofitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */; };
+		3ADA0A7324BE65B200627AAD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A7224BE65B200627AAD /* Utils.m */; };
 		877C000BF9470AABB63F80D9 /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */; };
 		A85E22FD5B54B1E7086DE619 /* Pods_Basket_Donation_Payments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */; };
 		B55DB78745BDD2AA4613205C /* Pods_Basket_Donation_PaymentsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE56A46D69B6A4177FFAADA7 /* Pods_Basket_Donation_PaymentsTests.framework */; };
@@ -60,8 +61,8 @@
 		3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3ADA0A0F24BCEC8700627AAD /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		3ADA0A1224BCEC8700627AAD /* InitialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialViewController.h; sourceTree = "<group>"; };
-		3ADA0A1324BCEC8700627AAD /* InitialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitialViewController.m; sourceTree = "<group>"; };
+		3ADA0A1224BCEC8700627AAD /* InitialLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InitialLoginViewController.h; sourceTree = "<group>"; };
+		3ADA0A1324BCEC8700627AAD /* InitialLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InitialLoginViewController.m; sourceTree = "<group>"; };
 		3ADA0A1624BCEC8700627AAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3ADA0A1824BCEC8800627AAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3ADA0A1B24BCEC8800627AAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,6 +101,8 @@
 		3ADA0A6C24BE340600627AAD /* BasketViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasketViewController.m; sourceTree = "<group>"; };
 		3ADA0A6E24BE340D00627AAD /* NonprofitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitViewController.h; sourceTree = "<group>"; };
 		3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitViewController.m; sourceTree = "<group>"; };
+		3ADA0A7124BE65B200627AAD /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		3ADA0A7224BE65B200627AAD /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3B45FADF3FA4B278BFFF5E /* Pods-Basket Donation PaymentsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation PaymentsTests.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation PaymentsTests/Pods-Basket Donation PaymentsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78144C372F64C45CB4BE24E5 /* Pods-Basket Donation Payments.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation Payments.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments.debug.xcconfig"; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 		3ADA0A0B24BCEC8700627AAD /* Basket-Donation-Payments */ = {
 			isa = PBXGroup;
 			children = (
+				3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */,
+				3ADA0A1524BCEC8700627AAD /* Main.storyboard */,
 				3ADA0A4924BD171E00627AAD /* Models */,
 				3ADA0A4224BCECB500627AAD /* Views */,
 				3ADA0A4124BCECAD00627AAD /* View Controllers */,
@@ -179,9 +184,7 @@
 				3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */,
 				3ADA0A0F24BCEC8700627AAD /* SceneDelegate.h */,
 				3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */,
-				3ADA0A1524BCEC8700627AAD /* Main.storyboard */,
 				3ADA0A1824BCEC8800627AAD /* Assets.xcassets */,
-				3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */,
 				3ADA0A1D24BCEC8800627AAD /* Info.plist */,
 				3ADA0A1E24BCEC8800627AAD /* main.m */,
 				3ADA0A4724BCFA0100627AAD /* APIKeysSecret.plist */,
@@ -210,8 +213,8 @@
 		3ADA0A4124BCECAD00627AAD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3ADA0A1224BCEC8700627AAD /* InitialViewController.h */,
-				3ADA0A1324BCEC8700627AAD /* InitialViewController.m */,
+				3ADA0A1224BCEC8700627AAD /* InitialLoginViewController.h */,
+				3ADA0A1324BCEC8700627AAD /* InitialLoginViewController.m */,
 				3ADA0A5924BE2BCC00627AAD /* UserSignupViewController.h */,
 				3ADA0A5A24BE2BCC00627AAD /* UserSignupViewController.m */,
 				3ADA0A5C24BE2BD700627AAD /* NonprofitSignupViewController.h */,
@@ -252,6 +255,8 @@
 				3ADA0A5124BD189100627AAD /* BasketTransaction.m */,
 				3ADA0A5624BE233600627AAD /* APIManager.h */,
 				3ADA0A5724BE233600627AAD /* APIManager.m */,
+				3ADA0A7124BE65B200627AAD /* Utils.h */,
+				3ADA0A7224BE65B200627AAD /* Utils.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,8 +522,9 @@
 				3ADA0A4C24BD173000627AAD /* User.m in Sources */,
 				3ADA0A5824BE233600627AAD /* APIManager.m in Sources */,
 				3ADA0A7024BE340D00627AAD /* NonprofitViewController.m in Sources */,
+				3ADA0A7324BE65B200627AAD /* Utils.m in Sources */,
 				3ADA0A5B24BE2BCC00627AAD /* UserSignupViewController.m in Sources */,
-				3ADA0A1424BCEC8700627AAD /* InitialViewController.m in Sources */,
+				3ADA0A1424BCEC8700627AAD /* InitialLoginViewController.m in Sources */,
 				3ADA0A6D24BE340600627AAD /* BasketViewController.m in Sources */,
 				3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */,
 				3ADA0A1F24BCEC8800627AAD /* main.m in Sources */,

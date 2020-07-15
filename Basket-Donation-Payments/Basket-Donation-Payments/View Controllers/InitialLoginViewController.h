@@ -1,5 +1,5 @@
 //
-//  InitialViewController.h
+//  InitialLoginViewController.h
 //  Basket Donation Payments
 //
 //  Created by Kristie Huang on 7/13/20.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InitialViewController : UIViewController
+@interface InitialLoginViewController : UIViewController
 
 
 @end

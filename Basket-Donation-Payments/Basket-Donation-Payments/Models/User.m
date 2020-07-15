@@ -11,7 +11,6 @@
 
 @implementation User
 
-@dynamic userId; //TODO: set equal to objectId
 @dynamic firstName;
 @dynamic lastName;
 @dynamic profilePicFile;

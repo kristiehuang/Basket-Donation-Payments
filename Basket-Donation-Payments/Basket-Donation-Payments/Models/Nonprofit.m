@@ -22,7 +22,7 @@
 @dynamic belongsInBaskets;
 @dynamic websiteUrl;
 @dynamic category;
-
+@dynamic verificationFiles;
 
 + (nonnull NSString *)parseClassName {
     return @"Nonprofit";

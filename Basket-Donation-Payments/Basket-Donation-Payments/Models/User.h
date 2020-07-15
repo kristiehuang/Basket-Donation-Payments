@@ -16,11 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** PFUser already has objectId, updaedAt, username, password, email, createdAt. */
 
 //TODO: payment info, unknown type for now
-@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) PFFileObject *profilePicFile;
-@property (nonatomic, strong) Nonprofit *nonprofit;
+@property (nonatomic, strong, nullable) Nonprofit *nonprofit;
 @property (nonatomic, strong) NSArray<BasketTransaction*> *recentDonations;
 @property (nonatomic, strong) NSArray<Nonprofit*> *favoriteNonprofits;
 

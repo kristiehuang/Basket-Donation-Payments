@@ -7,8 +7,18 @@
 //
 
 #import "NonprofitSignupViewController.h"
+#import <Parse/Parse.h>
+#import "Nonprofit.h"
 
 @interface NonprofitSignupViewController ()
+@property (nonatomic, strong) Nonprofit *nonprofit;
+@property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
+@property (weak, nonatomic) IBOutlet UITextField *nonprofitNameTextField;
+@property (weak, nonatomic) IBOutlet UITextView *nonprofitDescriptionTextView;
+@property (weak, nonatomic) IBOutlet UITextField *nonprofitCategoryTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nonprofitWebsiteTextField;
+//TODO: set up with Paypal, Braintree?
+
 
 @end
 
@@ -16,7 +26,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.nonprofit = [Nonprofit new]; //initWithDict
+    //TODO: figure out document uplaod
+    // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
+}
+
+
+- (IBAction)getStartedButtonTapped:(id)sender {
+    //nonprofit property is still nil
+    self.user.nonprofit = self.nonprofit;
+    //save user, save nonprofit
+    
+    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
 }
 
 /*
