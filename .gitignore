@@ -3,4 +3,9 @@ APIKeysSecret.plist
 
 # ignore annoying DS_Store
 .DS_Store
-/xcuserdata/kristiehuang.xcuserdatad/UserInterfaceState.xcuserstate
+xcuserdata/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
