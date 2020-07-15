@@ -14,8 +14,8 @@
             filePath = "Basket-Donation-Payments/View Controllers/UserSignupViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "-cancelButtonTapped:"
             landmarkType = "7">
             <Locations>
@@ -30,8 +30,8 @@
                   urlString = "file:///Users/kristiehuang/Documents/CodePath%20FBU/Basket-Donation-Payments/Basket-Donation-Payments/Basket-Donation-Payments/View%20Controllers/UserSignupViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
                   offsetFromSymbolStart = "57">
                </Location>
                <Location
@@ -45,8 +45,8 @@
                   urlString = "file:///Users/kristiehuang/Documents/CodePath%20FBU/Basket-Donation-Payments/Basket-Donation-Payments/Basket-Donation-Payments/View%20Controllers/UserSignupViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
                   offsetFromSymbolStart = "12">
                </Location>
                <Location
@@ -60,8 +60,8 @@
                   urlString = "file:///Users/kristiehuang/Documents/CodePath%20FBU/Basket-Donation-Payments/Basket-Donation-Payments/Basket-Donation-Payments/View%20Controllers/UserSignupViewController.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "79"
-                  endingLineNumber = "79"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -77,9 +77,41 @@
             filePath = "Basket-Donation-Payments/View Controllers/UserSignupViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-cancelButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20FBD912-21A9-491F-9B55-4B524958C6D7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Basket-Donation-Payments/View Controllers/UserSignupViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-getStartedButtonTapped:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43E5D800-7EFD-45C5-A971-B9862A4B50B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Basket-Donation-Payments/View Controllers/UserSignupViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

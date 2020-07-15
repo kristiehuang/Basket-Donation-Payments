@@ -9,6 +9,7 @@
 #import "UserSignupViewController.h"
 #import "NonprofitSignupViewController.h"
 #import "User.h"
+#import "Nonprofit.h"
 #import <Parse/Parse.h>
 #import "Utils.h"
 
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *isNonprofitSwitch;
+
+@property (nonatomic, strong) User *user;
 
 @end
 
@@ -32,45 +35,50 @@
 
 - (IBAction)getStartedButtonTapped:(id)sender {
     NSString *segueIdentifierToPerform = (self.isNonprofitSwitch.on ? @"nonprofitCreationSegue" : @"signUpSuccessSegue");
-    [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Segue is not cancel segue
-    if ([segue.identifier isEqualToString:@"nonprofitCreationSegue"] || [segue.identifier isEqualToString:@"signUpSuccessSegue"]) {
-        User *newUser = [User user];
-        newUser.firstName = self.firstNameTextField.text;
-        newUser.lastName = self.lastNameTextField.text;
-        newUser.username = self.usernameTextField.text;
-        newUser.password = self.passwordTextField.text;
-        newUser.email = self.emailTextField.text;
+    if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"] || [segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
+        self.user = [User user];
+        self.user.firstName = self.firstNameTextField.text;
+        self.user.lastName = self.lastNameTextField.text;
+        self.user.username = self.usernameTextField.text;
+        self.user.password = self.passwordTextField.text;
+        self.user.email = self.emailTextField.text;
         
         NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
-        newUser.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
+        self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
         
-        newUser.recentDonations = [NSMutableArray new]; //TODO: can i do this? dynamic NSArray xyz = NSMutableArray
-        newUser.favoriteNonprofits = [NSMutableArray new]; //TODO: can i do this? dynamic NSArray xyz = NSMutableArray
+        self.user.recentDonations = [NSMutableArray new];
+        self.user.favoriteNonprofits = [NSMutableArray new];
 
-        if ([segue.identifier isEqualToString:@"nonprofitCreationSegue"]) {
+        if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
             //send user deets to nonprofit creation segue but don't create yet
             //nonprofit property is still nil
-            NonprofitSignupViewController *nonprofitSignupVC = [segue destinationViewController];
-            nonprofitSignupVC.user = newUser;
-            
-            
-        } else if ([segue.identifier isEqualToString:@"signUpSuccessSegue"]) {
-            //create user
-            newUser.nonprofit = nil;
+            [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
 
-            //FIXME: add subclass to database
-            [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            
+        } else if ([segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
+            self.user.nonprofit = nil;
+            [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (!succeeded) {
                     NSLog(@"%@", error.localizedDescription);
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    [self presentViewController:alert animated:YES completion:nil];
+                } else {
+                    [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
+
                 }
             }];
         }
     }
+}
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"nonprofitCreationSegue"]) {
+        //send user deets to nonprofit creation segue but don't create yet
+        //nonprofit property is still nil
+        NonprofitSignupViewController *nonprofitSignupVC = [segue destinationViewController];
+        nonprofitSignupVC.user = self.user;
+    }
     
 
 }

@@ -12,7 +12,7 @@
 
 @implementation Utils
 
-+(UIAlertController *)createAlertControllerWithTitle:(NSString*)title andMessage:(NSString*)message okCompletion:(void(^)(UIAlertAction * _Nonnull action))okCompletion cancelCompletion:(void(^)(UIAlertAction * _Nonnull action))cancelCompletion {
++(UIAlertController *)createAlertControllerWithTitle:(NSString*)title andMessage:(NSString*)message okCompletion:(void(^)(UIAlertAction * action))okCompletion cancelCompletion:(void(^)(UIAlertAction * action))cancelCompletion {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:okCompletion];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:cancelCompletion];

@@ -20,8 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) PFFileObject *profilePicFile;
 @property (nonatomic, strong, nullable) Nonprofit *nonprofit;
-@property (nonatomic, strong) NSArray<BasketTransaction*> *recentDonations;
-@property (nonatomic, strong) NSArray<Nonprofit*> *favoriteNonprofits;
+@property (nonatomic, strong) NSMutableArray<BasketTransaction*> *recentDonations;
+@property (nonatomic, strong) NSMutableArray<Nonprofit*> *favoriteNonprofits;
 
 
 @end

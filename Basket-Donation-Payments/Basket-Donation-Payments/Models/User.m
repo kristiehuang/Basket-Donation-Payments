@@ -7,6 +7,8 @@
 //
 
 #import "User.h"
+#import "PFObject+Subclass.h"
+#import <Parse/PFSubclassing.h>
 #import "Nonprofit.h"
 
 @implementation User
@@ -23,5 +25,9 @@
 @dynamic password;
 @dynamic email;
 @dynamic createdAt;
+
+- (NSString *)parseClassName {
+    return @"User";
+}
 
 @end
