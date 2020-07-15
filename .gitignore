@@ -3,3 +3,4 @@ APIKeysSecret.plist
 
 # ignore annoying DS_Store
 .DS_Store
+/xcuserdata/kristiehuang.xcuserdatad/UserInterfaceState.xcuserstate
