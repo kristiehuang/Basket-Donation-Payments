@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Basket.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BasketViewController : UIViewController
-
+@property (nonatomic, strong) Basket *basket;
 @end
 
 NS_ASSUME_NONNULL_END

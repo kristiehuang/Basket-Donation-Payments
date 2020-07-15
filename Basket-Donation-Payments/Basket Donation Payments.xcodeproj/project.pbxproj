@@ -31,6 +31,7 @@
 		3ADA0A6D24BE340600627AAD /* BasketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A6C24BE340600627AAD /* BasketViewController.m */; };
 		3ADA0A7024BE340D00627AAD /* NonprofitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */; };
 		3ADA0A7324BE65B200627AAD /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A7224BE65B200627AAD /* Utils.m */; };
+		3ADA0A7624BF6E7F00627AAD /* BasketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A7524BF6E7F00627AAD /* BasketTableViewCell.m */; };
 		877C000BF9470AABB63F80D9 /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */; };
 		A85E22FD5B54B1E7086DE619 /* Pods_Basket_Donation_Payments.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */; };
 		B55DB78745BDD2AA4613205C /* Pods_Basket_Donation_PaymentsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE56A46D69B6A4177FFAADA7 /* Pods_Basket_Donation_PaymentsTests.framework */; };
@@ -103,6 +104,8 @@
 		3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitViewController.m; sourceTree = "<group>"; };
 		3ADA0A7124BE65B200627AAD /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		3ADA0A7224BE65B200627AAD /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		3ADA0A7424BF6E7F00627AAD /* BasketTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasketTableViewCell.h; sourceTree = "<group>"; };
+		3ADA0A7524BF6E7F00627AAD /* BasketTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasketTableViewCell.m; sourceTree = "<group>"; };
 		4BC602AE215BB31B15B63CBC /* Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_Payments_Basket_Donation_PaymentsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3B45FADF3FA4B278BFFF5E /* Pods-Basket Donation PaymentsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation PaymentsTests.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation PaymentsTests/Pods-Basket Donation PaymentsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		78144C372F64C45CB4BE24E5 /* Pods-Basket Donation Payments.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basket Donation Payments.debug.xcconfig"; path = "Target Support Files/Pods-Basket Donation Payments/Pods-Basket Donation Payments.debug.xcconfig"; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 		3ADA0A4224BCECB500627AAD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3ADA0A7424BF6E7F00627AAD /* BasketTableViewCell.h */,
+				3ADA0A7524BF6E7F00627AAD /* BasketTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -514,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ADA0A6124BE2DE900627AAD /* ExploreFeedViewController.m in Sources */,
+				3ADA0A7624BF6E7F00627AAD /* BasketTableViewCell.m in Sources */,
 				3ADA0A6424BE2E0800627AAD /* SearchViewController.m in Sources */,
 				3ADA0A5224BD189100627AAD /* BasketTransaction.m in Sources */,
 				3ADA0A5E24BE2BD700627AAD /* NonprofitSignupViewController.m in Sources */,

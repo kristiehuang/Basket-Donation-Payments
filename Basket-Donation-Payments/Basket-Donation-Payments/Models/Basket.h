@@ -15,14 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Basket : PFObject<PFSubclassing>
 
 /** Already has createdAt, etc. */
-@property (nonatomic, strong) NSString *basketId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *basketDescription;
 @property (nonatomic, strong) PFFileObject *headerPicFile;
-@property (nonatomic) double *totalDonatedValue;
+@property (nonatomic) double totalDonatedValue;
 @property (nonatomic) BOOL isFeatured;
 @property (nonatomic, strong) NSArray<Nonprofit*> *nonprofits;
 @property (nonatomic, strong) User *createdByUser;
+
++ (Basket*)initPlaceholderTestBasketWithName:(NSString*)name;
 
 @end
 
