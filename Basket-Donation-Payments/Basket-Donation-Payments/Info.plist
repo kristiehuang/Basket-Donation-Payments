@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Optional. The Braintree iOS SDK uses device and browser location data for fraud detection when available (i.e. when location permissions have already been requested by your app and granted by the user).</string>
+	<string>Optional. The external payments provider (Braintree iOS SDK) uses device and browser location data for fraud detection when available.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
