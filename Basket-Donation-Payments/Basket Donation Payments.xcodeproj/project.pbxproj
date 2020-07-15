@@ -180,9 +180,9 @@
 			children = (
 				3ADA0A1A24BCEC8800627AAD /* LaunchScreen.storyboard */,
 				3ADA0A1524BCEC8700627AAD /* Main.storyboard */,
+				3ADA0A4124BCECAD00627AAD /* View Controllers */,
 				3ADA0A4924BD171E00627AAD /* Models */,
 				3ADA0A4224BCECB500627AAD /* Views */,
-				3ADA0A4124BCECAD00627AAD /* View Controllers */,
 				3ADA0A0C24BCEC8700627AAD /* AppDelegate.h */,
 				3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */,
 				3ADA0A0F24BCEC8700627AAD /* SceneDelegate.h */,

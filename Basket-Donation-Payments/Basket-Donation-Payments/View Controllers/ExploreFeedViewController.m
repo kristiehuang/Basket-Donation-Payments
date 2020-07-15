@@ -9,6 +9,7 @@
 #import "ExploreFeedViewController.h"
 #import "BasketTableViewCell.h"
 #import "BasketViewController.h"
+#import "Nonprofit.h"
 #import "Basket.h"
 #import <Parse/Parse.h>
 
@@ -25,18 +26,20 @@
     [super viewDidLoad];
     self.exploreBasketsTableView.delegate = self;
     self.exploreBasketsTableView.dataSource = self;
-    
+    self.exploreBasketsTableView.rowHeight = UITableViewAutomaticDimension;
     //FIXME: temporarily force-create baskets
-    Basket *b1 = [Basket initPlaceholderTestBasketWithName:@"b1"];
-    [b1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"hell ya");
-            
-          } else {
-              NSLog(@"%@", error.localizedDescription);
-        }
-  }];
+//    Basket *b1 = [Basket initPlaceholderTestBasketWithName:@"b1"];
+//    [b1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"hell ya");
+//
+//          } else {
+//              NSLog(@"%@", error.localizedDescription);
+//        }
+//  }];
     PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
+    [query includeKey:@"nonprofits"];
+    //FIXME: manually uploaded headerPicFiles on the dashboard are linked via http, which fails to query bc Apple wants https
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error != nil) {
             NSLog(@"error");
@@ -52,14 +55,19 @@
     Basket *basket = self.baskets[indexPath.row];
     cell.basketNameLabel.text = basket.name;
     cell.basketDescriptionLabel.text = basket.basketDescription;
-    [basket.headerPicFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-            cell.basketImageView.image = [UIImage imageNamed:@"PlaceholderHeaderPic"];
-        } else {
-            cell.basketImageView.image = [UIImage imageWithData:data];
-        }
-    }];
+    
+    //TODO: show profile pics of nonprofits
+    [self getNonprofitImagesFromBasket:basket onCell:cell];
+
+//    [basket.headerPicFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+//        if (error != nil) {
+//            NSLog(@"%@", error.localizedDescription);
+//            cell.basketImageView1.image = [UIImage imageNamed:@"PlaceholderPic"];
+//        } else {
+//            cell.basketImageView1.image = [UIImage imageWithData:data];
+//        }
+//        [cell reloadInputViews];
+//    }];
     return cell;
 }
 
@@ -68,7 +76,7 @@
 //}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //TODO: for now, just query and list all baskets
+    //TODO: add sections later, for isFeatured/recents/etc
     return self.baskets.count;
 }
 
@@ -83,6 +91,77 @@
         BasketViewController *basketVC = [segue destinationViewController];
         basketVC.basket = self.basketToPass;
         
+    }
+}
+
+
+//Broken
+- (void)getNonprofitImagesFromBasket:(Basket*)basket onCell:(BasketTableViewCell *)cell {
+//    PFFileObject *n0ProfFile = basket.nonprofits[0].profilePicFile;
+//    PFFileObject *n1ProfFile = basket.nonprofits[1].profilePicFile;
+//    PFFileObject *n2ProfFile = basket.nonprofits[2].profilePicFile;
+    
+//    int i = 0;
+//    for (Nonprofit *n in basket.nonprofits) {
+//        if (i >= 3) {
+//            break;
+//        }
+//        PFFileObject *profFile = n.profilePicFile;
+//        [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+//            UIImage *im;
+//            if (error != nil) {
+//                NSLog(@"%@", error.localizedDescription);
+//                im = [UIImage imageNamed:@"PlaceholderPic"];
+//            } else {
+//                im = [UIImage imageWithData:data];
+//            }
+//            switch (i) {
+//                case 0: cell.basketImageView0.image = im;
+//                case 1: cell.basketImageView1.image = im;
+//                case 2: cell.basketImageView2.image = im;
+//            }
+//            [cell reloadInputViews];
+//        }];
+//        i+=1;
+//    }
+
+    int nonprofitsCount = (int) basket.nonprofits.count;
+    for (int i = 0; i < 3; i++) {
+        if (i >= nonprofitsCount) {
+            UIImage *im = [UIImage imageNamed:@"PlaceholderPic"];
+            switch (i) {
+                case 0:
+                    cell.basketImageView0.image = im;
+                    cell.basketImageView1.image = im;
+                    cell.basketImageView2.image = im;
+                    break;
+                case 1:
+                    cell.basketImageView1.image = im;
+                    cell.basketImageView2.image = im;
+                    break;
+                case 2:
+                    cell.basketImageView2.image = im;
+                    break;
+            }
+            break;
+        }
+        Nonprofit *n = basket.nonprofits[i];
+        PFFileObject *profFile = n.profilePicFile;
+        [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            UIImage *im;
+            if (error != nil) {
+                NSLog(@"%@", error.localizedDescription);
+                im = [UIImage imageNamed:@"PlaceholderPic"];
+            } else {
+                im = [UIImage imageWithData:data];
+            }
+            switch (i) {
+                case 0: cell.basketImageView0.image = im; break;
+                case 1: cell.basketImageView1.image = im; break;
+                case 2: cell.basketImageView2.image = im; break;
+            }
+            [cell reloadInputViews];
+        }];
     }
 }
 

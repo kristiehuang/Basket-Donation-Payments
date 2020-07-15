@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BasketTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *basketNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *basketDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *basketImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *basketImageView1;
+@property (weak, nonatomic) IBOutlet UIImageView *basketImageView0;
+@property (weak, nonatomic) IBOutlet UIImageView *basketImageView2;
 
 @end
 
