@@ -7,6 +7,9 @@
 //
 
 #import "BasketViewController.h"
+#import "BraintreePayPal.h"
+#import "BraintreeCore.h"
+#import "BraintreeDropIn.h"
 
 @interface BasketViewController ()
 
@@ -18,7 +21,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (IBAction)donateButtonTapped:(id)sender {
+    BTAPIClient *apiClient = [[BTAPIClient alloc] initWithAuthorization:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"]; //TODO: switch to production tokenization key before live. Are publishable can include in public app.
+    [self showDropIn:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"];
+}
 
+- (void)showDropIn:(NSString *)clientTokenizationKey {
+    BTDropInRequest *request = [[BTDropInRequest alloc] init];
+    BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:clientTokenizationKey request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
+
+        if (error != nil) {
+            NSLog(@"ERROR");
+        } else if (result.cancelled) {
+            NSLog(@"CANCELLED");
+        } else {
+            // Use the BTDropInResult properties to update your UI
+            // result.paymentOptionType
+            // result.paymentMethod
+            // result.paymentIcon
+            // result.paymentDescription
+        }
+    }];
+    [self presentViewController:dropIn animated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 
