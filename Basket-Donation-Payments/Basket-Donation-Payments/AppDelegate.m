@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-
+#import "BraintreePayPal.h"
+#import "BraintreeCore.h"
+#import "BraintreeDropIn.h"
 @interface AppDelegate ()
 
 @end
@@ -28,8 +30,14 @@
     }];
     [Parse initializeWithConfiguration:config];
 
+    [BTAppSwitch setReturnURLScheme:@"com.kristiehuang.Basket-Donation-Payments.open"];
 
     // Override point for customization after application launch.
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    NSLog(@"My open URL is %@", url);
     return YES;
 }
 
@@ -49,6 +57,5 @@
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
-
 
 @end

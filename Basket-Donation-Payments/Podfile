@@ -7,6 +7,9 @@ target 'Basket Donation Payments' do
 
   # Pods for Basket Donation Payments
 	pod 'Parse'
+
+  	pod 'AFOAuth2Manager'
+
 	pod 'Braintree'
 	pod 'Braintree/Venmo'
 	pod 'BraintreeDropIn' # for Drop-in payment UI

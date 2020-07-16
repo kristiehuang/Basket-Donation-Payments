@@ -22,8 +22,11 @@
     // Do any additional setup after loading the view.
 }
 - (IBAction)donateButtonTapped:(id)sender {
-    BTAPIClient *apiClient = [[BTAPIClient alloc] initWithAuthorization:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"]; //TODO: switch to production tokenization key before live. Are publishable can include in public app.
-    [self showDropIn:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"];
+    //test make paypal
+    
+    //BRAINTREE THINGS
+//    BTAPIClient *apiClient = [[BTAPIClient alloc] initWithAuthorization:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"]; //TODO: switch to production tokenization key before live. Are publishable can include in public app.
+//    [self showDropIn:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"];
 }
 
 - (void)showDropIn:(NSString *)clientTokenizationKey {
@@ -31,11 +34,12 @@
     BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:clientTokenizationKey request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
 
         if (error != nil) {
-            NSLog(@"ERROR");
+            NSLog(@"ERROR %@", error.localizedDescription);
         } else if (result.cancelled) {
             NSLog(@"CANCELLED");
         } else {
             // Use the BTDropInResult properties to update your UI
+            NSLog(@"%@", result.paymentMethod);
             // result.paymentOptionType
             // result.paymentMethod
             // result.paymentIcon

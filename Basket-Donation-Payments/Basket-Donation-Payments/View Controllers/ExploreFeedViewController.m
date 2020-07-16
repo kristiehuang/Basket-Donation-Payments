@@ -128,6 +128,7 @@
     int nonprofitsCount = (int) basket.nonprofits.count;
     for (int i = 0; i < 3; i++) {
         if (i >= nonprofitsCount) {
+            //FIXME: placeholder pic is my pic for now hahah
             UIImage *im = [UIImage imageNamed:@"PlaceholderPic"];
             switch (i) {
                 case 0:
