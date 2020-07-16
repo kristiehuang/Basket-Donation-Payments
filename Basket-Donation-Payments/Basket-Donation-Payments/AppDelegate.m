@@ -19,7 +19,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    
     /** Get APIKeys and server access info from secret .plist file. */
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APIKeysSecret" ofType:@"plist"];
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
@@ -32,7 +32,6 @@
 
     [BTAppSwitch setReturnURLScheme:@"com.kristiehuang.Basket-Donation-Payments.open"];
 
-    // Override point for customization after application launch.
     return YES;
 }
 
