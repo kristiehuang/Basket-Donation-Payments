@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AFOAuth2Manager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
