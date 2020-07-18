@@ -34,7 +34,7 @@
     basket.headerPicFile = [PFFileObject fileObjectWithData:headerData];
     basket.totalDonatedValue = 34.0;
     basket.isFeatured = NO;
-    basket.nonprofits = [NSArray new];
+    basket.nonprofits = [NSArray array];
     basket.createdByUser = [User currentUser];
     return basket;
 }

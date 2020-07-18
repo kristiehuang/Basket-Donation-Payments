@@ -47,8 +47,8 @@
         NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
         self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
         
-        self.user.recentDonations = [NSMutableArray new];
-        self.user.favoriteNonprofits = [NSMutableArray new];
+        self.user.recentDonations = [NSMutableArray array];
+        self.user.favoriteNonprofits = [NSMutableArray array];
 
         if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
             //send user deets to nonprofit creation segue but don't create yet
