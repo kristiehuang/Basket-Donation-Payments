@@ -90,7 +90,7 @@
     if ([segue.identifier isEqualToString:@"showBasketDetail"]) {
         BasketViewController *basketVC = [segue destinationViewController];
         basketVC.basket = self.basketToPass;
-        
+        self.basketToPass = nil;
     }
 }
 
