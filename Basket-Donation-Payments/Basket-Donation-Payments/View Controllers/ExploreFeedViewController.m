@@ -59,15 +59,6 @@
     //TODO: show profile pics of nonprofits
     [self getNonprofitImagesFromBasket:basket onCell:cell];
 
-//    [basket.headerPicFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-//        if (error != nil) {
-//            NSLog(@"%@", error.localizedDescription);
-//            cell.basketImageView1.image = [UIImage imageNamed:@"PlaceholderPic"];
-//        } else {
-//            cell.basketImageView1.image = [UIImage imageWithData:data];
-//        }
-//        [cell reloadInputViews];
-//    }];
     return cell;
 }
 
@@ -97,34 +88,6 @@
 
 //Broken
 - (void)getNonprofitImagesFromBasket:(Basket*)basket onCell:(BasketTableViewCell *)cell {
-//    PFFileObject *n0ProfFile = basket.nonprofits[0].profilePicFile;
-//    PFFileObject *n1ProfFile = basket.nonprofits[1].profilePicFile;
-//    PFFileObject *n2ProfFile = basket.nonprofits[2].profilePicFile;
-    
-//    int i = 0;
-//    for (Nonprofit *n in basket.nonprofits) {
-//        if (i >= 3) {
-//            break;
-//        }
-//        PFFileObject *profFile = n.profilePicFile;
-//        [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-//            UIImage *im;
-//            if (error != nil) {
-//                NSLog(@"%@", error.localizedDescription);
-//                im = [UIImage imageNamed:@"PlaceholderPic"];
-//            } else {
-//                im = [UIImage imageWithData:data];
-//            }
-//            switch (i) {
-//                case 0: cell.basketImageView0.image = im;
-//                case 1: cell.basketImageView1.image = im;
-//                case 2: cell.basketImageView2.image = im;
-//            }
-//            [cell reloadInputViews];
-//        }];
-//        i+=1;
-//    }
-
     int nonprofitsCount = (int) basket.nonprofits.count;
     for (int i = 0; i < 3; i++) {
         if (i >= nonprofitsCount) {
