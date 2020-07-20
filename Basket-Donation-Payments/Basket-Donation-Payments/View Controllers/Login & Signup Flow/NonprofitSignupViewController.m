@@ -33,6 +33,8 @@
     // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
 }
 
+- (IBAction)addPictureButtonTapped:(id)sender {
+}
 
 - (IBAction)getStartedButtonTapped:(id)sender {
     [self saveNonprofitAndUserToParse];

@@ -257,6 +257,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvN-op-R0y">
+                                <rect key="frame" x="184" y="215" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add picture"/>
+                                <connections>
+                                    <action selector="addPictureButtonTapped:" destination="BUZ-6p-IJe" eventType="touchUpInside" id="wRc-a8-e06"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hAU-9T-Czo"/>
@@ -274,6 +282,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h7-fn-Wua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1350.7246376811595" y="809.59821428571422"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AbA-mA-Rv2">
+            <objects>
+                <viewController id="Pec-Vo-dJU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jHl-KU-pgh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="D3J-Dz-mhW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ZF-RS-HRF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2055" y="810"/>
         </scene>
         <!--Search-->
         <scene sceneID="Wvm-y3-yTF">
