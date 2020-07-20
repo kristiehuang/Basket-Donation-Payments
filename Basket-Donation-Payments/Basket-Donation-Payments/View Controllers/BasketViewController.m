@@ -33,7 +33,11 @@
     self.nonprofitsCollectionView.dataSource = self;
     self.basketNameLabel.text = self.basket.name;
     User *createdBy = self.basket.createdByUser;
-    self.createdByLabel.text = [NSString stringWithFormat:@"Created by %@ %@", createdBy.firstName, createdBy.lastName];
+    if (createdBy == nil) {
+        self.createdByLabel.text = @"Created by the Basket team";
+    } else {
+        self.createdByLabel.text = [NSString stringWithFormat:@"Created by %@ %@", createdBy.firstName, createdBy.lastName];
+    }
     self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", self.basket.totalDonatedValue];
     self.basketDescriptionLabel.text = self.basket.basketDescription;
 }
