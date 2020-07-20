@@ -165,7 +165,7 @@
                         <outlet property="passwordTextField" destination="IsV-AE-U87" id="hME-EU-pZw"/>
                         <outlet property="usernameTextField" destination="kdY-nJ-vzG" id="C5X-hS-si5"/>
                         <segue destination="BUZ-6p-IJe" kind="show" identifier="nonprofitCreationSegue" id="wry-qs-dMe"/>
-                        <segue destination="9G3-MN-Ugs" kind="show" identifier="signUpSuccessSegue" id="4xn-4e-bIA"/>
+                        <segue destination="9G3-MN-Ugs" kind="showDetail" identifier="signUpSuccessSegue" id="4xn-4e-bIA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMU-iW-v5v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -715,7 +715,7 @@
                     <tabBarItem key="tabBarItem" title="Item 1" id="GZQ-Z1-wji"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Hc-bE-PNb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -734,7 +734,7 @@
                     <tabBarItem key="tabBarItem" title="Item 2" id="BV8-u9-ysA"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fef-0h-Xbv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -751,7 +751,7 @@
             <objects>
                 <viewController id="LWX-5I-5sV" customClass="AddBasketViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z0o-dm-xGk">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="pr9-3r-5cg"/>
@@ -769,7 +769,7 @@
                     <tabBarItem key="tabBarItem" title="Item 2" id="fUi-eB-RdQ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hqh-ZZ-7di">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -786,7 +786,7 @@
             <objects>
                 <viewController id="5ZW-VM-kB5" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3U7-R2-b4f">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYT-bX-3mg">
@@ -814,7 +814,7 @@
                     <tabBarItem key="tabBarItem" title="Item 2" id="WRb-aC-o5d"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rqf-t0-9Dv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -847,6 +847,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="v7c-Ou-vpx"/>
+        <segue reference="qvz-p9-wQ3"/>
     </inferredMetricsTieBreakers>
 </document>

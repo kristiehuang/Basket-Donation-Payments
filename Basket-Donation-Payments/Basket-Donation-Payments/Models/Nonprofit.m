@@ -20,7 +20,7 @@
 @dynamic totalDonationsValue;
 @dynamic basketTransactionsMadeToNonprofit;
 @dynamic belongsInBaskets;
-@dynamic websiteUrl;
+@dynamic websiteUrlString;
 @dynamic category;
 @dynamic verificationFiles;
 
