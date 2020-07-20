@@ -7,55 +7,67 @@
 //
 
 #import "BasketViewController.h"
+#import "NonprofitCollectionViewCell.h"
+#import "NonprofitViewController.h"
+#import "Nonprofit.h"
+#import "User.h"
 #import "BraintreePayPal.h"
 #import "BraintreeCore.h"
 #import "BraintreeDropIn.h"
 
-@interface BasketViewController ()
+@interface BasketViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UILabel *basketNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *createdByLabel;
+@property (weak, nonatomic) IBOutlet UICollectionView *nonprofitsCollectionView;
+@property (weak, nonatomic) IBOutlet UILabel *totalValueDonatedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *basketDescriptionLabel;
 
+@property (nonatomic, strong) Nonprofit *nonprofitToSend;
 @end
 
 @implementation BasketViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.nonprofitsCollectionView.delegate = self;
+    self.nonprofitsCollectionView.dataSource = self;
+    self.basketNameLabel.text = self.basket.name;
+    User *createdBy = self.basket.createdByUser;
+    self.createdByLabel.text = [NSString stringWithFormat:@"Created by %@ %@", createdBy.firstName, createdBy.lastName];
+    self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", self.basket.totalDonatedValue];
+    self.basketDescriptionLabel.text = self.basket.basketDescription;
 }
 - (IBAction)donateButtonTapped:(id)sender {
-    //test make paypal
-    
-    //BRAINTREE THINGS
-//    BTAPIClient *apiClient = [[BTAPIClient alloc] initWithAuthorization:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"]; //TODO: switch to production tokenization key before live. Are publishable can include in public app.
-//    [self showDropIn:@"sandbox_hc9nwmtg_8w2hqmbw5t62ppzm"];
+
 }
 
-- (void)showDropIn:(NSString *)clientTokenizationKey {
-    BTDropInRequest *request = [[BTDropInRequest alloc] init];
-    BTDropInController *dropIn = [[BTDropInController alloc] initWithAuthorization:clientTokenizationKey request:request handler:^(BTDropInController * _Nonnull controller, BTDropInResult * _Nullable result, NSError * _Nullable error) {
 
-        if (error != nil) {
-            NSLog(@"ERROR %@", error.localizedDescription);
-        } else if (result.cancelled) {
-            NSLog(@"CANCELLED");
-        } else {
-            // Use the BTDropInResult properties to update your UI
-            NSLog(@"%@", result.paymentMethod);
-            // result.paymentOptionType
-            // result.paymentMethod
-            // result.paymentIcon
-            // result.paymentDescription
-        }
-    }];
-    [self presentViewController:dropIn animated:YES completion:nil];
-}
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"showNonprofitDetail"]) {
+        NonprofitViewController *nonprofitVC = [segue destinationViewController];
+        nonprofitVC.nonprofit = self.nonprofitToSend;
+        self.nonprofitToSend = nil;
+    }
+
 }
-*/
+
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath { 
+    NonprofitCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NonprofitCell" forIndexPath:indexPath];
+    return cell;
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section { 
+    return 3;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    self.nonprofitToSend = self.basket.nonprofits[indexPath.item];
+    [self performSegueWithIdentifier:@"showNonprofitDetail" sender:nil];
+    
+}
 
 @end
