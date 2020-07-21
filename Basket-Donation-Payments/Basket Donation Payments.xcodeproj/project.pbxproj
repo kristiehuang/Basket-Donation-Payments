@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */; };
+		3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */; };
+		3A8A8EE124C7686400E00AC1 /* PersonalContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EE024C7686400E00AC1 /* PersonalContainerViewController.m */; };
+		3A8A8EE424C7687E00E00AC1 /* NonprofitContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EE324C7687E00E00AC1 /* NonprofitContainerViewController.m */; };
 		3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */; };
 		3ADA0A1124BCEC8700627AAD /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1024BCEC8700627AAD /* SceneDelegate.m */; };
 		3ADA0A1424BCEC8700627AAD /* InitialLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADA0A1324BCEC8700627AAD /* InitialLoginViewController.m */; };
@@ -60,6 +63,12 @@
 		1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_Payments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A314BF124C64BEE00435BBD /* NonprofitCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitCollectionViewCell.h; sourceTree = "<group>"; };
 		3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitCollectionViewCell.m; sourceTree = "<group>"; };
+		3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
+		3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentDetailsViewController.m; sourceTree = "<group>"; };
+		3A8A8EDF24C7686400E00AC1 /* PersonalContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonalContainerViewController.h; sourceTree = "<group>"; };
+		3A8A8EE024C7686400E00AC1 /* PersonalContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonalContainerViewController.m; sourceTree = "<group>"; };
+		3A8A8EE224C7687E00E00AC1 /* NonprofitContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitContainerViewController.h; sourceTree = "<group>"; };
+		3A8A8EE324C7687E00E00AC1 /* NonprofitContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitContainerViewController.m; sourceTree = "<group>"; };
 		3ADA0A0924BCEC8700627AAD /* Basket Donation Payments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basket Donation Payments.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADA0A0C24BCEC8700627AAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3ADA0A0D24BCEC8700627AAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -169,6 +178,17 @@
 			path = "Login & Signup Flow";
 			sourceTree = "<group>";
 		};
+		3A8A8EDE24C7684300E00AC1 /* Profile View */ = {
+			isa = PBXGroup;
+			children = (
+				3A8A8EDF24C7686400E00AC1 /* PersonalContainerViewController.h */,
+				3A8A8EE024C7686400E00AC1 /* PersonalContainerViewController.m */,
+				3A8A8EE224C7687E00E00AC1 /* NonprofitContainerViewController.h */,
+				3A8A8EE324C7687E00E00AC1 /* NonprofitContainerViewController.m */,
+			);
+			path = "Profile View";
+			sourceTree = "<group>";
+		};
 		3ADA0A0024BCEC8700627AAD = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +251,7 @@
 		3ADA0A4124BCECAD00627AAD /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A8A8EDE24C7684300E00AC1 /* Profile View */,
 				3A314BF424C65DEB00435BBD /* Login & Signup Flow */,
 				3ADA0A5F24BE2DE900627AAD /* ExploreFeedViewController.h */,
 				3ADA0A6024BE2DE900627AAD /* ExploreFeedViewController.m */,
@@ -244,6 +265,8 @@
 				3ADA0A6C24BE340600627AAD /* BasketViewController.m */,
 				3ADA0A6E24BE340D00627AAD /* NonprofitViewController.h */,
 				3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */,
+				3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */,
+				3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -545,6 +568,7 @@
 				3ADA0A5224BD189100627AAD /* BasketTransaction.m in Sources */,
 				3ADA0A5E24BE2BD700627AAD /* NonprofitSignupViewController.m in Sources */,
 				3ADA0A6A24BE2E5300627AAD /* ProfileViewController.m in Sources */,
+				3A8A8EE124C7686400E00AC1 /* PersonalContainerViewController.m in Sources */,
 				3ADA0A6724BE2E4700627AAD /* AddBasketViewController.m in Sources */,
 				3ADA0A4C24BD173000627AAD /* User.m in Sources */,
 				3ADA0A5824BE233600627AAD /* APIManager.m in Sources */,
@@ -553,9 +577,11 @@
 				3ADA0A5B24BE2BCC00627AAD /* UserSignupViewController.m in Sources */,
 				3ADA0A1424BCEC8700627AAD /* InitialLoginViewController.m in Sources */,
 				3ADA0A6D24BE340600627AAD /* BasketViewController.m in Sources */,
+				3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */,
 				3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */,
 				3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */,
 				3ADA0A1F24BCEC8800627AAD /* main.m in Sources */,
+				3A8A8EE424C7687E00E00AC1 /* NonprofitContainerViewController.m in Sources */,
 				3ADA0A5524BD1AD000627AAD /* Basket.m in Sources */,
 				3ADA0A1124BCEC8700627AAD /* SceneDelegate.m in Sources */,
 				3ADA0A4F24BD188600627AAD /* Nonprofit.m in Sources */,

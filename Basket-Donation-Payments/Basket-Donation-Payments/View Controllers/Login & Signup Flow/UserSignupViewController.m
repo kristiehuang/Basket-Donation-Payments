@@ -38,8 +38,8 @@
     // Segue is not cancel segue
     if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"] || [segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
         self.user = [User user];
-        self.user.firstName = self.firstNameTextField.text;
-        self.user.lastName = self.lastNameTextField.text;
+        self.user.firstName = (self.firstNameTextField.text.length == 0) ? @"" : self.firstNameTextField.text;
+        self.user.lastName = (self.lastNameTextField.text.length == 0) ? @"" : self.lastNameTextField.text;
         self.user.username = self.usernameTextField.text;
         self.user.password = self.passwordTextField.text;
         self.user.email = self.emailTextField.text;

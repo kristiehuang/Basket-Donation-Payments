@@ -1,25 +1,22 @@
 //
-//  NonprofitViewController.m
+//  PersonalContainerViewController.m
 //  Basket Donation Payments
 //
-//  Created by Kristie Huang on 7/14/20.
+//  Created by Kristie Huang on 7/21/20.
 //  Copyright © 2020 Kristie Huang. All rights reserved.
 //
 
-#import "NonprofitViewController.h"
+#import "PersonalContainerViewController.h"
 
-@interface NonprofitViewController ()
-@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@interface PersonalContainerViewController ()
 
 @end
 
-@implementation NonprofitViewController
+@implementation PersonalContainerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-- (IBAction)favoriteButtonTapped:(id)sender {
 }
 
 /*

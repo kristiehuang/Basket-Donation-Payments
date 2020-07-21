@@ -8,12 +8,21 @@
 
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
+#import "User.h"
 #import "AppDelegate.h"
 #import "SceneDelegate.h"
 #import "InitialLoginViewController.h"
 #import "Utils.h"
 
 @interface ProfileViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userUsernameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userEmailLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userProfilePicImageView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *personalNonprofitSegmentedControl;
+@property (nonatomic, strong) User *user;
+@property (weak, nonatomic) IBOutlet UIView *nonprofitView;
+@property (weak, nonatomic) IBOutlet UIView *personalView;
 
 @end
 
@@ -21,7 +30,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.user = [User currentUser];
+    self.userNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
+    self.userUsernameLabel.text = self.user.username;
+    self.userEmailLabel.text = self.user.email;
+    self.userProfilePicImageView.layer.cornerRadius = self.userProfilePicImageView.frame.size.width / 2;
+    [self.user.profilePicFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (error != nil) {
+            self.userProfilePicImageView.image = [UIImage imageNamed:@"PlaceholderProfilePic"];
+        } else {
+            UIImage *image = [UIImage imageWithData:data];
+            self.userProfilePicImageView.image = image;
+        }
+    }];
+    if (self.user.nonprofit == nil) {
+        self.personalNonprofitSegmentedControl.hidden = YES;
+        self.nonprofitView.hidden = YES;
+    } else {
+        self.nonprofitView.hidden = YES;
+        self.personalView.hidden = NO;
+    }
+}
+- (IBAction)segmentedControlValueChanged:(id)sender {
+    switch (self.personalNonprofitSegmentedControl.selectedSegmentIndex) {
+        case 0:
+            self.nonprofitView.hidden = YES;
+            self.personalView.hidden = NO;
+            break;
+        case 1:
+            self.nonprofitView.hidden = NO;
+            self.personalView.hidden = YES;
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)paymentMethodTapped:(id)sender {
 }
 
 - (IBAction)logoutButtonTapped:(id)sender {
