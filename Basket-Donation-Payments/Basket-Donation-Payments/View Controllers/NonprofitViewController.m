@@ -9,6 +9,7 @@
 #import "NonprofitViewController.h"
 
 @interface NonprofitViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 
 @end
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+- (IBAction)favoriteButtonTapped:(id)sender {
 }
 
 /*
