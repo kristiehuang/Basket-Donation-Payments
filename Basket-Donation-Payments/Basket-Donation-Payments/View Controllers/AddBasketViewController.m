@@ -8,7 +8,9 @@
 
 #import "AddBasketViewController.h"
 
-@interface AddBasketViewController ()
+@interface AddBasketViewController () <UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextView *basketDescriptionTextView;
+@property (weak, nonatomic) IBOutlet UITextField *basketNameTextField;
 
 @end
 
@@ -16,7 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.basketDescriptionTextView.delegate = self;
+    self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
+    self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
+    
+    
+}
+
+- (IBAction)nextButtonTapped:(id)sender {
+    [self performSegueWithIdentifier:@"addNonprofitsSegue" sender:nil];
+    //save info, create basket
+    //switch tab controller to index 0
 }
 
 /*
@@ -28,5 +40,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.textColor isEqual:[UIColor lightGrayColor]]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView.text.length == 0) {
+        self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
+        self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
+    }
+}
 
 @end
