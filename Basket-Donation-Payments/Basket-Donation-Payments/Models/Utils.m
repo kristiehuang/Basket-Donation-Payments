@@ -27,4 +27,13 @@
     return [PFFileObject fileObjectWithData:data];
 }
 
++(UIImage*)getImageFromPFFile:(PFFileObject*)file {
+    NSData *data = [file getData];
+    if (data == nil) {
+        return [UIImage imageNamed:@"PlaceholderHeaderPic"];
+    } else {
+        return [UIImage imageWithData:data];
+    }
+}
+
 @end
