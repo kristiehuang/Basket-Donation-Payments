@@ -59,8 +59,9 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NonprofitListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NonprofitListCell"];
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
-
-    //set up cell UI with nonprofit info
+    cell.nonprofitNameLabel.text = nonprofit.nonprofitName;
+    cell.nonprofitDescriptionLabel.text = nonprofit.nonprofitDescription;
+    cell.nonprofitProfileImageView.image = [Utils getImageFromPFFile:nonprofit.headerPicFile];
     return cell;
 }
 
@@ -71,9 +72,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
     //TURN COLOR CHANGE OR SELECTION UI
+    NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor blueColor];
+    
     [self.basket.nonprofits addObject:nonprofit];
 }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
+    NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor whiteColor];
+    
+    [self.basket.nonprofits removeObject:nonprofit];
+}
 
 /*
 #pragma mark - Navigation
