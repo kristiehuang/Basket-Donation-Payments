@@ -30,9 +30,9 @@
     self.foundInBasketsTableView.delegate = self;
     self.foundInBasketsTableView.dataSource = self;
     self.nonprofit = [[User currentUser] nonprofit];
-    if (!self.nonprofit.verificationFiles) { //FIXME: ISVERIFIED
-        self.nonprofitIsVerifiedCheckmark.hidden = YES;
-    }
+//    if (self.nonprofit.verificationFiles == nil) { //FIXME: ISVERIFIED
+//        self.nonprofitIsVerifiedCheckmark.hidden = YES;
+//    }
     self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
     self.nonprofitCategoryLabel.text = self.nonprofit.category;
     self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", self.nonprofit.totalDonationsValue];

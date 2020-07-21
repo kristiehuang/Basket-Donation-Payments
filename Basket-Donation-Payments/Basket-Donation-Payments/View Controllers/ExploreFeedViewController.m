@@ -39,6 +39,8 @@
 //  }];
     PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
     [query includeKey:@"nonprofits"];
+    [query includeKey:@"nonprofits.verificationFiles"];
+
     [query includeKey:@"createdByUser"];
     //FIXME: manually uploaded headerPicFiles on the dashboard are linked via http, which fails to query bc Apple wants https
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
