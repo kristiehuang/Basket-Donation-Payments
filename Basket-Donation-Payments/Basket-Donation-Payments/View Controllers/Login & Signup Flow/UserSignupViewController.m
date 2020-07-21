@@ -51,8 +51,7 @@
         self.user.favoriteNonprofits = [NSMutableArray array];
 
         if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
-            //send user deets to nonprofit creation segue but don't create yet
-            //nonprofit property is still nil
+            //TODO: verify everything looks good before moving on
             [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
 
             

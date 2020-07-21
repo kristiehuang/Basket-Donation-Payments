@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(UIAlertController *)createAlertControllerWithTitle:(NSString*)title andMessage:(NSString*)message okCompletion:(void(^)(UIAlertAction * _Nonnull action))okCompletion cancelCompletion:(void(^)(UIAlertAction * _Nonnull action))cancelCompletion;
 
++(PFFileObject*)getFileFromImage:(UIImage*)image;
 @end
 
 NS_ASSUME_NONNULL_END
