@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (Basket*)initPlaceholderTestBasketWithName:(NSString*)name;
 
++ (Basket*)initNewBasketWithDict:(NSDictionary*)dict;
+
 @end
 
 NS_ASSUME_NONNULL_END

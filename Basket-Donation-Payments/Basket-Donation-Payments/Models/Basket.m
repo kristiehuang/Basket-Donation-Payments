@@ -39,4 +39,16 @@
     return basket;
 }
 
++ (Basket*)initNewBasketWithDict:(NSDictionary*)dict {
+    Basket *basket = [Basket new];
+    basket.name = dict[@"name"];
+    basket.basketDescription = dict[@"basketDescription"];
+    basket.headerPicFile = dict[@"headerPicFile"];
+    basket.totalDonatedValue = 0;
+    basket.isFeatured = dict[@"isFeatured"];
+    basket.createdByUser = [User currentUser];
+    basket.nonprofits = [NSMutableArray array];
+    return basket;
+}
+
 @end
