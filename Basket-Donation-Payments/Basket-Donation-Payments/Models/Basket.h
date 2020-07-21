@@ -24,8 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) User *createdByUser;
 //TODO: CATEGORY?
 
-+ (Basket*)initPlaceholderTestBasketWithName:(NSString*)name;
-
 + (Basket*)initNewBasketWithDict:(NSDictionary*)dict;
 
 @end
