@@ -350,21 +350,21 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-qB-A2X">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ccy-qB-A2X">
                                                     <rect key="frame" x="20" y="57" width="50" height="50.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="9cI-Od-iM2"/>
                                                         <constraint firstAttribute="width" secondItem="Ccy-qB-A2X" secondAttribute="height" multiplier="1:1" id="rKs-X2-cen"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ofd-wH-aln">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ofd-wH-aln">
                                                     <rect key="frame" x="49" y="67.5" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="5JJ-vo-aLV"/>
                                                         <constraint firstAttribute="width" secondItem="Ofd-wH-aln" secondAttribute="height" multiplier="1:1" id="O81-Cr-F8J"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JhA-Og-ajk">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JhA-Og-ajk">
                                                     <rect key="frame" x="30" y="26" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="JhA-Og-ajk" secondAttribute="height" multiplier="1:1" id="h7x-cJ-n3C"/>

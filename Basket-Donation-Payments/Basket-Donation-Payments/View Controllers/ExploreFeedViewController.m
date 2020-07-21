@@ -91,6 +91,9 @@
 
 //Broken
 - (void)getNonprofitImagesFromBasket:(Basket*)basket onCell:(BasketTableViewCell *)cell {
+    cell.basketImageView0.layer.cornerRadius = 25;
+    cell.basketImageView1.layer.cornerRadius = 25;
+    cell.basketImageView2.layer.cornerRadius = 25;
     int nonprofitsCount = (int) basket.nonprofits.count;
     for (int i = 0; i < 3; i++) {
         if (i >= nonprofitsCount) {
