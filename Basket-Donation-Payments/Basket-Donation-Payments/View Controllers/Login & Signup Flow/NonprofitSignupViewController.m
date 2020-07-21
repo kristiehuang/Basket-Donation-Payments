@@ -10,8 +10,9 @@
 #import <Parse/Parse.h>
 #import "Nonprofit.h"
 #import "Utils.h"
+#import <UIKit/UIKit.h>
 
-@interface NonprofitSignupViewController ()
+@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong) Nonprofit *nonprofit;
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitNameTextField;
@@ -28,12 +29,44 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.finishedSavingBoth = false;
-    self.nonprofit = [Nonprofit new]; //initWithDict
+    self.nonprofit = [Nonprofit new];
+    
+
     //TODO: figure out document uplaod
     // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
 }
 
 - (IBAction)addPictureButtonTapped:(id)sender {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    BOOL cameraSourceAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    BOOL photoLibAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    if (cameraSourceAvail && photoLibAvail) {
+        //UIActionSheet to pick a source type
+        UIAlertController *sourceTypePicker = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }];
+        UIAlertAction *photoLib = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }];
+        [sourceTypePicker addAction:camera];
+        [sourceTypePicker addAction:photoLib];
+        [self presentViewController:sourceTypePicker animated:YES completion:nil];
+    } else {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+
+    self.nonprofitProfileImageView.image = editedImage;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)getStartedButtonTapped:(id)sender {
@@ -41,7 +74,7 @@
 }
 
 -(void)saveNonprofitAndUserToParse {
-    self.nonprofit.profilePicFile;
+    self.nonprofit.profilePicFile = [Utils getFileFromImage:self.nonprofitProfileImageView.image];
     self.nonprofit.nonprofitName = self.nonprofitNameTextField.text;
     self.nonprofit.nonprofitDescription = self.nonprofitDescriptionTextView.text;
     self.nonprofit.category = self.nonprofitCategoryTextField.text;

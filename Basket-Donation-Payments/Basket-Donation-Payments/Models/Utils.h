@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(UIAlertController *)createAlertControllerWithTitle:(NSString*)title andMessage:(NSString*)message okCompletion:(void(^)(UIAlertAction * _Nonnull action))okCompletion cancelCompletion:(void(^)(UIAlertAction * _Nonnull action))cancelCompletion;
 
++(PFFileObject*)getFileFromImage:(UIImage*)image;
 @end
 
 NS_ASSUME_NONNULL_END

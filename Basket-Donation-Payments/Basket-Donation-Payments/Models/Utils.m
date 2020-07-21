@@ -22,4 +22,9 @@
     return alert;
 }
 
++(PFFileObject*)getFileFromImage:(UIImage*)image{
+    NSData *data = UIImageJPEGRepresentation(image, 1);
+    return [PFFileObject fileObjectWithData:data];
+}
+
 @end
