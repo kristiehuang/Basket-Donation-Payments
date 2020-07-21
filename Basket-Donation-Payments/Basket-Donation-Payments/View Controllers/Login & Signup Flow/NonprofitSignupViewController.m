@@ -12,7 +12,7 @@
 #import "Utils.h"
 #import <UIKit/UIKit.h>
 
-@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 @property (nonatomic, strong) Nonprofit *nonprofit;
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitNameTextField;
@@ -28,8 +28,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.nonprofitDescriptionTextView.delegate = self;
     self.finishedSavingBoth = false;
     self.nonprofit = [Nonprofit new];
+    self.nonprofitDescriptionTextView.text = @"Describe your nonprofit in 100 words or less.";
+    self.nonprofitDescriptionTextView.textColor = [UIColor lightGrayColor];
+    //TODO: twitter-like word-limitations
     
 
     //TODO: figure out document uplaod
@@ -115,5 +119,19 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([textView.textColor isEqual:[UIColor lightGrayColor]]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+    }
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (textView.text.length == 0) {
+        self.nonprofitDescriptionTextView.text = @"Describe your nonprofit in 100 words or less.";
+        self.nonprofitDescriptionTextView.textColor = [UIColor lightGrayColor];
+    }
+}
 
 @end

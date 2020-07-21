@@ -222,16 +222,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zhk-SJ-Id3">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Nonprofit description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zhk-SJ-Id3">
                                 <rect key="frame" x="67" y="354" width="240" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <string key="text"> nonprofit description yadiidanonprofit description yadiidanonprofit description yadiidanonprofit description yadiidanonprofit description yadiidanonprofit description yadiidanonprofit description yadiida</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ppf-lH-KaI">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PlaceholderHeaderPic" translatesAutoresizingMaskIntoConstraints="NO" id="ppf-lH-KaI">
                                 <rect key="frame" x="82" y="190" width="88" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -857,4 +856,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="qvz-p9-wQ3"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="PlaceholderHeaderPic" width="1200" height="500"/>
+    </resources>
 </document>
