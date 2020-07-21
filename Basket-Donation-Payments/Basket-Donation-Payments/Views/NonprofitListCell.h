@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NonprofitListCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *nonprofitNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nonprofitDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
 
 @end
 
