@@ -7,6 +7,7 @@
 //
 
 #import "AddBasket-AddNonprofitsViewController.h"
+#import "AddBasketViewController.h"
 #import "Nonprofit.h"
 #import <Parse/Parse.h>
 #import "Utils.h"
@@ -24,6 +25,8 @@
     self.selectNonprofitsTableView.delegate = self;
     self.selectNonprofitsTableView.dataSource = self;
     [self getAllNonprofitsFromParse];
+    self.selectNonprofitsTableView.allowsMultipleSelection = YES;
+
 }
 
 - (void)getAllNonprofitsFromParse {
@@ -47,11 +50,20 @@
 - (IBAction)createButtonTapped:(id)sender {
     NSLog(@"%@", self.basket.nonprofits);
     [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-       //save basket to parse
-        //clear all data, have navigation controller reset to Create Basket
-        //switch tab controller to index 0
+        if (succeeded) {
+            AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
+            rootVC.basketNameTextField.text = @"";
+            rootVC.basketCategoryTextField.text = @"";
+            rootVC.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
+            rootVC.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
+            rootVC.basketHeaderImageView.image = [UIImage imageNamed:@"PlaceholderHeaderPic"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            self.tabBarController.selectedIndex = 0;
+        } else {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save Basket. Try again?" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
     }];
-
 }
 
 
@@ -62,6 +74,12 @@
     cell.nonprofitNameLabel.text = nonprofit.nonprofitName;
     cell.nonprofitDescriptionLabel.text = nonprofit.nonprofitDescription;
     cell.nonprofitProfileImageView.image = [Utils getImageFromPFFile:nonprofit.headerPicFile];
+    
+    NSArray<NSIndexPath *> *selectedIndexes = [tableView indexPathsForSelectedRows];
+    BOOL isSelected = selectedIndexes != nil && [selectedIndexes containsObject:indexPath];
+    if (isSelected) {
+        cell.contentView.backgroundColor = [UIColor blueColor];
+    }
     return cell;
 }
 
@@ -71,17 +89,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
-    //TURN COLOR CHANGE OR SELECTION UI
+    NSLog(@"selected %@", nonprofit.nonprofitName);
+    //FIXME: color change when selected doesn't work
     NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor blueColor];
-    
+    cell.contentView.backgroundColor = [UIColor blueColor];
     [self.basket.nonprofits addObject:nonprofit];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
+    NSLog(@"deselected %@", nonprofit.nonprofitName);
+
     NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    //FIXME: color change when deselected doesn't work
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     
     [self.basket.nonprofits removeObject:nonprofit];
 }

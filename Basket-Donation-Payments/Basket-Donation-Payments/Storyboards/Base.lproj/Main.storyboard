@@ -843,7 +843,7 @@
                     <connections>
                         <outlet property="basketCategoryTextField" destination="LCg-55-Sqb" id="sec-Xp-7WI"/>
                         <outlet property="basketDescriptionTextView" destination="d15-1B-Fid" id="5bW-2j-AwS"/>
-                        <outlet property="basketHeaderImageView" destination="E9J-pN-USu" id="YB2-EZ-OPI"/>
+                        <outlet property="basketHeaderImageView" destination="E9J-pN-USu" id="WgB-Yk-jGL"/>
                         <outlet property="basketNameTextField" destination="P0E-1m-o51" id="wJy-yT-y0j"/>
                         <segue destination="aSZ-tc-AJd" kind="show" identifier="addNonprofitsSegue" id="S2d-pd-r6C"/>
                     </connections>

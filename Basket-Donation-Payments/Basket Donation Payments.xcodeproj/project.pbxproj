@@ -265,6 +265,8 @@
 				3ADA0A6324BE2E0800627AAD /* SearchViewController.m */,
 				3ADA0A6524BE2E4700627AAD /* AddBasketViewController.h */,
 				3ADA0A6624BE2E4700627AAD /* AddBasketViewController.m */,
+				3A8A8EE524C784B900E00AC1 /* AddBasket-AddNonprofitsViewController.h */,
+				3A8A8EE624C784B900E00AC1 /* AddBasket-AddNonprofitsViewController.m */,
 				3ADA0A6824BE2E5300627AAD /* ProfileViewController.h */,
 				3ADA0A6924BE2E5300627AAD /* ProfileViewController.m */,
 				3ADA0A6B24BE340600627AAD /* BasketViewController.h */,
@@ -273,8 +275,6 @@
 				3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */,
 				3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */,
 				3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */,
-				3A8A8EE524C784B900E00AC1 /* AddBasket-AddNonprofitsViewController.h */,
-				3A8A8EE624C784B900E00AC1 /* AddBasket-AddNonprofitsViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";

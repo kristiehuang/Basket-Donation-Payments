@@ -12,10 +12,7 @@
 #import "Utils.h"
 
 @interface AddBasketViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UITextView *basketDescriptionTextView;
-@property (weak, nonatomic) IBOutlet UITextField *basketNameTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *basketHeaderImageView;
-@property (weak, nonatomic) IBOutlet UITextField *basketCategoryTextField;
+
 
 @end
 
@@ -31,8 +28,6 @@
 
 - (IBAction)nextButtonTapped:(id)sender {
     [self performSegueWithIdentifier:@"addNonprofitsSegue" sender:nil];
-    //save info, create basket
-    //switch tab controller to index 0
 }
 
 - (IBAction)headerImageButtonTapped:(id)sender {
