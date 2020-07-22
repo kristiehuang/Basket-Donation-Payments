@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.nonprofitDescriptionTextView.delegate = self;
-    self.finishedSavingBoth = false;
+    self.finishedSavingBoth = NO;
     self.nonprofit = [Nonprofit new];
     self.nonprofitDescriptionTextView.text = @"Describe your nonprofit in 100 words or less.";
     self.nonprofitDescriptionTextView.textColor = [UIColor lightGrayColor];
@@ -65,10 +65,7 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-
     self.nonprofitProfileImageView.image = editedImage;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -82,7 +79,7 @@
     self.nonprofit.nonprofitName = self.nonprofitNameTextField.text;
     self.nonprofit.nonprofitDescription = self.nonprofitDescriptionTextView.text;
     self.nonprofit.category = self.nonprofitCategoryTextField.text;
-    self.nonprofit.websiteUrlString = [NSString stringWithFormat:@"%@", self.nonprofitWebsiteTextField.text];
+    self.nonprofit.websiteUrlString = self.nonprofitWebsiteTextField.text;
     self.user.nonprofit = self.nonprofit;
     [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
