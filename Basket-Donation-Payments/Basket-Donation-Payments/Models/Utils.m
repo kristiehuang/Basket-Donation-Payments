@@ -36,4 +36,28 @@
     }
 }
 
++ (void)createImagePickerVCWithVC:(UIViewController*)vc {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = vc;
+    imagePickerVC.allowsEditing = YES;
+    BOOL cameraSourceAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+    BOOL photoLibAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
+    if (cameraSourceAvail && photoLibAvail) {
+        //UIActionSheet to pick a source type
+        UIAlertController *sourceTypePicker = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }];
+        UIAlertAction *photoLib = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }];
+        [sourceTypePicker addAction:camera];
+        [sourceTypePicker addAction:photoLib];
+        [vc presentViewController:sourceTypePicker animated:YES completion:nil];
+    } else {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [vc presentViewController:imagePickerVC animated:YES completion:nil];
+}
+
 @end

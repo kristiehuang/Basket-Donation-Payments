@@ -9,6 +9,7 @@
 #import "NonprofitContainerViewController.h"
 #import "User.h"
 #import "Nonprofit.h"
+#import "Utils.h"
 
 @interface NonprofitContainerViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitImageView;
@@ -31,22 +32,34 @@
 //        self.foundInBasketsTableView.delegate = self;
 //        self.foundInBasketsTableView.dataSource = self;
         self.nonprofit = [[User currentUser] nonprofit];
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@", self.nonprofit.objectId];
-        PFQuery *thisNonprofitQuery = [PFQuery queryWithClassName:@"Nonprofit" predicate:pred];
-        self.nonprofit = [thisNonprofitQuery findObjects][0];
-    
-        //FIXME: ISVERIFIED
-//        self.nonprofitIsVerifiedCheckmark.hidden = !self.nonprofit.verificationFiles
-        
+        self.nonprofit = [self queryNonprofit];
+        [self setUpNonprofitView];
+    }
+}
+
+-(Nonprofit*)queryNonprofit {
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@", self.nonprofit.objectId];
+    PFQuery *thisNonprofitQuery = [PFQuery queryWithClassName:@"Nonprofit" predicate:pred];
+    return [thisNonprofitQuery findObjects].firstObject;
+}
+
+- (void)setUpNonprofitView {
+    if (self.nonprofit) {
         self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
         self.nonprofitCategoryLabel.text = self.nonprofit.category;
         self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", self.nonprofit.totalDonationsValue];
         self.nonprofitWebsiteLabel.text = self.nonprofit.websiteUrlString;
         self.nonprofitDescriptionLabel.text = self.nonprofit.nonprofitDescription;
+                //FIXME: ISVERIFIED
+        //        self.nonprofitIsVerifiedCheckmark.hidden = !self.nonprofit.verificationFiles
+    } else {
+        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Couldn't load nonprofit." andMessage:@"Try again?" okCompletion:^(UIAlertAction * _Nonnull action) {
+            [self queryNonprofit];
+            [self setUpNonprofitView];
+        } cancelCompletion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
     }
-
-
+    
 }
 
 - (IBAction)editButtonTapped:(id)sender {

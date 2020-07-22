@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(PFFileObject*)getFileFromImage:(UIImage*)image;
 +(UIImage*)getImageFromPFFile:(PFFileObject*)file;
++ (void)createImagePickerVCWithVC:(UIViewController*)vc;
 
 @end
 

@@ -31,27 +31,7 @@
 }
 
 - (IBAction)headerImageButtonTapped:(id)sender {
-        UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-        imagePickerVC.delegate = self;
-        imagePickerVC.allowsEditing = YES;
-        BOOL cameraSourceAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
-        BOOL photoLibAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
-        if (cameraSourceAvail && photoLibAvail) {
-            //UIActionSheet to pick a source type
-            UIAlertController *sourceTypePicker = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-            UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-            }];
-            UIAlertAction *photoLib = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            }];
-            [sourceTypePicker addAction:camera];
-            [sourceTypePicker addAction:photoLib];
-            [self presentViewController:sourceTypePicker animated:YES completion:nil];
-        } else {
-            imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        [self presentViewController:imagePickerVC animated:YES completion:nil];
+    [Utils createImagePickerVCWithVC:self];
     }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
@@ -87,6 +67,14 @@
         self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
         self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
     }
+}
+
+- (void) resetForm {
+    self.basketNameTextField.text = @"";
+    self.basketCategoryTextField.text = @"";
+    self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
+    self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
+    self.basketHeaderImageView.image = [UIImage imageNamed:@"PlaceholderHeaderPic"];
 }
 
 @end

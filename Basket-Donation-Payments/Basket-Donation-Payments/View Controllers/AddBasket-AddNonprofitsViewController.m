@@ -51,11 +51,7 @@
     [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
-            rootVC.basketNameTextField.text = @"";
-            rootVC.basketCategoryTextField.text = @"";
-            rootVC.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
-            rootVC.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
-            rootVC.basketHeaderImageView.image = [UIImage imageNamed:@"PlaceholderHeaderPic"];
+            [rootVC resetForm];
             [self.navigationController popToRootViewControllerAnimated:YES];
             self.tabBarController.selectedIndex = 0;
         } else {
@@ -76,9 +72,7 @@
     
     NSArray<NSIndexPath *> *selectedIndexes = [tableView indexPathsForSelectedRows];
     BOOL isSelected = selectedIndexes != nil && [selectedIndexes containsObject:indexPath];
-    if (isSelected) {
-        cell.contentView.backgroundColor = [UIColor blueColor];
-    }
+    cell.accessoryType = isSelected ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }
 
@@ -88,28 +82,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
-    //FIXME: color change
     NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor blueColor];
+    cell.accessoryType = UITableViewCellAccessoryCheckmark;
     [self.basket.nonprofits addObject:nonprofit];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
     NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    
+    cell.accessoryType = UITableViewCellAccessoryNone;
     [self.basket.nonprofits removeObject:nonprofit];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
