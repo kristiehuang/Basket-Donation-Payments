@@ -38,7 +38,6 @@
     NSString *inputPassword = self.passwordTextField.text;
     
     if ([segue.identifier isEqualToString:@"signupSegue"]) {
-        NSLog(@"%@", [[segue destinationViewController] class]);
         UINavigationController *navVC = [segue destinationViewController];
         UserSignupViewController *userSignupVC = navVC.viewControllers.firstObject;
         userSignupVC.username = inputUsername;

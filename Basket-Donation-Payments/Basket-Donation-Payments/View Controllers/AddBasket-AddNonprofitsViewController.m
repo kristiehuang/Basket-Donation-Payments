@@ -48,7 +48,6 @@
 }
 
 - (IBAction)createButtonTapped:(id)sender {
-    NSLog(@"%@", self.basket.nonprofits);
     [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
@@ -89,8 +88,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
-    NSLog(@"selected %@", nonprofit.nonprofitName);
-    //FIXME: color change when selected doesn't work
+    //FIXME: color change
     NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.contentView.backgroundColor = [UIColor blueColor];
     [self.basket.nonprofits addObject:nonprofit];
@@ -98,10 +96,7 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
-    NSLog(@"deselected %@", nonprofit.nonprofitName);
-
     NonprofitListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    //FIXME: color change when deselected doesn't work
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
     [self.basket.nonprofits removeObject:nonprofit];

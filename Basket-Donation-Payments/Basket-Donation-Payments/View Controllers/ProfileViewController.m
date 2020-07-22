@@ -43,11 +43,10 @@
             self.userProfilePicImageView.image = image;
         }
     }];
+    self.nonprofitView.hidden = YES;
     if (self.user.nonprofit == nil) {
         self.personalNonprofitSegmentedControl.hidden = YES;
-        self.nonprofitView.hidden = YES;
     } else {
-        self.nonprofitView.hidden = YES;
         self.personalView.hidden = NO;
     }
 }

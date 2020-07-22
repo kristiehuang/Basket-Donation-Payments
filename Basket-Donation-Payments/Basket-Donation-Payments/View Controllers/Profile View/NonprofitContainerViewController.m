@@ -35,9 +35,9 @@
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@", self.nonprofit.objectId];
         PFQuery *thisNonprofitQuery = [PFQuery queryWithClassName:@"Nonprofit" predicate:pred];
         self.nonprofit = [thisNonprofitQuery findObjects][0];
-    //    if (self.nonprofit.verificationFiles == nil) { //FIXME: ISVERIFIED
-    //        self.nonprofitIsVerifiedCheckmark.hidden = YES;
-    //    }
+    
+        //FIXME: ISVERIFIED
+//        self.nonprofitIsVerifiedCheckmark.hidden = !self.nonprofit.verificationFiles
         
         self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
         self.nonprofitCategoryLabel.text = self.nonprofit.category;
@@ -51,16 +51,6 @@
 
 - (IBAction)editButtonTapped:(id)sender {
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
 //    //return Found in Baskets list

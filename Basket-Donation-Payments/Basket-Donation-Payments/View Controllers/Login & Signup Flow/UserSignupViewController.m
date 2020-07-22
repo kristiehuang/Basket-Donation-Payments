@@ -59,7 +59,6 @@
             self.user.nonprofit = nil;
             [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                 if (!succeeded) {
-                    NSLog(@"%@", error.localizedDescription);
                     UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
                     [self presentViewController:alert animated:YES completion:nil];
                 } else {

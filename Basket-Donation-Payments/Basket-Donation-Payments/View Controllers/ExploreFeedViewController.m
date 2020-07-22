@@ -11,6 +11,7 @@
 #import "BasketViewController.h"
 #import "Nonprofit.h"
 #import "Basket.h"
+#import "Utils.h"
 #import <Parse/Parse.h>
 
 @interface ExploreFeedViewController ()  <UITableViewDelegate, UITableViewDataSource>
@@ -31,12 +32,11 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
     [query includeKey:@"nonprofits"];
     [query includeKey:@"nonprofits.verificationFiles"];
-
     [query includeKey:@"createdByUser"];
-    //FIXME: manually uploaded headerPicFiles on the dashboard are linked via http, which fails to query bc Apple wants https
     [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if (error != nil) {
-            NSLog(@"error");
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         } else {
             self.baskets = objects;
             [self.exploreBasketsTableView reloadData];
@@ -70,7 +70,6 @@
     [self performSegueWithIdentifier:@"showBasketDetail" sender:nil];
 }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showBasketDetail"]) {
         BasketViewController *basketVC = [segue destinationViewController];
