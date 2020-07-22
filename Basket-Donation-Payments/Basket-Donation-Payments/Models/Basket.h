@@ -20,10 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) PFFileObject *headerPicFile;
 @property (nonatomic) double totalDonatedValue;
 @property (nonatomic) BOOL isFeatured;
-@property (nonatomic, strong) NSArray<Nonprofit*> *nonprofits;
+@property (nonatomic, strong) NSMutableArray<Nonprofit*> *nonprofits;
 @property (nonatomic, strong) User *createdByUser;
+//TODO: CATEGORY?
 
-+ (Basket*)initPlaceholderTestBasketWithName:(NSString*)name;
++ (Basket*)initNewBasketWithDict:(NSDictionary*)dict;
 
 @end
 

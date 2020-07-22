@@ -27,17 +27,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.foundInBasketsTableView.delegate = self;
-    self.foundInBasketsTableView.dataSource = self;
-    self.nonprofit = [[User currentUser] nonprofit];
-//    if (self.nonprofit.verificationFiles == nil) { //FIXME: ISVERIFIED
-//        self.nonprofitIsVerifiedCheckmark.hidden = YES;
-//    }
-    self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
-    self.nonprofitCategoryLabel.text = self.nonprofit.category;
-    self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", self.nonprofit.totalDonationsValue];
-    self.nonprofitWebsiteLabel.text = self.nonprofit.websiteUrlString;
-    self.nonprofitDescriptionLabel.text = self.nonprofit.nonprofitDescription;
+    if ([[User currentUser] nonprofit] != nil) {
+//        self.foundInBasketsTableView.delegate = self;
+//        self.foundInBasketsTableView.dataSource = self;
+        self.nonprofit = [[User currentUser] nonprofit];
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@", self.nonprofit.objectId];
+        PFQuery *thisNonprofitQuery = [PFQuery queryWithClassName:@"Nonprofit" predicate:pred];
+        self.nonprofit = [thisNonprofitQuery findObjects][0];
+    //    if (self.nonprofit.verificationFiles == nil) { //FIXME: ISVERIFIED
+    //        self.nonprofitIsVerifiedCheckmark.hidden = YES;
+    //    }
+        
+        self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
+        self.nonprofitCategoryLabel.text = self.nonprofit.category;
+        self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", self.nonprofit.totalDonationsValue];
+        self.nonprofitWebsiteLabel.text = self.nonprofit.websiteUrlString;
+        self.nonprofitDescriptionLabel.text = self.nonprofit.nonprofitDescription;
+    }
+
 
 }
 
@@ -54,11 +62,11 @@
 }
 */
 
-- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return nil;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
-}
+//- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+//    //return Found in Baskets list
+//}
+//
+//- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    return 3;
+//}
 @end

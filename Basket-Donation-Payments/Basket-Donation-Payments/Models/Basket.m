@@ -25,17 +25,15 @@
     return @"Basket";
 }
 
-+ (Basket*)initPlaceholderTestBasketWithName:(NSString*)name {
++ (Basket*)initNewBasketWithDict:(NSDictionary*)dict {
     Basket *basket = [Basket new];
-    basket.name = name;
-    basket.basketDescription = @"";
-    
-    NSData *headerData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderHeaderPic"], 1);
-    basket.headerPicFile = [PFFileObject fileObjectWithData:headerData];
-    basket.totalDonatedValue = 34.0;
-    basket.isFeatured = NO;
-    basket.nonprofits = [NSArray array];
+    basket.name = dict[@"name"];
+    basket.basketDescription = dict[@"basketDescription"];
+    basket.headerPicFile = dict[@"headerPicFile"];
+    basket.totalDonatedValue = 0;
+    basket.isFeatured = dict[@"isFeatured"];
     basket.createdByUser = [User currentUser];
+    basket.nonprofits = [NSMutableArray array];
     return basket;
 }
 

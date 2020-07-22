@@ -27,16 +27,7 @@
     self.exploreBasketsTableView.delegate = self;
     self.exploreBasketsTableView.dataSource = self;
     self.exploreBasketsTableView.rowHeight = UITableViewAutomaticDimension;
-    //FIXME: temporarily force-create baskets
-//    Basket *b1 = [Basket initPlaceholderTestBasketWithName:@"b1"];
-//    [b1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-//        if (succeeded) {
-//            NSLog(@"hell ya");
-//
-//          } else {
-//              NSLog(@"%@", error.localizedDescription);
-//        }
-//  }];
+
     PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
     [query includeKey:@"nonprofits"];
     [query includeKey:@"nonprofits.verificationFiles"];
