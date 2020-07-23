@@ -51,7 +51,15 @@
 }
 
 - (IBAction)getStartedButtonTapped:(id)sender {
-    [self saveNonprofitAndUserToParse];
+    if (!([self.nonprofitNameTextField hasText]
+          && [self.nonprofitDescriptionTextView.textColor isEqual:[UIColor blackColor]]
+          && [self.nonprofitCategoryTextField hasText]
+          && [self.nonprofitWebsiteTextField hasText])){
+        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self saveNonprofitAndUserToParse];
+    }
 }
 
 -(void)saveNonprofitAndUserToParse {
@@ -87,15 +95,14 @@
         }
     }];
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"%@", [[segue destinationViewController] class]);
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if ([textView.textColor isEqual:[UIColor lightGrayColor]]) {

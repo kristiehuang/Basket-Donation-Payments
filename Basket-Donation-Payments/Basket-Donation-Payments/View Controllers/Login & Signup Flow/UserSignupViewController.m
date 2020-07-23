@@ -35,39 +35,45 @@
 
 - (IBAction)getStartedButtonTapped:(id)sender {
     NSString *segueIdentifierToPerform = (self.isNonprofitSwitch.on ? @"nonprofitCreationSegue" : @"signUpSuccessSegue");
-    // Segue is not cancel segue
     if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"] || [segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
-        self.user = [User user];
-        self.user.firstName = (self.firstNameTextField.text.length == 0) ? @"" : self.firstNameTextField.text;
-        self.user.lastName = (self.lastNameTextField.text.length == 0) ? @"" : self.lastNameTextField.text;
-        self.user.username = self.usernameTextField.text;
-        self.user.password = self.passwordTextField.text;
-        self.user.email = self.emailTextField.text;
         
-        NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
-        self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
-        
-        self.user.recentDonations = [NSMutableArray array];
-        self.user.favoriteNonprofits = [NSMutableArray array];
+        if (!([self.firstNameTextField hasText] && [self.lastNameTextField hasText] && [self.emailTextField hasText] && [self.usernameTextField hasText] && [self.passwordTextField hasText])) {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            [self createNewUser];
+            if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
+                [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
+                
+            } else if ([segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
+                self.user.nonprofit = nil;
+                [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (!succeeded) {
+                        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    } else {
+                        [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
 
-        if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
-            //TODO: verify everything looks good before moving on
-            [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
-
-            
-        } else if ([segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
-            self.user.nonprofit = nil;
-            [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (!succeeded) {
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                    [self presentViewController:alert animated:YES completion:nil];
-                } else {
-                    [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
-
-                }
-            }];
+                    }
+                }];
+            }
         }
     }
+}
+
+- (void)createNewUser {
+    self.user = [User user];
+    self.user.firstName = (self.firstNameTextField.text.length == 0) ? @"" : self.firstNameTextField.text;
+    self.user.lastName = (self.lastNameTextField.text.length == 0) ? @"" : self.lastNameTextField.text;
+    self.user.username = self.usernameTextField.text;
+    self.user.password = self.passwordTextField.text;
+    self.user.email = self.emailTextField.text;
+    
+    NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
+    self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
+    
+    self.user.recentDonations = [NSMutableArray array];
+    self.user.favoriteNonprofits = [NSMutableArray array];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

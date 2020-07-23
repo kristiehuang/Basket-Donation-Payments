@@ -72,25 +72,25 @@
                                 <rect key="frame" x="102" y="320" width="210" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IsV-AE-U87">
                                 <rect key="frame" x="102" y="421" width="210" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZV-Uu-3V6">
                                 <rect key="frame" x="102" y="203" width="210" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A6S-bL-pxZ">
                                 <rect key="frame" x="102" y="256" width="210" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DGS-uM-kFS">
                                 <rect key="frame" x="102" y="494" width="49" height="31"/>
@@ -107,7 +107,7 @@
                                 <rect key="frame" x="102" y="379" width="210" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6o-9S-otG">
                                 <rect key="frame" x="168" y="638" width="78" height="30"/>
@@ -746,8 +746,8 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="KcX-Ub-utu"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="f0a-PC-dKx"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJB-NS-FX1">
-                                <rect key="frame" x="40" y="761" width="334" height="61"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJB-NS-FX1">
+                                <rect key="frame" x="40" y="1097" width="334" height="50"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="tsO-bs-nhi"/>
@@ -765,6 +765,7 @@
                             <constraint firstItem="krV-j5-gax" firstAttribute="trailing" secondItem="72W-6e-GZV" secondAttribute="trailing" id="fLr-x1-teq"/>
                             <constraint firstItem="krV-j5-gax" firstAttribute="leading" secondItem="72W-6e-GZV" secondAttribute="leading" id="oA0-db-EQ0"/>
                             <constraint firstItem="cJB-NS-FX1" firstAttribute="leading" secondItem="72W-6e-GZV" secondAttribute="leading" constant="40" id="rFP-nb-5s7"/>
+                            <constraint firstItem="72W-6e-GZV" firstAttribute="bottom" secondItem="cJB-NS-FX1" secondAttribute="bottom" constant="20" id="wCV-fL-ttc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="72W-6e-GZV"/>
                     </view>
