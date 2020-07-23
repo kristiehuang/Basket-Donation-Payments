@@ -25,13 +25,13 @@
     return @"Basket";
 }
 
-+ (Basket*)initNewBasketWithDict:(NSDictionary*)dict {
++ (Basket*)initWithName:(NSString*)basketName description:(NSString*)basketDescription headerPicFile:(PFFileObject*)headerPicFile {
     Basket *basket = [Basket new];
-    basket.name = dict[@"name"];
-    basket.basketDescription = dict[@"basketDescription"];
-    basket.headerPicFile = dict[@"headerPicFile"];
+    basket.name = basketName;
+    basket.basketDescription = basketDescription;
+    basket.headerPicFile = headerPicFile;
     basket.totalDonatedValue = 0;
-    basket.isFeatured = dict[@"isFeatured"];
+    basket.isFeatured = @NO;
     basket.createdByUser = [User currentUser];
     basket.nonprofits = [NSMutableArray array];
     return basket;

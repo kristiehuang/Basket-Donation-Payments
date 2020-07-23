@@ -24,8 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) User *createdByUser;
 //TODO: CATEGORY?
 
-+ (Basket*)initNewBasketWithDict:(NSDictionary*)dict;
-
++ (Basket*)initWithName:(NSString*)basketName description:(NSString*)basketDescription headerPicFile:(PFFileObject*)headerPicFile;
 @end
 
 NS_ASSUME_NONNULL_END
