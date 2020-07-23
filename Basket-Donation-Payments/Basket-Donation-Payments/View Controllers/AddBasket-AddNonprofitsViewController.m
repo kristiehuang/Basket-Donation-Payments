@@ -48,17 +48,22 @@
 }
 
 - (IBAction)createButtonTapped:(id)sender {
-    [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
-            [rootVC resetForm];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            self.tabBarController.selectedIndex = 0;
-        } else {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save Basket. Try again?" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-    }];
+    if (self.basket.nonprofits.count == 0) {
+        UIAlertController *didNotAddNonprofits = [Utils createAlertControllerWithTitle:@"Did not select nonprofits." andMessage:@"Please select at least two nonprofits you'd like donations to go towards." okCompletion:nil cancelCompletion:nil];
+        [self presentViewController:didNotAddNonprofits animated:YES completion:nil];
+    } else {
+        [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
+                [rootVC resetForm];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+                self.tabBarController.selectedIndex = 0;
+            } else {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save Basket. Try again?" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }];
+    }
 }
 
 
