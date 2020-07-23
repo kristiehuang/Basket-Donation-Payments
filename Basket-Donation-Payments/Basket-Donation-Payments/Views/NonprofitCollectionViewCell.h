@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NonprofitCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfilePic;
 
 @end
 

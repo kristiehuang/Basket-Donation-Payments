@@ -11,6 +11,7 @@
 #import "NonprofitViewController.h"
 #import "Nonprofit.h"
 #import "User.h"
+#import "Utils.h"
 #import "BraintreePayPal.h"
 #import "BraintreeCore.h"
 #import "BraintreeDropIn.h"
@@ -61,6 +62,8 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath { 
     NonprofitCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NonprofitCell" forIndexPath:indexPath];
+    Nonprofit *n = self.basket.nonprofits[indexPath.row];
+    cell.nonprofitProfilePic.image = [Utils getImageFromPFFile:n.profilePicFile];
     return cell;
 }
 
