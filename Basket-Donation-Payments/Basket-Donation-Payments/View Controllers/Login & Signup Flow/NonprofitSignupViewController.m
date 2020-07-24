@@ -68,61 +68,27 @@
 -(void)saveNonprofitAndUserToParse {
     [self saveNonprofitDataToNonprofitObject];
     
-    NSOperationQueue *opQueue = [NSOperationQueue new];
-
-    NSBlockOperation *signupUserOp = [NSBlockOperation new];
-    signupUserOp.queuePriority = NSOperationQueuePriorityHigh;
-    __weak NSBlockOperation *weakSignupUserOp = signupUserOp;
-    [signupUserOp addExecutionBlock:^{
-        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (!succeeded) {
-                [opQueue cancelAllOperations];
-                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        }];
-    }];
-    
-    NSBlockOperation *saveNonprofitOp = [NSBlockOperation new];
-    saveNonprofitOp.queuePriority = NSOperationQueuePriorityHigh;
-    __weak NSBlockOperation *weakSaveNonprofitOp = saveNonprofitOp;
-    [saveNonprofitOp addExecutionBlock:^{
-        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if ([weakSaveNonprofitOp isCancelled]) {
-                [self.user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    if (!succeeded) {
-                        NSLog(@"error");
-                    }
-                }];
-                return;
-            } else if (!succeeded) {
-                [opQueue cancelAllOperations];
-                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        }];
-    }];
-    
-    
-    NSBlockOperation *loginSegueOp = [NSBlockOperation new];
-    //FIXME: loginSegueOp is still running first??
-    loginSegueOp.queuePriority = NSOperationQueuePriorityLow;
-    __weak NSBlockOperation *weakLoginSegueOp = loginSegueOp;
-    [loginSegueOp addExecutionBlock:^{
-        if (weakLoginSegueOp.isCancelled) {
-            return;
+    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self.nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+                } else {
+                    [self.user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (!succeeded) {
+                            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        }
+                    }];
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }];
         } else {
-            //FIXME: Must perform segue in main thread
-            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
-    [opQueue addOperation:signupUserOp];
-    if (self.nonprofit) {
-        [opQueue addOperation:saveNonprofitOp];
-    }
-    [opQueue addOperation:loginSegueOp];
-    
-
 
 }
 
@@ -138,6 +104,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"unwindToUserSignup"]) {
+    } else if ([segue.identifier isEqualToString:@"loginSegue"]) {
     } else {
         [self saveNonprofitDataToNonprofitObject];
     }
