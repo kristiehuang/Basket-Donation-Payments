@@ -268,7 +268,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hAU-9T-Czo"/>
                     </view>
-                    <navigationItem key="navigationItem" id="16K-vP-7sm"/>
+                    <navigationItem key="navigationItem" id="16K-vP-7sm">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="5M2-ZZ-vBn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="imk-Ri-6KY">
+                                <rect key="frame" x="20" y="13" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="&lt; Back"/>
+                                <connections>
+                                    <segue destination="Fqj-Gu-Um0" kind="unwind" unwindAction="unwindToUserSignup:" id="W7Y-kt-DRZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="nonprofitCategoryTextField" destination="cPe-jk-ddp" id="bgP-el-UFS"/>
                         <outlet property="nonprofitDescriptionTextView" destination="Zhk-SJ-Id3" id="WBz-nQ-08D"/>
@@ -279,6 +290,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h7-fn-Wua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Fqj-Gu-Um0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1350.7246376811595" y="809.59821428571422"/>
         </scene>
