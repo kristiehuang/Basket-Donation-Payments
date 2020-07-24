@@ -46,7 +46,7 @@
         //TODO: figure out document uplaod
         // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
     }
-
+    
 }
 
 - (IBAction)addPictureButtonTapped:(id)sender {
@@ -62,7 +62,15 @@
 }
 
 - (IBAction)getStartedButtonTapped:(id)sender {
-    [self saveNonprofitAndUserToParse];
+    if (!([self.nonprofitNameTextField hasText]
+          && [self.nonprofitDescriptionTextView.textColor isEqual:[UIColor blackColor]]
+          && [self.nonprofitCategoryTextField hasText]
+          && [self.nonprofitWebsiteTextField hasText])){
+        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [self saveNonprofitAndUserToParse];
+    }
 }
 
 -(void)saveNonprofitAndUserToParse {
@@ -89,7 +97,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
     }];
-
+    
 }
 
 - (void)saveNonprofitDataToNonprofitObject {
