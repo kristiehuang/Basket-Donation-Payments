@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NonprofitSignupViewController : UIViewController
-
+@property (nonatomic, strong) Nonprofit *nonprofit;
 @property (nonatomic, strong) User *user;
 @end
 

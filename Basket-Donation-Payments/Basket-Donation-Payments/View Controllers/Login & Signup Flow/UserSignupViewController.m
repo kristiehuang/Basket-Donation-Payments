@@ -37,18 +37,7 @@
     NSString *segueIdentifierToPerform = (self.isNonprofitSwitch.on ? @"nonprofitCreationSegue" : @"signUpSuccessSegue");
     // Segue is not cancel segue
     if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"] || [segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
-        self.user = [User user];
-        self.user.firstName = (self.firstNameTextField.text.length == 0) ? @"" : self.firstNameTextField.text;
-        self.user.lastName = (self.lastNameTextField.text.length == 0) ? @"" : self.lastNameTextField.text;
-        self.user.username = self.usernameTextField.text;
-        self.user.password = self.passwordTextField.text;
-        self.user.email = self.emailTextField.text;
-        
-        NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
-        self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
-        
-        self.user.recentDonations = [NSMutableArray array];
-        self.user.favoriteNonprofits = [NSMutableArray array];
+        [self createUserToSave];
 
         if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
             //TODO: verify everything looks good before moving on
@@ -76,9 +65,28 @@
         //nonprofit property is still nil
         NonprofitSignupViewController *nonprofitSignupVC = [segue destinationViewController];
         nonprofitSignupVC.user = self.user;
+        nonprofitSignupVC.nonprofit = self.user.nonprofit;
+        
     }
     
 
+}
+
+- (void)createUserToSave {
+    if (!self.user) {
+        self.user = [User user];
+    }
+    self.user.firstName = (self.firstNameTextField.text.length == 0) ? @"" : self.firstNameTextField.text;
+    self.user.lastName = (self.lastNameTextField.text.length == 0) ? @"" : self.lastNameTextField.text;
+    self.user.username = self.usernameTextField.text;
+    self.user.password = self.passwordTextField.text;
+    self.user.email = self.emailTextField.text;
+    
+    NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
+    self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
+    
+    self.user.recentDonations = [NSMutableArray array];
+    self.user.favoriteNonprofits = [NSMutableArray array];
 }
 
 - (IBAction)cancelButtonTapped:(id)sender {
@@ -88,6 +96,12 @@
 
     } cancelCompletion:nil];
     [self presentViewController:cancelConfirm animated:YES completion:nil];
+}
+
+- (IBAction)unwindToUserSignup:(UIStoryboardSegue *)unwindSegue {
+    NonprofitSignupViewController *sourceViewController = unwindSegue.sourceViewController;
+    self.user.nonprofit = sourceViewController.nonprofit;
+    // Use data from the view controller which initiated the unwind segue
 }
 
 - (IBAction)moreInfoButtonTapped:(id)sender {
