@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Stripe/Stripe.h>
 #import <Parse/Parse.h>
 #import "BraintreePayPal.h"
 #import "BraintreeCore.h"
@@ -29,8 +30,9 @@
         configuration.server = dict[@"PARSE_SERVER_URL"];
     }];
     [Parse initializeWithConfiguration:config];
+    [Stripe setDefaultPublishableKey:dict[@"Stripe_Publishable_Key"]];
 
-    [BTAppSwitch setReturnURLScheme:@"com.kristiehuang.Basket-Donation-Payments.open"];
+    [BTAppSwitch setReturnURLScheme:@"com.kristiehuang.Basket-Donation-Payments.open"]; //TODO: remove Braintree
 
     return YES;
 }
