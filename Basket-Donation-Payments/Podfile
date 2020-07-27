@@ -7,6 +7,7 @@ target 'Basket Donation Payments' do
 
   # Pods for Basket Donation Payments
 	pod 'Parse'
+	pod 'Stripe'
 
   	pod 'AFOAuth2Manager'
 
