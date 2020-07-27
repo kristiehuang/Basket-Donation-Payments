@@ -64,6 +64,7 @@
                   @"price": @1000 //in cents
                 }
         ],
+
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
     NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
