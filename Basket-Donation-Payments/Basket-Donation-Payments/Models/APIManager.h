@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface APIManager : NSObject
 
--(NSDictionary*)getAPISecretKeysDict;
++(NSDictionary*)getAPISecretKeysDict;
 
 
 @end

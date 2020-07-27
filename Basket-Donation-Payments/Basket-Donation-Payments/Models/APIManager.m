@@ -11,7 +11,7 @@
 
 @implementation APIManager
 
--(NSDictionary*)getAPISecretKeysDict {
++(NSDictionary*)getAPISecretKeysDict {
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APIKeysSecret" ofType:@"plist"];
     NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
     return dict;

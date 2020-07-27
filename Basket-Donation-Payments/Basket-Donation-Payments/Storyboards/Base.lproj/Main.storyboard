@@ -607,6 +607,7 @@
                         <outlet property="nonprofitsCollectionView" destination="4ZW-ZC-zye" id="yfJ-GS-Grf"/>
                         <outlet property="totalValueDonatedLabel" destination="YY3-2P-gRr" id="psf-t7-zgZ"/>
                         <segue destination="Kbe-lm-Vc1" kind="show" identifier="showNonprofitDetail" id="1Yw-CJ-da4"/>
+                        <segue destination="7dm-6N-BDR" kind="show" identifier="BasketPaymentSegue" id="Col-pJ-sxd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQ8-zo-m1B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -797,6 +798,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQk-xU-0vy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4031.884057971015" y="-1366.0714285714284"/>
+        </scene>
+        <!--Payment Form View Controller-->
+        <scene sceneID="mLe-qD-O74">
+            <objects>
+                <viewController id="7dm-6N-BDR" customClass="PaymentFormViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R8A-jU-4tj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="KwB-yO-fCC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ntm-V2-zQh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VDa-64-Qcg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4851" y="-1644"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bRG-UW-e4g">
