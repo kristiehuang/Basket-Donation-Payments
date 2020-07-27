@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "APIManager.h"
 #import <Stripe/Stripe.h>
 #import <Parse/Parse.h>
 #import "BraintreePayPal.h"
@@ -22,8 +23,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     /** Get APIKeys and server access info from secret .plist file. */
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APIKeysSecret" ofType:@"plist"];
-    NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    NSDictionary *dict = [APIManager getAPISecretKeysDict];
     
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         configuration.applicationId = dict[@"PARSE_APP_ID"];
