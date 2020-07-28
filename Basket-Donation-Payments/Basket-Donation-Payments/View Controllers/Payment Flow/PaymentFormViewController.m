@@ -22,11 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.totalAmount = @15000;
+
     [self setUpPaymentView];
     [self startCheckout];
     
     // Test values for now:
-    self.totalAmount = 15000;
 }
 
 - (void)startCheckout {
