@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3A02AFE024CF5ACE00BA4FE8 /* PaymentFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFDF24CF5ACE00BA4FE8 /* PaymentFormViewController.m */; };
+		3A02AFE324D09EF200BA4FE8 /* StripePaymentIntent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFE224D09EF200BA4FE8 /* StripePaymentIntent.m */; };
+		3A02AFE624D09F0200BA4FE8 /* StripeTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFE524D09F0200BA4FE8 /* StripeTransfer.m */; };
+		3A02AFEA24D0A06500BA4FE8 /* NonprofitTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFE924D0A06500BA4FE8 /* NonprofitTransaction.m */; };
 		3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */; };
 		3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */; };
 		3A8A8EE124C7686400E00AC1 /* PersonalContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EE024C7686400E00AC1 /* PersonalContainerViewController.m */; };
@@ -66,6 +69,12 @@
 		1DD0BC44EE320C8EED25C944 /* Pods_Basket_Donation_Payments.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basket_Donation_Payments.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A02AFDE24CF5ACE00BA4FE8 /* PaymentFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentFormViewController.h; sourceTree = "<group>"; };
 		3A02AFDF24CF5ACE00BA4FE8 /* PaymentFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentFormViewController.m; sourceTree = "<group>"; };
+		3A02AFE124D09EF200BA4FE8 /* StripePaymentIntent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripePaymentIntent.h; sourceTree = "<group>"; };
+		3A02AFE224D09EF200BA4FE8 /* StripePaymentIntent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripePaymentIntent.m; sourceTree = "<group>"; };
+		3A02AFE424D09F0200BA4FE8 /* StripeTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StripeTransfer.h; sourceTree = "<group>"; };
+		3A02AFE524D09F0200BA4FE8 /* StripeTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripeTransfer.m; sourceTree = "<group>"; };
+		3A02AFE824D0A06500BA4FE8 /* NonprofitTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitTransaction.h; sourceTree = "<group>"; };
+		3A02AFE924D0A06500BA4FE8 /* NonprofitTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitTransaction.m; sourceTree = "<group>"; };
 		3A314BF124C64BEE00435BBD /* NonprofitCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitCollectionViewCell.h; sourceTree = "<group>"; };
 		3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitCollectionViewCell.m; sourceTree = "<group>"; };
 		3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
@@ -181,6 +190,21 @@
 				3A02AFDF24CF5ACE00BA4FE8 /* PaymentFormViewController.m */,
 			);
 			path = "Payment Flow";
+			sourceTree = "<group>";
+		};
+		3A02AFE724D09FF000BA4FE8 /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				3ADA0A5024BD189100627AAD /* BasketTransaction.h */,
+				3ADA0A5124BD189100627AAD /* BasketTransaction.m */,
+				3A02AFE824D0A06500BA4FE8 /* NonprofitTransaction.h */,
+				3A02AFE924D0A06500BA4FE8 /* NonprofitTransaction.m */,
+				3A02AFE124D09EF200BA4FE8 /* StripePaymentIntent.h */,
+				3A02AFE224D09EF200BA4FE8 /* StripePaymentIntent.m */,
+				3A02AFE424D09F0200BA4FE8 /* StripeTransfer.h */,
+				3A02AFE524D09F0200BA4FE8 /* StripeTransfer.m */,
+			);
+			path = Payments;
 			sourceTree = "<group>";
 		};
 		3A314BF424C65DEB00435BBD /* Login & Signup Flow */ = {
@@ -308,14 +332,13 @@
 		3ADA0A4924BD171E00627AAD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3A02AFE724D09FF000BA4FE8 /* Payments */,
 				3ADA0A4A24BD173000627AAD /* User.h */,
 				3ADA0A4B24BD173000627AAD /* User.m */,
 				3ADA0A4D24BD188600627AAD /* Nonprofit.h */,
 				3ADA0A4E24BD188600627AAD /* Nonprofit.m */,
 				3ADA0A5324BD1AD000627AAD /* Basket.h */,
 				3ADA0A5424BD1AD000627AAD /* Basket.m */,
-				3ADA0A5024BD189100627AAD /* BasketTransaction.h */,
-				3ADA0A5124BD189100627AAD /* BasketTransaction.m */,
 				3ADA0A5624BE233600627AAD /* APIManager.h */,
 				3ADA0A5724BE233600627AAD /* APIManager.m */,
 				3ADA0A7124BE65B200627AAD /* Utils.h */,
@@ -604,13 +627,16 @@
 				3ADA0A1424BCEC8700627AAD /* InitialLoginViewController.m in Sources */,
 				3ADA0A6D24BE340600627AAD /* BasketViewController.m in Sources */,
 				3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */,
+				3A02AFEA24D0A06500BA4FE8 /* NonprofitTransaction.m in Sources */,
 				3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */,
 				3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */,
+				3A02AFE324D09EF200BA4FE8 /* StripePaymentIntent.m in Sources */,
 				3ADA0A1F24BCEC8800627AAD /* main.m in Sources */,
 				3A8A8EE424C7687E00E00AC1 /* NonprofitContainerViewController.m in Sources */,
 				3ADA0A5524BD1AD000627AAD /* Basket.m in Sources */,
 				3ADA0A1124BCEC8700627AAD /* SceneDelegate.m in Sources */,
 				3ADA0A4F24BD188600627AAD /* Nonprofit.m in Sources */,
+				3A02AFE624D09F0200BA4FE8 /* StripeTransfer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

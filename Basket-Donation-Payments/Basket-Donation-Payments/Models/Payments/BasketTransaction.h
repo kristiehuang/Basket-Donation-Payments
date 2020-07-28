@@ -12,16 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class User;
 @class Basket;
+@class NonprofitTransaction;
 
 @interface BasketTransaction : PFObject<PFSubclassing>
 
-/** Already has: createdAt. */
-@property (nonatomic, strong) NSString *basketTransactionId; //initialize as objectId
+/** Already has: createdAt, objectId. */
 //TODO: PAYMENT METHOD; UNKNWON TYPE, NEED TO SEE HOW PAYPAL SDK WORKS
 @property (nonatomic, strong) User *madeByUser;
 @property (nonatomic) double totalAmount;
 @property (nonatomic, strong) Basket *basketRecipient;
-@property (nonatomic, strong) NSArray<NSDictionary*> *indivNonprofitTxs; //nonprofit (pointer to nonprofit), percentageToNonprofit (double), individualTxId (NSString)
+@property (nonatomic, strong) NSArray<NonprofitTransaction*> *indivNonprofitTxs;
+@property (nonatomic, strong) NSString *stripePaymentIntentId;
 
 @end
 
