@@ -607,7 +607,6 @@
                         <outlet property="nonprofitsCollectionView" destination="4ZW-ZC-zye" id="yfJ-GS-Grf"/>
                         <outlet property="totalValueDonatedLabel" destination="YY3-2P-gRr" id="psf-t7-zgZ"/>
                         <segue destination="Kbe-lm-Vc1" kind="show" identifier="showNonprofitDetail" id="1Yw-CJ-da4"/>
-                        <segue destination="7dm-6N-BDR" kind="show" identifier="BasketPaymentSegue" id="Col-pJ-sxd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQ8-zo-m1B" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -799,21 +798,34 @@
             </objects>
             <point key="canvasLocation" x="4031.884057971015" y="-1366.0714285714284"/>
         </scene>
-        <!--Payment Form View Controller-->
+        <!--2/2 Billing method-->
         <scene sceneID="mLe-qD-O74">
             <objects>
-                <viewController id="7dm-6N-BDR" customClass="PaymentFormViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="7dm-6N-BDR" customClass="PaymentFormViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="R8A-jU-4tj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="chn-m9-E9p">
+                                <rect key="frame" x="180" y="433" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="payButtonTapped:" destination="7dm-6N-BDR" eventType="touchUpInside" id="m6u-3i-2Fu"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="KwB-yO-fCC"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ntm-V2-zQh"/>
+                    <navigationItem key="navigationItem" title="2/2 Billing method" id="Ntm-V2-zQh"/>
+                    <connections>
+                        <outlet property="payButton" destination="chn-m9-E9p" id="ZsH-Yt-T4c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDa-64-Qcg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4851" y="-1644"/>
+            <point key="canvasLocation" x="5636" y="-1471"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="bRG-UW-e4g">
@@ -1334,6 +1346,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HJY-5J-A3z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5012" y="325"/>
+        </scene>
+        <!--1/2 Amount-->
+        <scene sceneID="aT4-CJ-SFz">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="yGQ-0Y-8lu" customClass="PaymentPriceViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="H8Q-Qt-nf4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oCL-4I-pCY">
+                                <rect key="frame" x="159" y="269" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCk-wf-QcT">
+                                <rect key="frame" x="184" y="393" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="yGQ-0Y-8lu" eventType="touchUpInside" id="120-aK-E0E"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8I-Eb-R5q">
+                                <rect key="frame" x="140" y="274" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gu8-d9-J4r"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="1/2 Amount" id="eui-2N-wv1"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="priceInputTextField" destination="oCL-4I-pCY" id="Thh-AA-krs"/>
+                        <segue destination="7dm-6N-BDR" kind="show" identifier="AddBillingMethodSegue" id="uPC-Xm-TSN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Pg-hr-eQK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4851" y="-1471"/>
         </scene>
         <!--Nonprofit Container View Controller-->
         <scene sceneID="RFn-6C-wm5">

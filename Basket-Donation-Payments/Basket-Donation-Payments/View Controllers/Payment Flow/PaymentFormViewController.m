@@ -13,21 +13,18 @@
 
 @interface PaymentFormViewController ()
 @property (weak) STPPaymentCardTextField *cardTextField;
-@property (weak) UIButton *payButton;
+@property (weak, nonatomic) IBOutlet UIButton *payButton;
+//@property (weak) UIButton *payButton;
 @property (strong) NSString *paymentIntentClientSecret;
 
 @end
-
+//BasketPaymentSegue
 @implementation PaymentFormViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.totalAmount = @15000;
-
     [self setUpPaymentView];
     [self startCheckout];
-    
-    // Test values for now:
 }
 
 - (void)startCheckout {
@@ -40,6 +37,9 @@
             self.paymentIntentClientSecret = dataDict[@"clientSecret"];
         }
     }];
+}
+- (IBAction)payButtonTapped:(id)sender {
+    [self pay];
 }
 
 - (void)pay {
@@ -81,14 +81,14 @@
 - (void)setUpPaymentView {
     STPPaymentCardTextField *cardTextField = [[STPPaymentCardTextField alloc] init];
     self.cardTextField = cardTextField;
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.layer.cornerRadius = 5;
-    button.backgroundColor = [UIColor systemBlueColor];
-    button.titleLabel.font = [UIFont systemFontOfSize:22];
-    [button setTitle:@"Pay" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
-    self.payButton = button;
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[cardTextField, button]];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    button.layer.cornerRadius = 5;
+//    button.backgroundColor = [UIColor systemBlueColor];
+//    button.titleLabel.font = [UIFont systemFontOfSize:22];
+//    [button setTitle:@"Pay" forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
+//    self.payButton = button;
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[cardTextField, self.payButton]];
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.spacing = 20;

@@ -7,7 +7,7 @@
 //
 
 #import "BasketViewController.h"
-#import "PaymentFormViewController.h"
+#import "PaymentPriceViewController.h"
 #import "NonprofitCollectionViewCell.h"
 #import "NonprofitViewController.h"
 #import "Nonprofit.h"
@@ -57,7 +57,7 @@
         nonprofitVC.nonprofit = self.nonprofitToSend;
         self.nonprofitToSend = nil;
     } else if ([segue.identifier isEqualToString:@"BasketPaymentSegue"]) {
-        PaymentFormViewController *paymentVC = [segue destinationViewController];
+        PaymentPriceViewController *paymentVC = [segue destinationViewController];
         paymentVC.basket = self.basket;
     }
 

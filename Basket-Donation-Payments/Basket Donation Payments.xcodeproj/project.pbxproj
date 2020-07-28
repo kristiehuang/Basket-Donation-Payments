@@ -11,6 +11,7 @@
 		3A02AFE324D09EF200BA4FE8 /* StripePaymentIntent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFE224D09EF200BA4FE8 /* StripePaymentIntent.m */; };
 		3A02AFE624D09F0200BA4FE8 /* StripeTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFE524D09F0200BA4FE8 /* StripeTransfer.m */; };
 		3A02AFEA24D0A06500BA4FE8 /* NonprofitTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFE924D0A06500BA4FE8 /* NonprofitTransaction.m */; };
+		3A02AFED24D0C46900BA4FE8 /* PaymentPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFEC24D0C46900BA4FE8 /* PaymentPriceViewController.m */; };
 		3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */; };
 		3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */; };
 		3A8A8EE124C7686400E00AC1 /* PersonalContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EE024C7686400E00AC1 /* PersonalContainerViewController.m */; };
@@ -75,6 +76,8 @@
 		3A02AFE524D09F0200BA4FE8 /* StripeTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StripeTransfer.m; sourceTree = "<group>"; };
 		3A02AFE824D0A06500BA4FE8 /* NonprofitTransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitTransaction.h; sourceTree = "<group>"; };
 		3A02AFE924D0A06500BA4FE8 /* NonprofitTransaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitTransaction.m; sourceTree = "<group>"; };
+		3A02AFEB24D0C46900BA4FE8 /* PaymentPriceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentPriceViewController.h; sourceTree = "<group>"; };
+		3A02AFEC24D0C46900BA4FE8 /* PaymentPriceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentPriceViewController.m; sourceTree = "<group>"; };
 		3A314BF124C64BEE00435BBD /* NonprofitCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitCollectionViewCell.h; sourceTree = "<group>"; };
 		3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitCollectionViewCell.m; sourceTree = "<group>"; };
 		3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 		3A02AFDD24CF5AB900BA4FE8 /* Payment Flow */ = {
 			isa = PBXGroup;
 			children = (
+				3A02AFEB24D0C46900BA4FE8 /* PaymentPriceViewController.h */,
+				3A02AFEC24D0C46900BA4FE8 /* PaymentPriceViewController.m */,
 				3A02AFDE24CF5ACE00BA4FE8 /* PaymentFormViewController.h */,
 				3A02AFDF24CF5ACE00BA4FE8 /* PaymentFormViewController.m */,
 			);
@@ -295,7 +300,6 @@
 			children = (
 				3A8A8EDE24C7684300E00AC1 /* Profile View */,
 				3A314BF424C65DEB00435BBD /* Login & Signup Flow */,
-				3A02AFDD24CF5AB900BA4FE8 /* Payment Flow */,
 				3ADA0A5F24BE2DE900627AAD /* ExploreFeedViewController.h */,
 				3ADA0A6024BE2DE900627AAD /* ExploreFeedViewController.m */,
 				3ADA0A6224BE2E0800627AAD /* SearchViewController.h */,
@@ -310,6 +314,7 @@
 				3ADA0A6C24BE340600627AAD /* BasketViewController.m */,
 				3ADA0A6E24BE340D00627AAD /* NonprofitViewController.h */,
 				3ADA0A6F24BE340D00627AAD /* NonprofitViewController.m */,
+				3A02AFDD24CF5AB900BA4FE8 /* Payment Flow */,
 				3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */,
 				3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */,
 			);
@@ -617,6 +622,7 @@
 				3A8A8EE124C7686400E00AC1 /* PersonalContainerViewController.m in Sources */,
 				3ADA0A6724BE2E4700627AAD /* AddBasketViewController.m in Sources */,
 				3ADA0A4C24BD173000627AAD /* User.m in Sources */,
+				3A02AFED24D0C46900BA4FE8 /* PaymentPriceViewController.m in Sources */,
 				3ADA0A5824BE233600627AAD /* APIManager.m in Sources */,
 				3ADA0A7024BE340D00627AAD /* NonprofitViewController.m in Sources */,
 				3ADA0A7324BE65B200627AAD /* Utils.m in Sources */,
