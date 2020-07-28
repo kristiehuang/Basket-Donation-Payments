@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NonprofitTransaction : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) Nonprofit *nonprofit;
-@property (nonatomic) double percentageToNonprofit;
+@property (nonatomic, strong) NSNumber *percentageToNonprofit;
 @property (nonatomic, strong) NSString *stripeTransferId;
 
 @end

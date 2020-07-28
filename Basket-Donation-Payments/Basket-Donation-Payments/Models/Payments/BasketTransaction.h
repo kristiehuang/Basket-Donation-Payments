@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Already has: createdAt, objectId. */
 //TODO: PAYMENT METHOD; UNKNWON TYPE, NEED TO SEE HOW PAYPAL SDK WORKS
 @property (nonatomic, strong) User *madeByUser;
-@property (nonatomic) double totalAmount;
+@property (nonatomic, strong) NSNumber *totalAmount;
 @property (nonatomic, strong) Basket *basketRecipient;
 @property (nonatomic, strong) NSArray<NonprofitTransaction*> *indivNonprofitTxs;
 @property (nonatomic, strong) NSString *stripePaymentIntentId;

@@ -19,14 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 /** PFUser already has objectId, updatedAt, createdAt. */
 
 @property (nonatomic) User *user; //user that owns nonprofit
-@property (nonatomic, strong) NSString *nonprofitId; //TODO: set equal to objectId?
+@property (nonatomic, strong) NSString *stripeId;
 @property (nonatomic, strong) NSString *nonprofitName;
 
 @property (nonatomic, strong) NSString *nonprofitDescription;
 @property (nonatomic, strong) PFFileObject *profilePicFile;
 @property (nonatomic, strong) PFFileObject *headerPicFile; //TODO: will this break if nil? since i didn't mark as nullable
 
-@property (nonatomic) double totalDonationsValue;
+@property (nonatomic, strong) NSNumber *totalDonationsValue;
 @property (nonatomic, strong) NSArray<BasketTransaction*> *basketTransactionsMadeToNonprofit;
 @property (nonatomic, strong) NSArray<Basket*> *belongsInBaskets;
 //TODO: iNCLUDE PAYPAL PAYMENT INFO: paymentid, merchantId, email, etc. don't forget to @dynamic

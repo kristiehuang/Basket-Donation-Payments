@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Basket.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PaymentFormViewController : UIViewController
+@property (nonatomic, strong) Basket* basket;
+@property (nonatomic, strong) NSNumber *totalAmount;
 
 @end
 

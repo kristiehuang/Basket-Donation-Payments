@@ -8,9 +8,14 @@
 
 #import "APIManager.h"
 #import "Utils.h"
+#import "User.h"
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <Stripe/Stripe.h>
+#import "BasketTransaction.h"
+#import "Basket.h"
+#import "Nonprofit.h"
+
 
 @implementation APIManager
 
@@ -25,35 +30,44 @@
     NSURL *clientTokenURL = [NSURL URLWithString:@"https://braintree-sample-merchant.herokuapp.com/client_token"];
     NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
     [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
-
+    
     [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         // TODO: Handle errors
         //NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSString *clientToken = @"CLIENT_TOKEN_FROM_SERVER"; //TODO: demo client token
-
+        
         // As an example, you may wish to present Drop-in at this point.
         // Continue to the next section to learn more...
     }] resume];
 }
 
 
-+ (void)createPaymentIntentWithBlock:(void (^)(NSError *, NSDictionary *))completion {
++ (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount WithBlock:(void (^)(NSError *, NSDictionary *))completion {
     NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
+    
     // Create a PaymentIntent by calling your server's endpoint.
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-payment-intent", backendURL]];
+    
+    BasketTransaction *basketTx = [BasketTransaction new]; //
+    basketTx.basketRecipient = basket;
+    basketTx.madeByUser = [User currentUser];
+    basketTx.totalAmount = totalAmount;
+    //TODO: do I need to save basketTx to Parse if I can retrieve from Stripe API?
+    
+    NSMutableArray<NSDictionary*> *arrayOfNonprofits = [NSMutableArray array];
+    for (Nonprofit *np in basket.nonprofits) {
+        NSDictionary* merchantInfo = @{
+            @"merchantId0": np.stripeId,
+            @"percentage": basket.nonprofitPercentages[np]
+        };
+        [arrayOfNonprofits addObject:merchantInfo];
+    }
     NSDictionary *json = @{
-        @"items": @[
-                @{@"merchantId1": @"abc",
-                  @"price": @8000
-                },
-                @{@"merchantId2": @"cde",
-                  @"price": @8000
-                },
-                @{@"merchantId3": @"efg",
-                  @"price": @1000
-                }
-        ],
-
+        @"currency": @"usd",
+        @"totalAmount": totalAmount,
+        @"basketItems": arrayOfNonprofits,
+        @"customer": [User currentUser].userStripeId,
+        @"transferGroup": @"tempTransferGroupId", //FIXME: unique transfer group
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
     NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
@@ -76,7 +90,7 @@
 }
 
 + (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus))completion {
-
+    
     // Create STPPaymentIntentParams with card details
     STPPaymentMethodCardParams *cardParams = params;
     STPPaymentMethodParams *paymentMethodParams = [STPPaymentMethodParams paramsWithCard:cardParams billingDetails:nil metadata:nil];

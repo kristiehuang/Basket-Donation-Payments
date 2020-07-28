@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "AFOAuth2Manager.h"
 #import <Stripe/Stripe.h>
+#import "Basket.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface APIManager : NSObject
 
 +(NSDictionary*)getAPISecretKeysDict;
-+ (void)createPaymentIntentWithBlock:(void (^)(NSError *, NSDictionary *))completion;
+
++ (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount WithBlock:(void (^)(NSError *, NSDictionary *))completion;
+
 + (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus))completion;
 @end
 

@@ -18,9 +18,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *basketDescription;
 @property (nonatomic, strong) PFFileObject *headerPicFile;
-@property (nonatomic) double totalDonatedValue;
+@property (nonatomic, strong) NSNumber *totalDonatedValue;
 @property (nonatomic) BOOL isFeatured;
 @property (nonatomic, strong) NSMutableArray<Nonprofit*> *nonprofits;
+@property (nonatomic, strong) NSDictionary<Nonprofit*, NSNumber*> *nonprofitPercentages;
+
 @property (nonatomic, strong) User *createdByUser;
 //TODO: CATEGORY?
 

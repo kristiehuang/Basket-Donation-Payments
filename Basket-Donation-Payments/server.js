@@ -10,7 +10,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 app.use(express.static("."));
 app.use(express.json());
 
-const calculateOrderAmount = items => {
+const calculateTransferAmount = totalAmount, basketItems => {
     // Replace this constant with a calculation of the order's amount
     // Calculate the order total on the server to prevent
     // people from directly manipulating the amount on the client
@@ -18,17 +18,20 @@ const calculateOrderAmount = items => {
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-    const { items } = req.body;
+    const { currency, totalAmount, basketItems, customer, transferGroup } = req.body;
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
-    currency: "usd",
-    transfer_group: "order1"
+        amount: totalAmount,
+        currency: currency,
+        customer: customer,
+        transfer_group: transferGroup
     });
     
     res.send({
     clientSecret: paymentIntent.client_secret
     });
 });
+
+// TODO: create transfer, use CreateTransferAmount to calculate amounts
 
 app.listen(4242, () => console.log('Node server listening on port 4242!'));
