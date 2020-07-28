@@ -23,7 +23,7 @@ app.post("/create-payment-intent", async (req, res) => {
     const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
     currency: "usd",
-    transfer_group: null
+    transfer_group: "order1"
     });
     
     res.send({

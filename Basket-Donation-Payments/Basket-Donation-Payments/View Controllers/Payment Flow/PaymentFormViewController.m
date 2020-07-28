@@ -61,7 +61,7 @@
                   @"price": @8000
                 },
                 @{@"merchantId3": @"efg",
-                  @"price": @1000 //in cents
+                  @"price": @1000
                 }
         ],
 
@@ -80,10 +80,9 @@
         }
         else {
             NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Created PaymentIntent %@", dataDict[@"description"]);
+            NSLog(@"Created PaymentIntent %@");
             
             self.paymentIntentClientSecret = dataDict[@"clientSecret"];
-            NSString *publishableKey = dataDict[@"publishableKey"];
         }
     }];
     [task resume];
@@ -131,15 +130,5 @@
 - (UIViewController *)authenticationPresentingViewController {
     return self;
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end
