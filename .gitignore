@@ -7,5 +7,4 @@ xcuserdata/
 *.xcodeproj/*
 **/xcshareddata/WorkspaceSettings.xcsettings
 **/.env
-**/node_modules/@types/**
-**/node_modules/stripe/**
+**/node_modules/**

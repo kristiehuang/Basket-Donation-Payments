@@ -22,70 +22,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Set up the Stripe card text field
-    STPPaymentCardTextField *cardTextField = [[STPPaymentCardTextField alloc] init];
-    self.cardTextField = cardTextField;
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.layer.cornerRadius = 5;
-    button.backgroundColor = [UIColor systemBlueColor];
-    button.titleLabel.font = [UIFont systemFontOfSize:22];
-    [button setTitle:@"Pay" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
-    self.payButton = button;
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[cardTextField, button]];
-    stackView.axis = UILayoutConstraintAxisVertical;
-    stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    stackView.spacing = 20;
-    [self.view addSubview:stackView];
-    [NSLayoutConstraint activateConstraints:@[
-        [stackView.leftAnchor constraintEqualToSystemSpacingAfterAnchor:self.view.leftAnchor multiplier:2],
-        [self.view.rightAnchor constraintEqualToSystemSpacingAfterAnchor:stackView.rightAnchor multiplier:2],
-        [stackView.topAnchor constraintEqualToSystemSpacingBelowAnchor:self.view.safeAreaLayoutGuide.topAnchor multiplier:2],
-    ]];
-    
-    [self createPaymentIntent];
-    
+    [self setUpPaymentView];
+    [self startCheckout];
 }
 
-- (void)createPaymentIntent {
-    NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
-    // Create a PaymentIntent by calling your server's endpoint.
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-payment-intent", backendURL]];
-    NSDictionary *json = @{
-        @"items": @[
-                @{@"merchantId1": @"abc",
-                  @"price": @8000
-                },
-                @{@"merchantId2": @"cde",
-                  @"price": @8000
-                },
-                @{@"merchantId3": @"efg",
-                  @"price": @1000
-                }
-        ],
-
-    };
-    NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:body];
-    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *requestError) {
-        NSError *error = requestError;
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-        if (error != nil || httpResponse.statusCode != 200) {
+- (void)startCheckout {
+    [APIManager createPaymentIntentWithBlock:^(NSError * error, NSDictionary * dataDict) {
+        if (error) {
             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading page." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
             [self presentViewController:alert animated:YES completion:nil];
         }
         else {
-            NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Created PaymentIntent %@");
-            
             self.paymentIntentClientSecret = dataDict[@"clientSecret"];
         }
     }];
-    [task resume];
 }
 
 - (void)pay {
@@ -93,15 +43,8 @@
         NSLog(@"PaymentIntent hasn't been created");
         return;
     }
-    // Create STPPaymentIntentParams with card details
-    STPPaymentMethodCardParams *cardParams = self.cardTextField.cardParams;
-    STPPaymentMethodParams *paymentMethodParams = [STPPaymentMethodParams paramsWithCard:cardParams billingDetails:nil metadata:nil];
-    STPPaymentIntentParams *paymentIntentParams = [[STPPaymentIntentParams alloc] initWithClientSecret:self.paymentIntentClientSecret];
-    paymentIntentParams.paymentMethodParams = paymentMethodParams;
     
-    // Submit the payment
-    STPPaymentHandler *paymentHandler = [STPPaymentHandler sharedHandler];
-    [paymentHandler confirmPayment:paymentIntentParams withAuthenticationContext:self completion:^(STPPaymentHandlerActionStatus status, STPPaymentIntent *paymentIntent, NSError *error) {
+    [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status) {
         dispatch_async(dispatch_get_main_queue(), ^{
             switch (status) {
                 case STPPaymentHandlerActionStatusFailed: {
@@ -129,6 +72,28 @@
 # pragma mark STPAuthenticationContext
 - (UIViewController *)authenticationPresentingViewController {
     return self;
+}
+
+- (void)setUpPaymentView {
+    STPPaymentCardTextField *cardTextField = [[STPPaymentCardTextField alloc] init];
+    self.cardTextField = cardTextField;
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.layer.cornerRadius = 5;
+    button.backgroundColor = [UIColor systemBlueColor];
+    button.titleLabel.font = [UIFont systemFontOfSize:22];
+    [button setTitle:@"Pay" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
+    self.payButton = button;
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[cardTextField, button]];
+    stackView.axis = UILayoutConstraintAxisVertical;
+    stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    stackView.spacing = 20;
+    [self.view addSubview:stackView];
+    [NSLayoutConstraint activateConstraints:@[
+        [stackView.leftAnchor constraintEqualToSystemSpacingAfterAnchor:self.view.leftAnchor multiplier:2],
+        [self.view.rightAnchor constraintEqualToSystemSpacingAfterAnchor:stackView.rightAnchor multiplier:2],
+        [stackView.topAnchor constraintEqualToSystemSpacingBelowAnchor:self.view.safeAreaLayoutGuide.topAnchor multiplier:2],
+    ]];
 }
 
 @end
