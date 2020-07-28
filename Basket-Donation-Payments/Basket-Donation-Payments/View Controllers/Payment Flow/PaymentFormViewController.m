@@ -28,7 +28,7 @@
 }
 
 - (void)startCheckout {
-    [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount WithBlock:^(NSError * error, NSDictionary * dataDict) {
+    [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
         if (error) {
             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading page." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
             [self presentViewController:alert animated:YES completion:nil];

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 +(NSDictionary*)getAPISecretKeysDict;
 
-+ (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount WithBlock:(void (^)(NSError *, NSDictionary *))completion;
++ (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount withBlock:(void (^)(NSError *, NSDictionary *))completion;
 
 + (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus))completion;
 @end

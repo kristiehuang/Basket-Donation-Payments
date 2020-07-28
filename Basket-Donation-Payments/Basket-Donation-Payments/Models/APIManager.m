@@ -42,7 +42,7 @@
 }
 
 
-+ (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount WithBlock:(void (^)(NSError *, NSDictionary *))completion {
++ (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount withBlock:(void (^)(NSError *, NSDictionary *))completion {
     NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
     
     // Create a PaymentIntent by calling your server's endpoint.
