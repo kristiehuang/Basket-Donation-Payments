@@ -44,13 +44,20 @@
 
         } else if ([segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
             self.user.nonprofit = nil;
-            self.user.userStripeId = [APIManager newStripeCustomerWithName:[NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName] andEmail:self.user.email];
-            [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (!succeeded) {
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
+            [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
+                if (err != nil) {
+                    self.user.userStripeId = stripeId;
+                    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (!succeeded) {
+                            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        } else {
+                            [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
+                        }
+                    }];
+                } else {                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
                     [self presentViewController:alert animated:YES completion:nil];
-                } else {
-                    [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
                 }
             }];
         }

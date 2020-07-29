@@ -25,23 +25,6 @@
     return dict;
 }
 
--(void)fetchBraintreeClientToken {
-    //NSDictionary *apiKeys = [self getAPISecretKeysDict];
-    NSURL *clientTokenURL = [NSURL URLWithString:@"https://braintree-sample-merchant.herokuapp.com/client_token"];
-    NSMutableURLRequest *clientTokenRequest = [NSMutableURLRequest requestWithURL:clientTokenURL];
-    [clientTokenRequest setValue:@"text/plain" forHTTPHeaderField:@"Accept"];
-    
-    [[[NSURLSession sharedSession] dataTaskWithRequest:clientTokenRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        // TODO: Handle errors
-        //NSString *clientToken = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSString *clientToken = @"CLIENT_TOKEN_FROM_SERVER"; //TODO: demo client token
-        
-        // As an example, you may wish to present Drop-in at this point.
-        // Continue to the next section to learn more...
-    }] resume];
-}
-
-
 + (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount withBlock:(void (^)(NSError *, NSDictionary *))completion {
     NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
     
@@ -62,8 +45,8 @@
 
             //FIXME: instantiate Nonprofit object with stripeId
             //FIXME: use user-inputted nonprofitPercentages
-//            @"merchantId0": np.stripeId,
-//            @"percentage": basket.nonprofitPercentages[np]
+            //            @"merchantId0": np.stripeId,
+            //            @"percentage": basket.nonprofitPercentages[np]
         };
         [arrayOfNonprofits addObject:merchantInfo];
     }
@@ -110,9 +93,34 @@
 }
 
 
-+ (NSString*) newStripeCustomerWithName:(NSString*)fullName andEmail:(NSString*)email {
++ (void) newStripeCustomerIdWithName:(NSString*)fullName andEmail:(NSString*)email withBlock:(void (^)(NSError *, NSString *))completion {
     //FIXME: save to Stripe API & return customer stripeId
-    return @"cus_HjQnvQtIHPPGtt";
+
+    NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-new-customer", backendURL]]; //TODO: create new endpoint on server.js
+    NSDictionary *json = @{
+        @"fullName": fullName,
+        @"email": email
+    };
+    NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if (error != nil || httpResponse.statusCode != 200) {
+            completion(error, nil);
+        }
+        else {
+            NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"Created new Stripe Customer");
+            completion(nil, dataDict[@"id"]);
+        }
+    }];
+    [task resume];
+
+
 }
 
 @end

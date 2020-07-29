@@ -71,9 +71,17 @@
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
-        self.user.userStripeId = [APIManager newStripeCustomerWithName:[NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName] andEmail:self.user.email];
-        [self saveNonprofitDataToNonprofitObject];
-        [self saveNonprofitAndUserToParse];
+        NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
+        [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
+            if (err != nil) {
+                self.user.userStripeId = stripeId;
+                [self saveNonprofitDataToNonprofitObject];
+                [self saveNonprofitAndUserToParse];
+            } else {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }];
     }
 }
 

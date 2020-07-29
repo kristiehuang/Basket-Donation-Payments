@@ -21,8 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus))completion;
 
-+ (NSString*) newStripeCustomerWithName:(NSString*)fullName andEmail:(NSString*)email;
-
++ (void) newStripeCustomerIdWithName:(NSString*)fullName andEmail:(NSString*)email withBlock:(void (^)(NSError *, NSString *))completion;
 
 @end
 
