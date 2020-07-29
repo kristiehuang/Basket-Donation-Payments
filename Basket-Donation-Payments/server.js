@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
 const { resolve } = require("path");
-// This is a sample test API key. Sign in to see examples pre-filled with your key.
 
-// Replace if using a different env file or config
 const env = require("dotenv").config({ path: "./.env" });
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -19,9 +17,22 @@ app.post("/create-payment-intent", async (req, res) => {
         customer: customer,
         transfer_group: transferGroup
     });
-    
+
     res.send({
     clientSecret: paymentIntent.client_secret
+    });
+});
+
+app.post("/create-new-customer", async (req, res) => {
+    const { fullName, email } = req.body;
+    // Create a new Stripe Customer with the order amount and currency
+    const customer = await stripe.customers.create({
+        name: fullName,
+        email: email
+    });
+
+    res.send({
+        id: customer.id
     });
 });
 
