@@ -14,11 +14,11 @@
 @interface PaymentFormViewController ()
 @property (weak) STPPaymentCardTextField *cardTextField;
 @property (weak, nonatomic) IBOutlet UIButton *payButton;
-//@property (weak) UIButton *payButton;
 @property (strong) NSString *paymentIntentClientSecret;
+@property (weak, nonatomic) IBOutlet UIStackView *poweredByStripeStackView;
 
 @end
-//BasketPaymentSegue
+
 @implementation PaymentFormViewController
 
 - (void)viewDidLoad {
@@ -62,8 +62,8 @@
                     break;
                 }
                 case STPPaymentHandlerActionStatusSucceeded: {
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Payment succeeded." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                    [self presentViewController:alert animated:YES completion:nil];
+                    [self performSegueWithIdentifier:@"PaymentConfirmedSegue" sender:nil];
+                    self.tabBarController.hidesBottomBarWhenPushed = YES;
                     break;
                 }
                 default:
@@ -81,14 +81,7 @@
 - (void)setUpPaymentView {
     STPPaymentCardTextField *cardTextField = [[STPPaymentCardTextField alloc] init];
     self.cardTextField = cardTextField;
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    button.layer.cornerRadius = 5;
-//    button.backgroundColor = [UIColor systemBlueColor];
-//    button.titleLabel.font = [UIFont systemFontOfSize:22];
-//    [button setTitle:@"Pay" forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
-//    self.payButton = button;
-    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[cardTextField, self.payButton]];
+    UIStackView *stackView = [[UIStackView alloc] initWithArrangedSubviews:@[cardTextField, self.poweredByStripeStackView, self.payButton]];
     stackView.axis = UILayoutConstraintAxisVertical;
     stackView.translatesAutoresizingMaskIntoConstraints = NO;
     stackView.spacing = 20;

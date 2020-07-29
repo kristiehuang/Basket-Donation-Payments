@@ -11,6 +11,7 @@
 
 @interface PaymentPriceViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *priceInputTextField;
+@property (weak, nonatomic) IBOutlet UILabel *recipientLabel;
 
 @end
 
@@ -20,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.recipientLabel.text = [NSString stringWithFormat:@"to %@", self.basket.name];
     //TODO: add ability to change currency
 }
 - (IBAction)nextButtonTapped:(id)sender {
@@ -32,7 +34,8 @@
         billingVC.basket = self.basket;
         NSNumberFormatter *numFormat = [NSNumberFormatter new];
         numFormat.numberStyle = NSNumberFormatterDecimalStyle;
-        billingVC.totalAmount = [numFormat numberFromString:self.priceInputTextField.text];
+        NSNumber *inputVal = [numFormat numberFromString:self.priceInputTextField.text];
+        billingVC.totalAmount = @([inputVal floatValue] * 100);
 //FIXME: Total amount is NSNumber
     }
 }
