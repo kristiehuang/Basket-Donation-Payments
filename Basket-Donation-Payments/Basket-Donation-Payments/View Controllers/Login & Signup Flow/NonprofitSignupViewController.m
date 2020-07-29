@@ -9,6 +9,7 @@
 #import "NonprofitSignupViewController.h"
 #import <Parse/Parse.h>
 #import "Nonprofit.h"
+#import "APIManager.h"
 #import "Utils.h"
 #import <UIKit/UIKit.h>
 
@@ -36,6 +37,7 @@
         self.nonprofitProfileImageView.image = [Utils getImageFromPFFile:self.nonprofit.profilePicFile];
         self.nonprofitNameTextField.text = self.nonprofit.nonprofitName;
         self.nonprofitDescriptionTextView.text = self.nonprofit.nonprofitDescription;
+        self.nonprofitDescriptionTextView.textColor = [UIColor blackColor];
         self.nonprofitCategoryTextField.text = self.nonprofit.category;
         self.nonprofitWebsiteTextField.text = self.nonprofit.websiteUrlString;
     } else {
@@ -63,19 +65,20 @@
 
 - (IBAction)getStartedButtonTapped:(id)sender {
     if (!([self.nonprofitNameTextField hasText]
-          && [self.nonprofitDescriptionTextView.textColor isEqual:[UIColor blackColor]]
+          && ![self.nonprofitDescriptionTextView.text isEqualToString:@""]
           && [self.nonprofitCategoryTextField hasText]
           && [self.nonprofitWebsiteTextField hasText])){
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
+        self.user.userStripeId = [APIManager newStripeCustomerWithName:[NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName] andEmail:self.user.email];
+        [self saveNonprofitDataToNonprofitObject];
         [self saveNonprofitAndUserToParse];
     }
 }
 
 -(void)saveNonprofitAndUserToParse {
-    [self saveNonprofitDataToNonprofitObject];
-    
+
     [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             [self.nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

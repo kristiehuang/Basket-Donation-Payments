@@ -71,10 +71,7 @@
         @"currency": @"usd",
         @"totalAmount": totalAmount,
         @"basketItems": arrayOfNonprofits,
-        @"customer": @"cus_HjQnvQtIHPPGtt", //Test value for now.
-
-        //FIXME: instantiate user with Stripe ID
-        //@"customer": [User currentUser].userStripeId,
+        @"customer": [User currentUser].userStripeId, //@"cus_HjQnvQtIHPPGtt" as test value
         @"transferGroup": @"tempTransferGroupId", //FIXME: unique transfer group
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
@@ -110,6 +107,12 @@
     [paymentHandler confirmPayment:paymentIntentParams withAuthenticationContext:self completion:^(STPPaymentHandlerActionStatus status, STPPaymentIntent *paymentIntent, NSError *error) {
         completion(error, status);
     }];
+}
+
+
++ (NSString*) newStripeCustomerWithName:(NSString*)fullName andEmail:(NSString*)email {
+    //FIXME: save to Stripe API & return customer stripeId
+    return @"cus_HjQnvQtIHPPGtt";
 }
 
 @end
