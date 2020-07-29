@@ -7,6 +7,7 @@
 //
 
 #import "BasketViewController.h"
+#import "PaymentPriceViewController.h"
 #import "NonprofitCollectionViewCell.h"
 #import "NonprofitViewController.h"
 #import "Nonprofit.h"
@@ -43,7 +44,7 @@
     self.basketDescriptionLabel.text = self.basket.basketDescription;
 }
 - (IBAction)donateButtonTapped:(id)sender {
-
+    [self performSegueWithIdentifier:@"BasketPaymentSegue" sender:nil];
 }
 
 
@@ -55,6 +56,9 @@
         NonprofitViewController *nonprofitVC = [segue destinationViewController];
         nonprofitVC.nonprofit = self.nonprofitToSend;
         self.nonprofitToSend = nil;
+    } else if ([segue.identifier isEqualToString:@"BasketPaymentSegue"]) {
+        PaymentPriceViewController *paymentVC = [segue destinationViewController];
+        paymentVC.basket = self.basket;
     }
 
 }

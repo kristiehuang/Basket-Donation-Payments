@@ -6,3 +6,4 @@ ${BUILT_PRODUCTS_DIR}/Braintree/Braintree.framework
 ${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework
 ${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework
 ${BUILT_PRODUCTS_DIR}/Parse/Parse.framework
+${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework
