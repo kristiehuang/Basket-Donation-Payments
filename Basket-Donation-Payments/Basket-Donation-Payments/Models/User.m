@@ -25,6 +25,7 @@
 @dynamic password;
 @dynamic email;
 @dynamic createdAt;
+@dynamic userStripeId;
 
 - (NSString *)parseClassName {
     return @"_User";

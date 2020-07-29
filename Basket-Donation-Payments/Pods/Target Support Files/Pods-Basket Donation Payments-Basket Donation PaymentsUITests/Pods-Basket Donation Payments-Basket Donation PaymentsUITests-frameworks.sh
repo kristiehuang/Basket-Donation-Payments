@@ -204,6 +204,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
@@ -213,6 +214,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_ROOT}/Braintree/Frameworks/CardinalMobile.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BraintreeDropIn/BraintreeDropIn.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Parse/Parse.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

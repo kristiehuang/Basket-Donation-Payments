@@ -55,6 +55,7 @@ PODS:
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
+  - Stripe (19.3.0)
 
 DEPENDENCIES:
   - AFOAuth2Manager
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - Braintree/Venmo
   - BraintreeDropIn
   - Parse
+  - Stripe
 
 SPEC REPOS:
   trunk:
@@ -71,6 +73,7 @@ SPEC REPOS:
     - Braintree
     - BraintreeDropIn
     - Parse
+    - Stripe
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -79,7 +82,8 @@ SPEC CHECKSUMS:
   Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
   BraintreeDropIn: fc3e96a8a2b5416e5e3a3beba119f0089713bc1e
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
+  Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
 
-PODFILE CHECKSUM: 5b3e029d2ce3c2fc9cf649e3291457a5a76f969d
+PODFILE CHECKSUM: 33fc671d0747ca310d31643c4b96d372a65afdf9
 
 COCOAPODS: 1.9.3

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Utils : NSObject
 
-+(UIAlertController *)createAlertControllerWithTitle:(NSString*)title andMessage:(NSString*)message okCompletion:(void(^)(UIAlertAction * _Nonnull action))okCompletion cancelCompletion:(void(^)(UIAlertAction * _Nonnull action))cancelCompletion;
++(UIAlertController *)createAlertControllerWithTitle:(NSString*)title andMessage:(NSString*)message okCompletion:(void(^ _Nullable)(UIAlertAction * _Nonnull action))okCompletion cancelCompletion:(void(^ _Nullable)(UIAlertAction * _Nonnull action))cancelCompletion;
 
 +(PFFileObject*)getFileFromImage:(UIImage*)image;
 +(UIImage*)getImageFromPFFile:(PFFileObject*)file;

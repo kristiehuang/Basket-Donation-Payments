@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "APIManager.h"
+#import <Stripe/Stripe.h>
 #import <Parse/Parse.h>
 #import "BraintreePayPal.h"
 #import "BraintreeCore.h"
@@ -21,16 +23,16 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     /** Get APIKeys and server access info from secret .plist file. */
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"APIKeysSecret" ofType:@"plist"];
-    NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
+    NSDictionary *dict = [APIManager getAPISecretKeysDict];
     
     ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
         configuration.applicationId = dict[@"PARSE_APP_ID"];
         configuration.server = dict[@"PARSE_SERVER_URL"];
     }];
     [Parse initializeWithConfiguration:config];
+    [Stripe setDefaultPublishableKey:dict[@"Stripe_Publishable_Key"]];
 
-    [BTAppSwitch setReturnURLScheme:@"com.kristiehuang.Basket-Donation-Payments.open"];
+    [BTAppSwitch setReturnURLScheme:@"com.kristiehuang.Basket-Donation-Payments.open"]; //TODO: remove Braintree
 
     return YES;
 }
