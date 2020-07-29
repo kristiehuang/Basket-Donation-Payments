@@ -12,6 +12,7 @@
 #import "APIManager.h"
 #import "Utils.h"
 #import <UIKit/UIKit.h>
+#import "LoginWebKitViewController.h"
 
 @interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
@@ -72,11 +73,12 @@
         [self presentViewController:alert animated:YES completion:nil];
     } else {
         NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
+        //FIXME: user email must be valid otherwise server code will crash
         [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
-            if (err != nil) {
+            if (err == nil) {
                 self.user.userStripeId = stripeId;
                 [self saveNonprofitDataToNonprofitObject];
-                [self saveNonprofitAndUserToParse];
+                [self saveNonprofitToStripe];
             } else {
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
                 [self presentViewController:alert animated:YES completion:nil];
@@ -85,45 +87,38 @@
     }
 }
 
--(void)saveNonprofitAndUserToParse {
+/** Creates Stripe Connected Account for nonprofit. Runs after user is saved to Stripe. After completion, will save Nonprofit & User to Parse.
+ Opens WKWebView to load oAuth link, then redirects back in-app with RedirectURL.
+ */
+- (void)saveNonprofitToStripe {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"CreateStripeAccountSegue" sender:nil];
+    });
 
-    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            [self.nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded) {
-                    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-                } else {
-                    [self.user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                        if (!succeeded) {
-                            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                            [self presentViewController:alert animated:YES completion:nil];
-                        }
-                    }];
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-            }];
-        } else {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-    }];
-    
+
 }
 
+
 - (void)saveNonprofitDataToNonprofitObject {
-    self.nonprofit.profilePicFile = [Utils getFileFromImage:self.nonprofitProfileImageView.image];
-    self.nonprofit.nonprofitName = self.nonprofitNameTextField.text;
-    self.nonprofit.nonprofitDescription = self.nonprofitDescriptionTextView.text;
-    self.nonprofit.category = self.nonprofitCategoryTextField.text;
-    self.nonprofit.websiteUrlString = self.nonprofitWebsiteTextField.text;
-    self.user.nonprofit = self.nonprofit;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.nonprofit.profilePicFile = [Utils getFileFromImage:self.nonprofitProfileImageView.image];
+        self.nonprofit.nonprofitName = self.nonprofitNameTextField.text;
+        self.nonprofit.nonprofitDescription = self.nonprofitDescriptionTextView.text;
+        self.nonprofit.category = self.nonprofitCategoryTextField.text;
+        self.nonprofit.websiteUrlString = self.nonprofitWebsiteTextField.text;
+        self.user.nonprofit = self.nonprofit;
+    });
+
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"unwindToUserSignup"]) {
     } else if ([segue.identifier isEqualToString:@"loginSegue"]) {
+    } else if ([segue.identifier isEqualToString:@"CreateStripeAccountSegue"]) {
+        LoginWebKitViewController *webVC = [segue destinationViewController];
+        webVC.nonprofit = self.nonprofit;
+        webVC.user = self.user;
     } else {
         [self saveNonprofitDataToNonprofitObject];
     }

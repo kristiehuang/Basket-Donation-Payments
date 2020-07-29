@@ -12,7 +12,7 @@
 @implementation Nonprofit
 
 @dynamic user; //user that owns nonprofit
-@dynamic stripeId;
+@dynamic stripeAccountId;
 @dynamic nonprofitName;
 @dynamic nonprofitDescription;
 @dynamic profilePicFile;

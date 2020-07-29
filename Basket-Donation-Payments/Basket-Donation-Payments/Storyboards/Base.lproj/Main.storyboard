@@ -264,6 +264,11 @@
                                     <action selector="addPictureButtonTapped:" destination="BUZ-6p-IJe" eventType="touchUpInside" id="wRc-a8-e06"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtN-SU-Sny">
+                                <rect key="frame" x="138" y="637" width="139" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Connect With Stripe"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="hAU-9T-Czo"/>
@@ -287,12 +292,43 @@
                         <outlet property="nonprofitProfileImageView" destination="ppf-lH-KaI" id="drG-2v-WQG"/>
                         <outlet property="nonprofitWebsiteTextField" destination="ebT-dQ-dyp" id="2A3-EY-FC2"/>
                         <segue destination="9G3-MN-Ugs" kind="presentation" identifier="loginSegue" id="qvz-p9-wQ3"/>
+                        <segue destination="qYn-VI-QQq" kind="presentation" identifier="CreateStripeAccountSegue" id="ErG-pa-DrF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h7-fn-Wua" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Fqj-Gu-Um0" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1350.7246376811595" y="809.59821428571422"/>
+        </scene>
+        <!--Login Web Kit View Controller-->
+        <scene sceneID="587-kx-0JF">
+            <objects>
+                <viewController id="qYn-VI-QQq" customClass="LoginWebKitViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KA5-TV-Pgl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AG2-dX-aGt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="JNM-4m-4Gz"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="AG2-dX-aGt" id="NKp-po-0Z1"/>
+                        <segue destination="9G3-MN-Ugs" kind="presentation" identifier="loginSegue" id="96S-Is-32v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mbd-Av-RrC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2078" y="810"/>
         </scene>
         <!--Search-->
         <scene sceneID="Wvm-y3-yTF">
@@ -920,6 +956,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fvP-v4-cbd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item 1" id="GZQ-Z1-wji"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Hmj-bu-FAA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6Hc-bE-PNb">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1585,7 +1622,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qvz-p9-wQ3"/>
+        <segue reference="96S-Is-32v"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PlaceholderHeaderPic" width="1200" height="500"/>

@@ -94,10 +94,8 @@
 
 
 + (void) newStripeCustomerIdWithName:(NSString*)fullName andEmail:(NSString*)email withBlock:(void (^)(NSError *, NSString *))completion {
-    //FIXME: save to Stripe API & return customer stripeId
-
     NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-new-customer", backendURL]]; //TODO: create new endpoint on server.js
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-new-customer", backendURL]];
     NSDictionary *json = @{
         @"fullName": fullName,
         @"email": email
@@ -121,6 +119,33 @@
     [task resume];
 
 
+}
+
++ (void) newNonprofitConnectedAccountWithEmail:(NSString*)email withAuthorizationCode:(NSString*)code withBlock:(void (^)(NSError *, NSString *))completion {
+
+    NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-new-connected-account", backendURL]];
+    NSDictionary *json = @{
+        @"authorizationCode": code,
+        @"email": email
+    };
+    NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if (error != nil || httpResponse.statusCode != 200) {
+            completion(error, nil);
+        }
+        else {
+            NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"Created new Stripe connected account");
+            completion(nil, dataDict[@"connectedAccountId"]);
+        }
+    }];
+    [task resume];
 }
 
 @end

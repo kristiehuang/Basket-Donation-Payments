@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) newStripeCustomerIdWithName:(NSString*)fullName andEmail:(NSString*)email withBlock:(void (^)(NSError *, NSString *))completion;
 
++ (void) newNonprofitConnectedAccountWithEmail:(NSString*)email withAuthorizationCode:(NSString*)code withBlock:(void (^)(NSError *, NSString *))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

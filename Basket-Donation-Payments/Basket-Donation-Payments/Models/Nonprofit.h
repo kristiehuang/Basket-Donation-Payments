@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** PFUser already has objectId, updatedAt, createdAt. */
 
 @property (nonatomic) User *user; //user that owns nonprofit
-@property (nonatomic, strong) NSString *stripeId;
+@property (nonatomic, strong) NSString *stripeAccountId;
 @property (nonatomic, strong) NSString *nonprofitName;
 
 @property (nonatomic, strong) NSString *nonprofitDescription;
