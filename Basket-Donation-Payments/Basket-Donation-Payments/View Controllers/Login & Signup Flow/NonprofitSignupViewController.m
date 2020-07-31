@@ -14,7 +14,7 @@
 #import <UIKit/UIKit.h>
 #import "LoginWebKitViewController.h"
 
-@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
+@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitNameTextField;
 @property (weak, nonatomic) IBOutlet UITextView *nonprofitDescriptionTextView;
@@ -32,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.nonprofitDescriptionTextView.delegate = self;
+    self.nonprofitNameTextField.delegate = self;
+    self.nonprofitCategoryTextField.delegate = self;
+    self.nonprofitWebsiteTextField.delegate = self;
     self.finishedSavingBoth = NO;
     
     if (self.nonprofit) {
@@ -50,7 +53,15 @@
         // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
     }
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 - (IBAction)addPictureButtonTapped:(id)sender {
     [Utils createImagePickerVCWithVC:self];
