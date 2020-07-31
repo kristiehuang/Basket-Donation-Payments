@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *nonprofitDescriptionTextView;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitCategoryTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitWebsiteTextField;
-//TODO: set up with Paypal, Braintree?
 @property (nonatomic) BOOL finishedSavingBoth;
 
 

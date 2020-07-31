@@ -29,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *totalDonationsValue;
 @property (nonatomic, strong) NSArray<BasketTransaction*> *basketTransactionsMadeToNonprofit;
 @property (nonatomic, strong) NSArray<Basket*> *belongsInBaskets;
-//TODO: iNCLUDE PAYPAL PAYMENT INFO: paymentid, merchantId, email, etc. don't forget to @dynamic
 @property (nonatomic, strong) NSString *websiteUrlString;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSArray<PFFileObject*> *verificationFiles;

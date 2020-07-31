@@ -13,9 +13,6 @@
 #import "Nonprofit.h"
 #import "User.h"
 #import "Utils.h"
-#import "BraintreePayPal.h"
-#import "BraintreeCore.h"
-#import "BraintreeDropIn.h"
 
 @interface BasketViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *basketNameLabel;

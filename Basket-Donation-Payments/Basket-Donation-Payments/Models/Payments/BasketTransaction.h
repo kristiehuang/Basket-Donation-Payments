@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BasketTransaction : PFObject<PFSubclassing>
 
 /** Already has: createdAt, objectId. */
-//TODO: PAYMENT METHOD; UNKNWON TYPE, NEED TO SEE HOW PAYPAL SDK WORKS
 @property (nonatomic, strong) User *madeByUser;
 @property (nonatomic, strong) NSNumber *totalAmount;
 @property (nonatomic, strong) Basket *basketRecipient;

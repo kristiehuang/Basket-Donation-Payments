@@ -18,8 +18,6 @@
 @dynamic basketRecipient;
 @dynamic indivNonprofitTxs;
 @dynamic stripePaymentIntentId;
-//TODO: PAYMENT METHOD; UNKNWON TYPE, NEED TO SEE HOW PAYPAL SDK WORKS
-
 
 + (nonnull NSString *)parseClassName {
     return @"BasketTransaction";
