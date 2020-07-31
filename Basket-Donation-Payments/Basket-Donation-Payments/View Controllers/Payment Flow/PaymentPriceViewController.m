@@ -9,7 +9,7 @@
 #import "PaymentPriceViewController.h"
 #import "PaymentFormViewController.h"
 
-@interface PaymentPriceViewController ()
+@interface PaymentPriceViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *priceInputTextField;
 @property (weak, nonatomic) IBOutlet UILabel *recipientLabel;
 
@@ -23,7 +23,16 @@
     [super viewDidLoad];
     self.recipientLabel.text = [NSString stringWithFormat:@"to %@", self.basket.name];
     //TODO: add ability to change currency
+    self.priceInputTextField.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (IBAction)nextButtonTapped:(id)sender {
     [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:nil];
 }
@@ -36,7 +45,7 @@
         numFormat.numberStyle = NSNumberFormatterDecimalStyle;
         NSNumber *inputVal = [numFormat numberFromString:self.priceInputTextField.text];
         billingVC.totalAmount = @([inputVal floatValue] * 100);
-//FIXME: Total amount is NSNumber
+        //FIXME: Total amount is NSNumber
     }
 }
 

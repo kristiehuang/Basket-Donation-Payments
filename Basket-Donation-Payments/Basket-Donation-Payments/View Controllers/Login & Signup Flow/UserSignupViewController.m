@@ -14,7 +14,7 @@
 #import <Parse/Parse.h>
 #import "Utils.h"
 
-@interface UserSignupViewController ()
+@interface UserSignupViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
@@ -32,6 +32,18 @@
     [super viewDidLoad];
     self.usernameTextField.text = self.username;
     self.passwordTextField.text = self.password;
+    self.firstNameTextField.delegate = self;
+    self.lastNameTextField.delegate = self;
+    self.emailTextField.delegate = self;
+    self.usernameTextField.delegate = self;
+    self.passwordTextField.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)getStartedButtonTapped:(id)sender {

@@ -25,6 +25,8 @@
     [super viewDidLoad];
     [self setUpPaymentView];
     [self startCheckout];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)startCheckout {

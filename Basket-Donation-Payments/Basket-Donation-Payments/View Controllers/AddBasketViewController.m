@@ -11,7 +11,7 @@
 #import "Basket.h"
 #import "Utils.h"
 
-@interface AddBasketViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AddBasketViewController () <UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @end
@@ -23,7 +23,16 @@
     self.basketDescriptionTextView.delegate = self;
     self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
     self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
-    
+
+    self.basketNameTextField.delegate = self;
+    self.basketCategoryTextField.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
+    [self.view addGestureRecognizer:tap];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)nextButtonTapped:(id)sender {
@@ -32,7 +41,7 @@
 
 - (IBAction)headerImageButtonTapped:(id)sender {
     [Utils createImagePickerVCWithVC:self];
-    }
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
