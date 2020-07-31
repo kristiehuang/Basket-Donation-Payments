@@ -87,8 +87,7 @@
     int nonprofitsCount = (int) basket.nonprofits.count;
     for (int i = 0; i < 3; i++) {
         if (i >= nonprofitsCount) {
-            //FIXME: placeholder pic is my pic for now hahah
-            UIImage *im = [UIImage imageNamed:@"PlaceholderPic"];
+            UIImage *im = [UIImage imageNamed:@"PlaceholderProfilePic"];
             switch (i) {
                 case 0:
                     cell.basketImageView0.image = im;
@@ -111,7 +110,7 @@
             UIImage *im;
             if (error != nil) {
                 NSLog(@"%@", error.localizedDescription);
-                im = [UIImage imageNamed:@"PlaceholderPic"];
+                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
             } else {
                 im = [UIImage imageWithData:data];
             }

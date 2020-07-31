@@ -8,3 +8,4 @@ xcuserdata/
 **/xcshareddata/WorkspaceSettings.xcsettings
 **/.env
 **/node_modules/**
+*/Pods/**

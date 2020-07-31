@@ -1,89 +1,30 @@
 PODS:
-  - AFNetworking/NSURLSession (3.2.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
-  - AFOAuth2Manager (3.0.0):
-    - AFNetworking/NSURLSession (~> 3.0)
   - Bolts/Tasks (1.9.1)
-  - Braintree (4.34.0):
-    - Braintree/Card (= 4.34.0)
-    - Braintree/Core (= 4.34.0)
-    - Braintree/PayPal (= 4.34.0)
-    - Braintree/UI (= 4.34.0)
-  - Braintree/Card (4.34.0):
-    - Braintree/Core
-  - Braintree/Core (4.34.0)
-  - Braintree/PaymentFlow (4.34.0):
-    - Braintree/Card
-    - Braintree/Core
-    - Braintree/PayPalOneTouch
-  - Braintree/PayPal (4.34.0):
-    - Braintree/Core
-    - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.34.0):
-    - Braintree/Core
-    - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.34.0):
-    - Braintree/Core
-    - Braintree/PayPalDataCollector
-    - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.34.0)
-  - Braintree/UI (4.34.0):
-    - Braintree/Card
-    - Braintree/Core
-  - Braintree/UnionPay (4.34.0):
-    - Braintree/Card
-    - Braintree/Core
-  - Braintree/Venmo (4.34.0):
-    - Braintree/Core
-    - Braintree/PayPalDataCollector
-  - BraintreeDropIn (8.1.0):
-    - BraintreeDropIn/DropIn (= 8.1.0)
-  - BraintreeDropIn/DropIn (8.1.0):
-    - Braintree/Card (~> 4.32)
-    - Braintree/Core (~> 4.32)
-    - Braintree/PaymentFlow (~> 4.32)
-    - Braintree/PayPal (~> 4.32)
-    - Braintree/UnionPay (~> 4.32)
-    - BraintreeDropIn/UIKit
-  - BraintreeDropIn/UIKit (8.1.0)
   - Parse (1.18.0):
     - Parse/Core (= 1.18.0)
   - Parse/Core (1.18.0):
     - Bolts/Tasks (= 1.9.1)
   - Stripe (19.3.0)
+  - "UITextView+Placeholder (1.4.0)"
 
 DEPENDENCIES:
-  - AFOAuth2Manager
-  - Braintree
-  - Braintree/Venmo
-  - BraintreeDropIn
   - Parse
   - Stripe
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   trunk:
-    - AFNetworking
-    - AFOAuth2Manager
     - Bolts
-    - Braintree
-    - BraintreeDropIn
     - Parse
     - Stripe
+    - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  AFOAuth2Manager: 0566da1be64883e339813d411229fdc9a84dab7c
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
-  Braintree: 48154e70306eb3e6c81eaa87bbc5c5988c0d2784
-  BraintreeDropIn: fc3e96a8a2b5416e5e3a3beba119f0089713bc1e
   Parse: 79bdda34fdb7eb2a707a43a951c8aae236cb3e34
   Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: 33fc671d0747ca310d31643c4b96d372a65afdf9
+PODFILE CHECKSUM: 2d1f782501873eb771636cf8bacfeac401298da2
 
 COCOAPODS: 1.9.3

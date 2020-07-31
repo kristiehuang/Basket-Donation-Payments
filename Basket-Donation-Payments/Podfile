@@ -8,15 +8,9 @@ target 'Basket Donation Payments' do
   # Pods for Basket Donation Payments
 	pod 'Parse'
 	pod 'Stripe'
+	pod 'UITextView+Placeholder'
 
-  	pod 'AFOAuth2Manager'
 
-	pod 'Braintree'
-	pod 'Braintree/Venmo'
-	pod 'BraintreeDropIn' # for Drop-in payment UI
-	# optional: pod 'Braintree/DataCollector'
-
-	
   target 'Basket Donation PaymentsTests' do
     inherit! :search_paths
     # Pods for testing
