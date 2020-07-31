@@ -292,7 +292,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Nonprofit description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zhk-SJ-Id3">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Zhk-SJ-Id3">
                                 <rect key="frame" x="67" y="354" width="240" height="150"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1680,7 +1680,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="v7c-Ou-vpx"/>
+        <segue reference="qvz-p9-wQ3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BasketWhite" width="156" height="102"/>

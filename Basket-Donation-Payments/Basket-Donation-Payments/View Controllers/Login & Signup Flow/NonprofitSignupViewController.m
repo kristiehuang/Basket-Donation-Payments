@@ -13,8 +13,9 @@
 #import "Utils.h"
 #import <UIKit/UIKit.h>
 #import "LoginWebKitViewController.h"
+@import UITextView_Placeholder;
 
-@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate>
+@interface NonprofitSignupViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitProfileImageView;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitNameTextField;
 @property (weak, nonatomic) IBOutlet UITextView *nonprofitDescriptionTextView;
@@ -30,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.nonprofitDescriptionTextView.delegate = self;
     self.nonprofitNameTextField.delegate = self;
     self.nonprofitCategoryTextField.delegate = self;
     self.nonprofitWebsiteTextField.delegate = self;
@@ -45,8 +45,8 @@
         self.nonprofitWebsiteTextField.text = self.nonprofit.websiteUrlString;
     } else {
         self.nonprofit = [Nonprofit new];
-        self.nonprofitDescriptionTextView.text = @"Describe your nonprofit in 100 words or less.";
-        self.nonprofitDescriptionTextView.textColor = [UIColor lightGrayColor];
+        self.nonprofitDescriptionTextView.placeholder = @"Describe your nonprofit in 100 words or less.";
+        self.nonprofitDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
         //TODO: twitter-like word-limitations
         //TODO: figure out document uplaod
         // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
@@ -131,20 +131,6 @@
         webVC.user = self.user;
     } else {
         [self saveNonprofitDataToNonprofitObject];
-    }
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([textView.textColor isEqual:[UIColor lightGrayColor]]) {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    if (textView.text.length == 0) {
-        self.nonprofitDescriptionTextView.text = @"Describe your nonprofit in 100 words or less.";
-        self.nonprofitDescriptionTextView.textColor = [UIColor lightGrayColor];
     }
 }
 

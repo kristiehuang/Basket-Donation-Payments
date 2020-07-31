@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFOAuth2Manager.h"
 #import <Stripe/Stripe.h>
 #import "Basket.h"
 

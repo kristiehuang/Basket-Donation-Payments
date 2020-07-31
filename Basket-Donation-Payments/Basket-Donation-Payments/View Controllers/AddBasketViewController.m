@@ -10,8 +10,9 @@
 #import "AddBasket-AddNonprofitsViewController.h"
 #import "Basket.h"
 #import "Utils.h"
+@import UITextView_Placeholder;
 
-@interface AddBasketViewController () <UITextViewDelegate, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AddBasketViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @end
@@ -20,10 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.basketDescriptionTextView.delegate = self;
-    self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
-    self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
-
+    self.basketDescriptionTextView.placeholder = @"Describe your basket in 100 words or less.";
+    self.basketDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
     self.basketNameTextField.delegate = self;
     self.basketCategoryTextField.delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
@@ -55,20 +54,6 @@
 
         AddBasket_AddNonprofitsViewController *nextVC = [segue destinationViewController];
         nextVC.basket = [Basket initWithName:self.basketNameTextField.text description:self.basketDescriptionTextView.text headerPicFile:[Utils getFileFromImage:self.basketHeaderImageView.image]];
-    }
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([textView.textColor isEqual:[UIColor lightGrayColor]]) {
-        textView.text = @"";
-        textView.textColor = [UIColor blackColor];
-    }
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView {
-    if (textView.text.length == 0) {
-        self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
-        self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
     }
 }
 
