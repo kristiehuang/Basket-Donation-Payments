@@ -135,6 +135,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="basketLogoHeightConstraint" destination="feb-CT-l4a" id="8ux-JO-05Y"/>
+                        <outlet property="basketLogoImage" destination="2JY-Xb-wuK" id="P1y-Et-VmW"/>
                         <outlet property="passwordTextField" destination="Jg8-Ga-E60" id="XVS-uv-RvJ"/>
                         <outlet property="usernameTextField" destination="2re-Ie-Mob" id="pVk-Vw-zCI"/>
                         <segue destination="9G3-MN-Ugs" kind="show" identifier="loginSegue" id="v7c-Ou-vpx"/>
@@ -1128,6 +1130,10 @@
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CompletionCheckmark" translatesAutoresizingMaskIntoConstraints="NO" id="dVM-k4-mi8">
                                 <rect key="frame" x="120.5" y="218" width="173" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dVM-k4-mi8" secondAttribute="height" multiplier="1:1" id="XRx-86-Neh"/>
+                                    <constraint firstAttribute="width" constant="173" id="f0S-Qm-Vpg"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1150,6 +1156,10 @@
                     <navigationItem key="navigationItem" id="s6n-Gc-REh"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="confirmationCheckmarkImageView" destination="dVM-k4-mi8" id="bei-nn-nn9"/>
+                        <outlet property="confirmationCheckmarkWidthConstraint" destination="f0S-Qm-Vpg" id="H8l-1w-Oum"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gfE-Vw-KUg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1740,8 +1750,8 @@
                                     <action selector="nextButtonTapped:" destination="yGQ-0Y-8lu" eventType="touchUpInside" id="120-aK-E0E"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w7B-T4-s9M">
-                                <rect key="frame" x="159.5" y="278" width="95" height="95.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="w7B-T4-s9M">
+                                <rect key="frame" x="158.5" y="278" width="97" height="95.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8I-Eb-R5q">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="95.5"/>
@@ -1750,7 +1760,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oCL-4I-pCY">
-                                        <rect key="frame" x="52" y="0.0" width="43" height="95.5"/>
+                                        <rect key="frame" x="54" y="0.0" width="43" height="95.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="72"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                     </textField>
@@ -1765,7 +1775,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="w7B-T4-s9M" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gu8-d9-J4r" secondAttribute="leading" constant="50" id="3jB-yH-LbQ"/>
+                            <constraint firstItem="w7B-T4-s9M" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gu8-d9-J4r" secondAttribute="leading" constant="30" id="3jB-yH-LbQ"/>
                             <constraint firstItem="gu8-d9-J4r" firstAttribute="trailing" secondItem="vCk-wf-QcT" secondAttribute="trailing" constant="60" id="Bi6-BY-HT1"/>
                             <constraint firstItem="Qy9-kW-Frr" firstAttribute="top" secondItem="w7B-T4-s9M" secondAttribute="bottom" constant="30" id="Myk-IU-7Oe"/>
                             <constraint firstItem="vCk-wf-QcT" firstAttribute="leading" secondItem="gu8-d9-J4r" secondAttribute="leading" constant="60" id="RSB-XC-UUX"/>
@@ -1909,7 +1919,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qvz-p9-wQ3"/>
+        <segue reference="v7c-Ou-vpx"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BasketLogo" width="512" height="158"/>

@@ -14,6 +14,8 @@
 @interface InitialLoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *basketLogoHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *basketLogoImage;
 
 @end
 
@@ -25,6 +27,22 @@
     self.passwordTextField.delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
     [self.view addGestureRecognizer:tap];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+
+    [UIView animateWithDuration:.8 animations:^{
+        self.basketLogoImage.frame = CGRectOffset(self.basketLogoImage.frame, 0, 20);
+    } completion:^(BOOL finished) {
+            [UIView animateWithDuration:1 animations:^{
+            self.basketLogoImage.frame = CGRectOffset(self.basketLogoImage.frame, 0, -30);
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:1 animations:^{
+                    self.basketLogoImage.frame = CGRectOffset(self.basketLogoImage.frame, 0, 10);
+
+                }];
+            }];
+    }];
 }
 
 - (IBAction)loginButtonTapped:(id)sender {
