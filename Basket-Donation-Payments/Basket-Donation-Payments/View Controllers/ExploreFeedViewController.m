@@ -28,7 +28,6 @@
     self.exploreBasketsTableView.delegate = self;
     self.exploreBasketsTableView.dataSource = self;
     self.exploreBasketsTableView.rowHeight = UITableViewAutomaticDimension;
-
     PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
     [query includeKey:@"nonprofits"];
     [query includeKey:@"nonprofits.verificationFiles"];
@@ -42,6 +41,10 @@
             [self.exploreBasketsTableView reloadData];
         }
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

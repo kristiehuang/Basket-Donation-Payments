@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = NO;
     self.nonprofitsCollectionView.delegate = self;
     self.nonprofitsCollectionView.dataSource = self;
     self.basketNameLabel.text = self.basket.name;

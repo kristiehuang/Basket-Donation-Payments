@@ -26,6 +26,7 @@
     self.selectNonprofitsTableView.dataSource = self;
     [self getAllNonprofitsFromParse];
     self.selectNonprofitsTableView.allowsMultipleSelection = YES;
+    self.navigationController.navigationBar.hidden = NO;
 
 }
 

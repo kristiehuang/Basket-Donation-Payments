@@ -9,6 +9,8 @@
 #import "PaymentConfirmationViewController.h"
 
 @interface PaymentConfirmationViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *confirmationCheckmarkImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *confirmationCheckmarkWidthConstraint;
 
 @end
 
@@ -17,6 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self hideNavigationThings:YES];
+    self.confirmationCheckmarkImageView.hidden = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration:2 animations:^{
+        self.confirmationCheckmarkImageView.hidden = NO;
+        CGRect frame = CGRectMake(self.confirmationCheckmarkImageView.frame.origin.x, self.confirmationCheckmarkImageView.frame.origin.y, self.confirmationCheckmarkImageView.frame.size.width * 1.2, self.confirmationCheckmarkImageView.frame.size.height * 1.2);
+        self.confirmationCheckmarkImageView.frame = CGRectOffset(frame, 0, 318);
+    }];
 }
 
 - (IBAction)finishButtonTapped:(id)sender {

@@ -8,6 +8,7 @@
 
 #import "PaymentPriceViewController.h"
 #import "PaymentFormViewController.h"
+#import "Utils.h"
 
 @interface PaymentPriceViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *priceInputTextField;
@@ -34,7 +35,12 @@
 }
 
 - (IBAction)nextButtonTapped:(id)sender {
-    [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:nil];
+    if ([self.priceInputTextField hasText]) {
+        [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:nil];
+    } else {
+        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"No value input." andMessage:@"How much would you like to donate?" okCompletion:nil cancelCompletion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -49,5 +55,11 @@
     }
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (textField.text.length == 5) { //FIXME: MUST STOP EDITING AFTER 2 DECIMAL POINTS
+        return YES;
+    }
+    return NO;
+}
 
 @end
