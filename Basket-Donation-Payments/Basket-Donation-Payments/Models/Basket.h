@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class Nonprofit;
 @class User;
+@class BasketTransaction;
 
 @interface Basket : PFObject<PFSubclassing>
 
@@ -18,10 +19,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *basketDescription;
 @property (nonatomic, strong) PFFileObject *headerPicFile;
+@property (nonatomic, strong) NSMutableArray<BasketTransaction*> *allTransactions;
 @property (nonatomic, strong) NSNumber *totalDonatedValue;
+
+/** Max of 100; 40% number of donations, 30% built-in current event relevancy, 30% user-selected favorite categories.
+    featuredValue: { numberOfDonations: 30, predeterminedEventRelevancy: 30 userFavorite: 0 }
+
+    totalFeaturedValue: 60 */
+@property (nonatomic, strong) NSMutableDictionary<NSString*, NSNumber*> *featuredValueDict;
+@property (nonatomic, strong) NSNumber *totalFeaturedValue;
 @property (nonatomic) BOOL isFeatured;
+
 @property (nonatomic, strong) NSMutableArray<Nonprofit*> *nonprofits;
-@property (nonatomic, strong) NSDictionary<Nonprofit*, NSNumber*> *nonprofitPercentages;
+@property (nonatomic, strong) NSMutableDictionary<Nonprofit*, NSNumber*> *nonprofitPercentages;
 
 @property (nonatomic, strong) User *createdByUser;
 //TODO: CATEGORY?

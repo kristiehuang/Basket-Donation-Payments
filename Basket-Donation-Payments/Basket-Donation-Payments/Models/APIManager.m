@@ -31,12 +31,6 @@
     // Create a PaymentIntent by calling your server's endpoint.
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@create-payment-intent", backendURL]];
     
-    BasketTransaction *basketTx = [BasketTransaction new]; //
-    basketTx.basketRecipient = basket;
-    basketTx.madeByUser = [User currentUser];
-    basketTx.totalAmount = totalAmount;
-    //TODO: do I need to save basketTx to Parse if I can retrieve from Stripe API?
-    
     NSMutableArray<NSDictionary*> *arrayOfNonprofits = [NSMutableArray array];
     for (Nonprofit *np in basket.nonprofits) {
         NSDictionary* merchantInfo = @{

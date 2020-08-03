@@ -8,13 +8,14 @@
 
 #import "PaymentFormViewController.h"
 #import <Stripe/Stripe.h>
+#import "User.h"
+#import "BasketTransaction.h"
 #import "Utils.h"
 #import "APIManager.h"
 
 @interface PaymentFormViewController ()
 @property (weak) STPPaymentCardTextField *cardTextField;
 @property (weak, nonatomic) IBOutlet UIButton *payButton;
-@property (strong) NSString *paymentIntentClientSecret;
 @property (weak, nonatomic) IBOutlet UIStackView *poweredByStripeStackView;
 
 @end
@@ -24,32 +25,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpPaymentView];
-    [self startCheckout];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
     [self.view addGestureRecognizer:tap];
 }
 
-- (void)startCheckout {
-    [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
-        if (error) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading page." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
-        else {
-            self.paymentIntentClientSecret = dataDict[@"clientSecret"];
-        }
-    }];
-}
+
 - (IBAction)payButtonTapped:(id)sender {
     [self pay];
 }
 
 - (void)pay {
-    if (!self.paymentIntentClientSecret) {
-        NSLog(@"PaymentIntent hasn't been created");
-        return;
-    }
-    
     [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status) {
         dispatch_async(dispatch_get_main_queue(), ^{
             switch (status) {
@@ -64,8 +49,7 @@
                     break;
                 }
                 case STPPaymentHandlerActionStatusSucceeded: {
-                    [self performSegueWithIdentifier:@"PaymentConfirmedSegue" sender:nil];
-                    self.tabBarController.hidesBottomBarWhenPushed = YES;
+                    [self completePayment];
                     break;
                 }
                 default:
@@ -73,6 +57,31 @@
             }
         });
     }];
+}
+
+- (void)completePayment {
+    //FIXME: Show loading refreshing control
+    BasketTransaction *basketTx = [BasketTransaction new];
+    basketTx.basketRecipient = self.basket;
+    basketTx.madeByUser = [User currentUser];
+    basketTx.totalAmount = self.totalAmount;
+    [self.basket.allTransactions addObject:basketTx];
+    self.basket.featuredValueDict[@"numberOfDonations"] = [[NSNumber alloc] initWithLong:self.basket.allTransactions.count];
+
+    int sumFeaturedVal = 0;
+    for (NSNumber *val in self.basket.featuredValueDict.allValues) {
+        sumFeaturedVal += [val intValue];
+    }
+    self.basket.totalFeaturedValue = [[NSNumber alloc] initWithInt:sumFeaturedVal];;
+    [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self performSegueWithIdentifier:@"PaymentConfirmedSegue" sender:nil];
+            self.tabBarController.hidesBottomBarWhenPushed = YES;
+        } else {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save payment to Parse server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];        }
+    }];
+
 }
 
 # pragma mark STPAuthenticationContext

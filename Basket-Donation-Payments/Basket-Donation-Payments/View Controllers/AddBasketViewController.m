@@ -64,8 +64,8 @@
 - (void) resetForm {
     self.basketNameTextField.text = @"";
     self.basketCategoryTextField.text = @"";
-    self.basketDescriptionTextView.text = @"Describe your basket in 100 words or less.";
-    self.basketDescriptionTextView.textColor = [UIColor lightGrayColor];
+    self.basketDescriptionTextView.placeholder = @"Describe your basket in 100 words or less.";
+    self.basketDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
     self.basketHeaderImageView.image = [UIImage imageNamed:@"PlaceholderHeaderPic"];
 }
 
