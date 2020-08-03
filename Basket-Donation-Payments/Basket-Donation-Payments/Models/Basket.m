@@ -10,6 +10,7 @@
 #import "Nonprofit.h"
 #import "User.h"
 #import "BasketTransaction.h"
+#import "FeaturedValueWeight.h"
 
 @implementation Basket
 
@@ -24,7 +25,7 @@
 @dynamic nonprofitPercentages;
 @dynamic createdByUser;
 @dynamic allTransactions;
-@dynamic featuredValueDict;
+@dynamic featuredValueWeights;
 @dynamic favoriteCount;
 
 + (nonnull NSString *)parseClassName {
@@ -42,7 +43,7 @@
     basket.totalFeaturedValue = @0;
     basket.allTransactions = [NSMutableArray array];
     NSNumber *numOfTx = [[NSNumber alloc] initWithLong:basket.allTransactions.count];
-    basket.featuredValueDict = [[NSMutableDictionary alloc] initWithObjects:@[numOfTx, @0, @0] forKeys:@[@"numberOfDonations", @"predeterminedEventRelevancy", @"userFavorites"]];
+    basket.featuredValueWeights = [FeaturedValueWeight initNewFeaturedValueWeights];
     basket.createdByUser = [User currentUser];
     basket.nonprofits = [NSMutableArray array];
     basket.nonprofitPercentages = [NSMutableDictionary new];

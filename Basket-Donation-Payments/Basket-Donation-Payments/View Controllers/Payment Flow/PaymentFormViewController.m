@@ -12,6 +12,7 @@
 #import "BasketTransaction.h"
 #import "Utils.h"
 #import "APIManager.h"
+#import "FeaturedValueWeight.h"
 
 @interface PaymentFormViewController ()
 @property (weak) STPPaymentCardTextField *cardTextField;
@@ -66,13 +67,8 @@
     basketTx.madeByUser = [User currentUser];
     basketTx.totalAmount = self.totalAmount;
     [self.basket.allTransactions addObject:basketTx];
-    self.basket.featuredValueDict[@"numberOfDonations"] = [[NSNumber alloc] initWithLong:self.basket.allTransactions.count];
+    [self updateBasketFeaturedValueWeights];
 
-    int sumFeaturedVal = 0;
-    for (NSNumber *val in self.basket.featuredValueDict.allValues) {
-        sumFeaturedVal += [val intValue];
-    }
-    self.basket.totalFeaturedValue = [[NSNumber alloc] initWithInt:sumFeaturedVal];;
     [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             [self performSegueWithIdentifier:@"PaymentConfirmedSegue" sender:nil];
@@ -81,7 +77,16 @@
             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save payment to Parse server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
             [self presentViewController:alert animated:YES completion:nil];        }
     }];
+}
 
+- (void)updateBasketFeaturedValueWeights {
+    FeaturedValueWeight *ftWeights = self.basket.featuredValueWeights;
+    NSUInteger maxNumberOfDonationsWeight = 30;
+
+    ftWeights.numberOfDonationsWeight = MIN(self.basket.allTransactions.count, maxNumberOfDonationsWeight);
+    NSInteger sumFeaturedVal = ftWeights.numberOfDonationsWeight + ftWeights.predeterminedEventRelevancyWeight + ftWeights.userFavoritesWeight;
+
+    self.basket.totalFeaturedValue = [[NSNumber alloc] initWithLong:sumFeaturedVal];;
 }
 
 # pragma mark STPAuthenticationContext

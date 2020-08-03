@@ -14,6 +14,7 @@
 		3A02AFED24D0C46900BA4FE8 /* PaymentPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFEC24D0C46900BA4FE8 /* PaymentPriceViewController.m */; };
 		3A02AFF024D0F25000BA4FE8 /* PaymentConfirmationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFEF24D0F25000BA4FE8 /* PaymentConfirmationViewController.m */; };
 		3A02AFF324D22C1300BA4FE8 /* LoginWebKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A02AFF224D22C1300BA4FE8 /* LoginWebKitViewController.m */; };
+		3A2A0B4324D8C13100BC2FCC /* FeaturedValueWeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2A0B4224D8C13100BC2FCC /* FeaturedValueWeight.m */; };
 		3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */; };
 		3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EDC24C7680C00E00AC1 /* PaymentDetailsViewController.m */; };
 		3A8A8EE124C7686400E00AC1 /* PersonalContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A8A8EE024C7686400E00AC1 /* PersonalContainerViewController.m */; };
@@ -84,6 +85,8 @@
 		3A02AFEF24D0F25000BA4FE8 /* PaymentConfirmationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentConfirmationViewController.m; sourceTree = "<group>"; };
 		3A02AFF124D22C1300BA4FE8 /* LoginWebKitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginWebKitViewController.h; sourceTree = "<group>"; };
 		3A02AFF224D22C1300BA4FE8 /* LoginWebKitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginWebKitViewController.m; sourceTree = "<group>"; };
+		3A2A0B4124D8C13100BC2FCC /* FeaturedValueWeight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeaturedValueWeight.h; sourceTree = "<group>"; };
+		3A2A0B4224D8C13100BC2FCC /* FeaturedValueWeight.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeaturedValueWeight.m; sourceTree = "<group>"; };
 		3A314BF124C64BEE00435BBD /* NonprofitCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NonprofitCollectionViewCell.h; sourceTree = "<group>"; };
 		3A314BF224C64BEE00435BBD /* NonprofitCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NonprofitCollectionViewCell.m; sourceTree = "<group>"; };
 		3A8A8EDB24C7680C00E00AC1 /* PaymentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentDetailsViewController.h; sourceTree = "<group>"; };
@@ -358,6 +361,8 @@
 				3ADA0A5724BE233600627AAD /* APIManager.m */,
 				3ADA0A7124BE65B200627AAD /* Utils.h */,
 				3ADA0A7224BE65B200627AAD /* Utils.m */,
+				3A2A0B4124D8C13100BC2FCC /* FeaturedValueWeight.h */,
+				3A2A0B4224D8C13100BC2FCC /* FeaturedValueWeight.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 				3A8A8EDD24C7680C00E00AC1 /* PaymentDetailsViewController.m in Sources */,
 				3A02AFEA24D0A06500BA4FE8 /* NonprofitTransaction.m in Sources */,
 				3A314BF324C64BEE00435BBD /* NonprofitCollectionViewCell.m in Sources */,
+				3A2A0B4324D8C13100BC2FCC /* FeaturedValueWeight.m in Sources */,
 				3ADA0A0E24BCEC8700627AAD /* AppDelegate.m in Sources */,
 				3A02AFE324D09EF200BA4FE8 /* StripePaymentIntent.m in Sources */,
 				3ADA0A1F24BCEC8800627AAD /* main.m in Sources */,
