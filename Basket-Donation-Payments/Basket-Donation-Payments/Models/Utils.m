@@ -47,9 +47,11 @@
         UIAlertController *sourceTypePicker = [UIAlertController alertControllerWithTitle:@"" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *camera = [UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [vc presentViewController:imagePickerVC animated:YES completion:nil];
         }];
         UIAlertAction *photoLib = [UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [vc presentViewController:imagePickerVC animated:YES completion:nil];
         }];
         [sourceTypePicker addAction:camera];
         [sourceTypePicker addAction:photoLib];
@@ -57,7 +59,6 @@
     } else {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
-    [vc presentViewController:imagePickerVC animated:YES completion:nil];
 }
 
 @end
