@@ -19,6 +19,7 @@
 @dynamic nonprofit;
 @dynamic recentDonations;
 @dynamic favoriteNonprofits;
+@dynamic favoriteBaskets;
 @dynamic objectId;
 @dynamic updatedAt;
 @dynamic username;

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) Nonprofit *nonprofit;
 @property (nonatomic, strong) NSMutableArray<BasketTransaction*> *recentDonations;
 @property (nonatomic, strong) NSMutableArray<Nonprofit*> *favoriteNonprofits;
+@property (nonatomic, strong) NSMutableArray<Basket*> *favoriteBaskets;
 @property (nonatomic, strong) NSString *userStripeId;
 
 @end

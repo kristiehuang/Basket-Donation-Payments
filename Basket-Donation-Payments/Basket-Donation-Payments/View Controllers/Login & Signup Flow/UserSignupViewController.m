@@ -100,12 +100,12 @@
     self.user.username = self.usernameTextField.text;
     self.user.password = self.passwordTextField.text;
     self.user.email = self.emailTextField.text;
-    
     NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
     self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
     
     self.user.recentDonations = [NSMutableArray array];
     self.user.favoriteNonprofits = [NSMutableArray array];
+    self.user.favoriteBaskets = [NSMutableArray array];
 }
 
 - (IBAction)cancelButtonTapped:(id)sender {
