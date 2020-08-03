@@ -9,10 +9,12 @@
 #import "PaymentPriceViewController.h"
 #import "PaymentFormViewController.h"
 #import "Utils.h"
+#import "APIManager.h"
 
 @interface PaymentPriceViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *priceInputTextField;
 @property (weak, nonatomic) IBOutlet UILabel *recipientLabel;
+@property (nonatomic, strong) NSNumber *totalAmount;
 
 @end
 
@@ -36,7 +38,21 @@
 
 - (IBAction)nextButtonTapped:(id)sender {
     if ([self.priceInputTextField hasText]) {
-        [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:nil];
+        NSNumberFormatter *numFormat = [NSNumberFormatter new];
+        numFormat.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *inputVal = [numFormat numberFromString:self.priceInputTextField.text];
+        self.totalAmount = @([inputVal floatValue] * 100);
+        [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
+            if (error) {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating payment intent." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:dataDict[@"clientSecret"]];
+                });
+            }
+        }];
     } else {
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"No value input." andMessage:@"How much would you like to donate?" okCompletion:nil cancelCompletion:nil];
         [self presentViewController:alert animated:YES completion:nil];
@@ -47,13 +63,11 @@
     if ([segue.identifier isEqualToString:@"AddBillingMethodSegue"]) {
         PaymentFormViewController *billingVC = [segue destinationViewController];
         billingVC.basket = self.basket;
-        NSNumberFormatter *numFormat = [NSNumberFormatter new];
-        numFormat.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *inputVal = [numFormat numberFromString:self.priceInputTextField.text];
-        billingVC.totalAmount = @([inputVal floatValue] * 100);
-        //FIXME: Total amount is NSNumber
+        billingVC.totalAmount = self.totalAmount;
+        billingVC.paymentIntentClientSecret = sender;
     }
 }
+
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     if (textField.text.length == 5) { //FIXME: MUST STOP EDITING AFTER 2 DECIMAL POINTS

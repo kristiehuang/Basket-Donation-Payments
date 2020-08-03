@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PaymentFormViewController : UIViewController
 @property (nonatomic, strong) Basket* basket;
 @property (nonatomic, strong) NSNumber *totalAmount;
+@property (strong) NSString *paymentIntentClientSecret;
 
 @end
 
