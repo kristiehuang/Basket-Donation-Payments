@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "FeaturedValueWeight.h"
 
 NS_ASSUME_NONNULL_BEGIN
 @class Nonprofit;
@@ -26,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
     featuredValue: { numberOfDonations: 30, predeterminedEventRelevancy: 30 userFavorite: 0 }
 
     totalFeaturedValue: 60 */
-@property (nonatomic, strong) NSMutableDictionary<NSString*, NSNumber*> *featuredValueDict;
+@property (nonatomic, strong) FeaturedValueWeight *featuredValueWeights;
 @property (nonatomic, strong) NSNumber *totalFeaturedValue;
 @property (nonatomic) BOOL isFeatured;
 
