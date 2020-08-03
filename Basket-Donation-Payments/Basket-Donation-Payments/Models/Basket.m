@@ -9,6 +9,7 @@
 #import "Basket.h"
 #import "Nonprofit.h"
 #import "User.h"
+#import "BasketTransaction.h"
 
 @implementation Basket
 
@@ -19,7 +20,11 @@
 @dynamic totalDonatedValue;
 @dynamic isFeatured;
 @dynamic nonprofits;
+@dynamic totalFeaturedValue;
+@dynamic nonprofitPercentages;
 @dynamic createdByUser;
+@dynamic allTransactions;
+@dynamic featuredValueDict;
 
 + (nonnull NSString *)parseClassName {
     return @"Basket";
@@ -30,10 +35,15 @@
     basket.name = basketName;
     basket.basketDescription = basketDescription;
     basket.headerPicFile = headerPicFile;
-    basket.totalDonatedValue = 0;
+    basket.totalDonatedValue = @0;
     basket.isFeatured = @NO;
+    basket.totalFeaturedValue = @0;
+    basket.allTransactions = [NSMutableArray array];
+    NSNumber *numOfTx = [[NSNumber alloc] initWithLong:basket.allTransactions.count];
+    basket.featuredValueDict = [[NSMutableDictionary alloc] initWithObjects:@[numOfTx, @0, @0] forKeys:@[@"numberOfDonations", @"predeterminedEventRelevancy", @"userFavorites"]];
     basket.createdByUser = [User currentUser];
     basket.nonprofits = [NSMutableArray array];
+    basket.nonprofitPercentages = [NSMutableDictionary new];
     return basket;
 }
 
