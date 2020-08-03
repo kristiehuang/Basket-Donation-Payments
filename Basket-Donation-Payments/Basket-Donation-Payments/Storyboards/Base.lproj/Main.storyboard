@@ -673,20 +673,31 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by the Basket team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd4-V3-r4S">
-                                                <rect key="frame" x="45" y="107" width="212.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-tJ-wWw">
+                                                <rect key="frame" x="45" y="107" width="212.5" height="41"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by the Basket team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd4-V3-r4S">
+                                                        <rect key="frame" x="0.0" y="0.0" width="212.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLi-1c-hX4">
+                                                        <rect key="frame" x="0.0" y="20.5" width="90.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nonprofits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVm-nr-DKs">
-                                                <rect key="frame" x="45" y="152.5" width="90" height="21.5"/>
+                                                <rect key="frame" x="45" y="173" width="90" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4ZW-ZC-zye">
-                                                <rect key="frame" x="45" y="184" width="324" height="150"/>
+                                                <rect key="frame" x="45" y="204.5" width="324" height="150"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="XDG-ZK-TWA"/>
@@ -731,7 +742,7 @@
                                                 </cells>
                                             </collectionView>
                                             <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PHC-Lw-dqS">
-                                                <rect key="frame" x="121.5" y="374" width="171" height="69.5"/>
+                                                <rect key="frame" x="121.5" y="394.5" width="171" height="69.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$14,402.14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YY3-2P-gRr">
                                                         <rect key="frame" x="0.0" y="0.0" width="171" height="41"/>
@@ -748,7 +759,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7l-st-NDf">
-                                                <rect key="frame" x="45" y="478.5" width="324" height="325"/>
+                                                <rect key="frame" x="45" y="499" width="324" height="325"/>
                                                 <string key="text">Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team Created by the Basket team </string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -758,19 +769,20 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="m7l-st-NDf" firstAttribute="leading" secondItem="19a-t0-mUs" secondAttribute="leading" id="0D7-xn-emh"/>
-                                            <constraint firstItem="Sd4-V3-r4S" firstAttribute="leading" secondItem="19a-t0-mUs" secondAttribute="leading" id="2WU-ix-f5K"/>
+                                            <constraint firstItem="ahd-tJ-wWw" firstAttribute="top" secondItem="19a-t0-mUs" secondAttribute="bottom" constant="6" id="0Pd-0a-rll"/>
                                             <constraint firstItem="CVm-nr-DKs" firstAttribute="leading" secondItem="19a-t0-mUs" secondAttribute="leading" id="7Ca-QM-vs6"/>
                                             <constraint firstAttribute="trailing" secondItem="4ZW-ZC-zye" secondAttribute="trailing" constant="45" id="9Ji-1I-MKc"/>
                                             <constraint firstItem="PHC-Lw-dqS" firstAttribute="top" secondItem="4ZW-ZC-zye" secondAttribute="bottom" constant="40" id="A3n-sZ-59P"/>
+                                            <constraint firstItem="CVm-nr-DKs" firstAttribute="top" secondItem="ahd-tJ-wWw" secondAttribute="bottom" constant="25" id="DKq-KO-Nlp"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PHC-Lw-dqS" secondAttribute="trailing" constant="45" id="DkS-3F-zt8"/>
                                             <constraint firstAttribute="height" constant="1000" id="Hnw-tN-3vF"/>
-                                            <constraint firstItem="CVm-nr-DKs" firstAttribute="top" secondItem="Sd4-V3-r4S" secondAttribute="bottom" constant="25" id="Ks8-Sa-KHz"/>
+                                            <constraint firstItem="ahd-tJ-wWw" firstAttribute="leading" secondItem="19a-t0-mUs" secondAttribute="leading" id="MuY-SE-qDw"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="m7l-st-NDf" secondAttribute="bottom" constant="120" id="Uae-NH-jOY"/>
                                             <constraint firstItem="PHC-Lw-dqS" firstAttribute="centerX" secondItem="AAw-Hb-Otn" secondAttribute="centerX" id="Y3G-Wk-AV1"/>
                                             <constraint firstItem="PHC-Lw-dqS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AAw-Hb-Otn" secondAttribute="leading" constant="45" id="YLM-6E-Usj"/>
+                                            <constraint firstItem="iLi-1c-hX4" firstAttribute="leading" secondItem="19a-t0-mUs" secondAttribute="leading" id="ZR5-Au-42N"/>
                                             <constraint firstItem="19a-t0-mUs" firstAttribute="leading" secondItem="AAw-Hb-Otn" secondAttribute="leading" constant="45" id="ZRv-nJ-44N"/>
                                             <constraint firstItem="19a-t0-mUs" firstAttribute="top" secondItem="AAw-Hb-Otn" secondAttribute="top" constant="60" id="a2S-ab-BaO"/>
-                                            <constraint firstItem="Sd4-V3-r4S" firstAttribute="top" secondItem="19a-t0-mUs" secondAttribute="bottom" constant="6" id="b1O-eb-cMq"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="19a-t0-mUs" secondAttribute="trailing" constant="45" id="jv6-Z1-NqA"/>
                                             <constraint firstItem="m7l-st-NDf" firstAttribute="top" secondItem="PHC-Lw-dqS" secondAttribute="bottom" constant="35" id="t4n-GB-ye7"/>
                                             <constraint firstItem="4ZW-ZC-zye" firstAttribute="top" secondItem="CVm-nr-DKs" secondAttribute="bottom" constant="10" id="ta4-yj-Yex"/>
@@ -830,6 +842,7 @@
                         <outlet property="basketNameLabel" destination="19a-t0-mUs" id="U10-mE-bpJ"/>
                         <outlet property="createdByLabel" destination="Sd4-V3-r4S" id="SbR-Ic-F0L"/>
                         <outlet property="nonprofitsCollectionView" destination="4ZW-ZC-zye" id="yfJ-GS-Grf"/>
+                        <outlet property="numberOfFavesLabel" destination="iLi-1c-hX4" id="qq7-h1-YjM"/>
                         <outlet property="totalValueDonatedLabel" destination="YY3-2P-gRr" id="psf-t7-zgZ"/>
                         <segue destination="Kbe-lm-Vc1" kind="show" identifier="showNonprofitDetail" id="1Yw-CJ-da4"/>
                         <segue destination="yGQ-0Y-8lu" kind="show" identifier="BasketPaymentSegue" id="uUJ-iZ-Fd7"/>

@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *nonprofitsCollectionView;
 @property (weak, nonatomic) IBOutlet UILabel *totalValueDonatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *basketDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numberOfFavesLabel;
 
 @property (nonatomic, strong) Nonprofit *nonprofitToSend;
 @end
@@ -31,6 +32,12 @@
     self.navigationController.navigationBar.hidden = NO;
     self.nonprofitsCollectionView.delegate = self;
     self.nonprofitsCollectionView.dataSource = self;
+
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(favoriteUnfavoriteBasket)];
+    doubleTap.numberOfTapsRequired = 2;
+    [self.view addGestureRecognizer:doubleTap];
+
+    self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
     self.basketNameLabel.text = self.basket.name;
     User *createdBy = self.basket.createdByUser;
     if (createdBy == nil) {
@@ -45,6 +52,20 @@
     [self performSegueWithIdentifier:@"BasketPaymentSegue" sender:nil];
 }
 
+- (void)favoriteUnfavoriteBasket {
+    NSMutableArray<Basket*> *favBaskets = [[User currentUser] favoriteBaskets];
+    if ([favBaskets containsObject:self.basket]) {
+        [favBaskets removeObject:self.basket];
+        self.basket.favoriteCount -= 1;
+        self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
+    } else {
+        [favBaskets addObject:self.basket];
+        self.basket.favoriteCount += 1;
+        self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
+    }
+    [self.basket saveInBackground];
+    [[User currentUser] saveInBackground];
+}
 
 #pragma mark - Navigation
 
@@ -61,7 +82,7 @@
 
 }
 
-
+#pragma mark - Collection View
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath { 
     NonprofitCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"NonprofitCell" forIndexPath:indexPath];
     Nonprofit *n = self.basket.nonprofits[indexPath.row];
