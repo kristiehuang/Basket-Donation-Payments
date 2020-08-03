@@ -32,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSMutableArray<Nonprofit*> *nonprofits;
 @property (nonatomic, strong) NSMutableDictionary<Nonprofit*, NSNumber*> *nonprofitPercentages;
+@property (nonatomic) NSInteger favoriteCount;
 
 @property (nonatomic, strong) User *createdByUser;
 //TODO: CATEGORY?

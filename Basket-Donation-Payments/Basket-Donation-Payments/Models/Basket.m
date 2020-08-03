@@ -25,6 +25,7 @@
 @dynamic createdByUser;
 @dynamic allTransactions;
 @dynamic featuredValueDict;
+@dynamic favoriteCount;
 
 + (nonnull NSString *)parseClassName {
     return @"Basket";
@@ -36,6 +37,7 @@
     basket.basketDescription = basketDescription;
     basket.headerPicFile = headerPicFile;
     basket.totalDonatedValue = @0;
+    basket.favoriteCount = 0;
     basket.isFeatured = @NO;
     basket.totalFeaturedValue = @0;
     basket.allTransactions = [NSMutableArray array];
