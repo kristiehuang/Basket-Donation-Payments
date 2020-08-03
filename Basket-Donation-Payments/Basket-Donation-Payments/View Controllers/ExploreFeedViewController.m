@@ -17,6 +17,7 @@
 @interface ExploreFeedViewController ()  <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *exploreBasketsTableView;
 @property (nonatomic, strong) NSArray<Basket*> *baskets;
+@property (nonatomic, strong) NSArray<Basket*> *featuredBaskets;
 @property (nonatomic, strong) Basket *basketToPass;
 
 @end
@@ -28,50 +29,87 @@
     self.exploreBasketsTableView.delegate = self;
     self.exploreBasketsTableView.dataSource = self;
     self.exploreBasketsTableView.rowHeight = UITableViewAutomaticDimension;
-    PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
-    [query includeKey:@"nonprofits"];
-    [query includeKey:@"nonprofits.verificationFiles"];
-    [query includeKey:@"createdByUser"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (error != nil) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            self.baskets = objects;
-            [self.exploreBasketsTableView reloadData];
-        }
-    }];
+    [self getBaskets];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
 }
 
+- (void)getBaskets {
+    PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
+    [query includeKey:@"nonprofits"];
+    [query includeKey:@"nonprofits.verificationFiles"];
+    [query includeKey:@"createdByUser"];
+    [query includeKey:@"allTransactions"];
+    [query includeKey:@"featuredValueDict"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray<Basket*> * _Nullable objects, NSError * _Nullable error) {
+        if (error != nil) {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            self.baskets = objects;
+
+            //FIXME: if object is featured, add basket to featuredBaskets
+            NSArray<Basket*> *sortedFeatured = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"totalFeaturedValue" ascending:NO]]];
+            self.featuredBaskets = [sortedFeatured subarrayWithRange:NSMakeRange(0, MIN(3, sortedFeatured.count))];
+            [self.exploreBasketsTableView reloadData];
+        }
+    }];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BasketTableViewCell"];
-    Basket *basket = self.baskets[indexPath.row];
+
+    Basket *basket;
+    if (indexPath.section == 0) {
+        basket = self.featuredBaskets[indexPath.row];
+    } else {
+        basket = self.baskets[indexPath.row];
+    }
     cell.basketNameLabel.text = basket.name;
     cell.basketDescriptionLabel.text = basket.basketDescription;
     
     //TODO: show profile pics of nonprofits
+    //FIXME: SHOW BASKET HEADER VIEW, NOT NONPROFITS
     [self getNonprofitImagesFromBasket:basket onCell:cell];
 
     return cell;
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//
-//}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //TODO: add sections later, for isFeatured/recents/etc
-    return self.baskets.count;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.basketToPass = self.baskets[indexPath.row];
+    if (indexPath.section == 0) {
+        self.basketToPass = self.featuredBaskets[indexPath.row];
+    } else {
+        self.basketToPass = self.baskets[indexPath.row];
+    }
     [self performSegueWithIdentifier:@"showBasketDetail" sender:nil];
 }
+
+/** Sections. */
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSInteger numberOfSections = 2;
+    return numberOfSections;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return self.featuredBaskets.count;
+    } else {
+        return self.baskets.count;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"Recommended Baskets";
+    } else {
+        return @"All Baskets";
+    }
+}
+
+/** Navigation. */
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showBasketDetail"]) {
