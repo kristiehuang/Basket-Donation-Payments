@@ -67,6 +67,7 @@
         billingVC.basket = self.basket;
         billingVC.totalAmount = self.totalAmount;
         billingVC.paymentIntentClientSecret = sender[@"clientSecret"];
+        billingVC.paymentIntentId = sender[@"paymentId"];
     }
 }
 
