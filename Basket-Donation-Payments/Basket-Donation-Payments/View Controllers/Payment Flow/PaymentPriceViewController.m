@@ -44,8 +44,10 @@
         self.totalAmount = @([inputVal floatValue] * 100);
         [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
             if (error) {
-                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating payment intent." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                [self presentViewController:alert animated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating payment intent." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    [self presentViewController:alert animated:YES completion:nil];
+                });
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), ^{
