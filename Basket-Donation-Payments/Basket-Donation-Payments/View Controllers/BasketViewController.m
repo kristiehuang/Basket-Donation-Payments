@@ -6,6 +6,7 @@
 //  Copyright © 2020 Kristie Huang. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import "BasketViewController.h"
 #import "PaymentPriceViewController.h"
 #import "NonprofitCollectionViewCell.h"
@@ -54,6 +55,7 @@
 
 - (void)favoriteUnfavoriteBasket {
     NSMutableArray<Basket*> *favBaskets = [[User currentUser] favoriteBaskets];
+    [self.basket fetch];
     if ([favBaskets containsObject:self.basket]) {
         [favBaskets removeObject:self.basket];
         self.basket.favoriteCount -= 1;
@@ -62,8 +64,19 @@
         self.basket.favoriteCount += 1;
     }
     self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
+
+    [self updateBasketFeaturedValueWeights];
     [self.basket saveInBackground];
     [[User currentUser] saveInBackground];
+}
+
+- (void)updateBasketFeaturedValueWeights {
+    FeaturedValueWeight *ftWeights = self.basket.featuredValueWeights;
+    NSUInteger maxUserFavoritesWeight = 30;
+    ftWeights.userFavoritesWeight = MIN(self.basket.favoriteCount, maxUserFavoritesWeight);
+    [ftWeights fetch];
+    NSInteger sumFeaturedVal = ftWeights.numberOfDonationsWeight + ftWeights.predeterminedEventRelevancyWeight + ftWeights.userFavoritesWeight;
+    self.basket.totalFeaturedValue = [[NSNumber alloc] initWithLong:sumFeaturedVal];;
 }
 
 #pragma mark - Navigation
