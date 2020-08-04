@@ -46,7 +46,12 @@
     } else {
         self.createdByLabel.text = [NSString stringWithFormat:@"Created by %@ %@", createdBy.firstName, createdBy.lastName];
     }
-    self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", self.basket.totalDonatedValue];
+    self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.basket.totalDonatedValue doubleValue] / 100];
+    [self.basket fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.basket.totalDonatedValue doubleValue] / 100];
+        });
+    }];
     self.basketDescriptionLabel.text = self.basket.basketDescription;
 }
 - (IBAction)donateButtonTapped:(id)sender {

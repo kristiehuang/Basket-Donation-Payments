@@ -82,6 +82,7 @@
 }
 
 - (void)createTransfers {
+<<<<<<< HEAD
     [APIManager getSourceChargeIdWithPaymentIntent:self.paymentIntentId withBlock:^(NSError * err, NSString * chargeId) {
         if (err) {
             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not get chargeId to create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
@@ -105,6 +106,69 @@
                 }
             }];
 
+=======
+    NSOperationQueue *queue = [NSOperationQueue new];
+    __weak typeof(self) weakSelf = self;
+
+    [queue addOperationWithBlock:^{
+        [APIManager getSourceChargeIdWithPaymentIntent:weakSelf.paymentIntentId withBlock:^(NSError * err, NSString * chargeId) {
+            if (err) {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not get chargeId to create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [weakSelf presentViewController:alert animated:YES completion:nil];
+                });
+                [queue cancelAllOperations];
+            } else {
+                NSMutableArray<NSString*> *connectedStripeAccounts = [NSMutableArray array];
+                for (Nonprofit* n in weakSelf.basket.nonprofits) {
+                    [connectedStripeAccounts addObject:n.stripeAccountId];
+                }
+                [APIManager createTransfersWithAmount:weakSelf.totalAmount toConnectedStripeAccs:connectedStripeAccounts withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
+                    if (err) {
+                        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [weakSelf presentViewController:alert animated:YES completion:nil];
+                        });
+                        [queue cancelAllOperations];
+                    }
+                }];
+
+            }
+        }];
+    }];
+
+
+    [queue addOperationWithBlock:^{
+        [weakSelf updateTotalDonationValues];
+    }];
+
+
+}
+
+- (void)updateTotalDonationValues {
+    NSOperationQueue *queue = [NSOperationQueue new];
+    NSInteger numberOfNonprofits = self.basket.nonprofits.count;
+    NSInteger amountPerNonprofit = [self.totalAmount intValue] / numberOfNonprofits;
+    __weak typeof(self) weakSelf = self;
+    [queue addOperationWithBlock:^{
+        weakSelf.basket = [weakSelf.basket fetch];
+        weakSelf.basket.totalDonatedValue =  [NSNumber numberWithLong:[weakSelf.basket.totalDonatedValue intValue] + [weakSelf.totalAmount intValue]];
+        [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (!succeeded) {
+                [queue cancelAllOperations];
+            }
+        }];
+    }];
+    [queue addOperationWithBlock:^{
+        for (Nonprofit *n in weakSelf.basket.nonprofits) {
+            Nonprofit *nonprofit = [n fetch];
+            nonprofit.totalDonationsValue =  [NSNumber numberWithLong:[nonprofit.totalDonationsValue intValue] + amountPerNonprofit];
+            [nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (!succeeded) {
+                    [queue cancelAllOperations];
+                }
+            }];
+>>>>>>> 31307d6d47bdeaaef8a0b6b0f356d5f3f04eac4d
         }
     }];
 
