@@ -81,7 +81,7 @@
 
 - (void)updateBasketFeaturedValueWeights {
     FeaturedValueWeight *ftWeights = self.basket.featuredValueWeights;
-    NSUInteger maxNumberOfDonationsWeight = 30;
+    NSUInteger maxNumberOfDonationsWeight = 40;
     [ftWeights fetch];
     ftWeights.numberOfDonationsWeight = MIN(self.basket.allTransactions.count, maxNumberOfDonationsWeight);
     NSInteger sumFeaturedVal = ftWeights.numberOfDonationsWeight + ftWeights.predeterminedEventRelevancyWeight + ftWeights.userFavoritesWeight;
