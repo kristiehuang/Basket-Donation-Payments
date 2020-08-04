@@ -12,6 +12,7 @@
 #import "BasketTransaction.h"
 #import "Utils.h"
 #import "APIManager.h"
+#import "Nonprofit.h"
 #import "FeaturedValueWeight.h"
 
 @interface PaymentFormViewController ()
@@ -36,7 +37,7 @@
 }
 
 - (void)pay {
-    [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status) {
+    [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status, NSString * chargeId) {
         dispatch_async(dispatch_get_main_queue(), ^{
             switch (status) {
                 case STPPaymentHandlerActionStatusFailed: {
@@ -50,7 +51,8 @@
                     break;
                 }
                 case STPPaymentHandlerActionStatusSucceeded: {
-                    [self completePayment];
+                    [self savePaymentTxToParse];
+                    [self createTransfersWithChargeId:chargeId];
                     break;
                 }
                 default:
@@ -60,7 +62,7 @@
     }];
 }
 
-- (void)completePayment {
+- (void)savePaymentTxToParse {
     //FIXME: Show loading refreshing control
     BasketTransaction *basketTx = [BasketTransaction new];
     basketTx.basketRecipient = self.basket;
@@ -76,6 +78,24 @@
         } else {
             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save payment to Parse server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
             [self presentViewController:alert animated:YES completion:nil];        }
+    }];
+}
+
+- (void)createTransfersWithChargeId:(NSString*)chargeId {
+    NSMutableArray<NSString*> *connectedStripeAccs = [NSMutableArray array];
+    for (Nonprofit* n in self.basket.nonprofits) {
+        [connectedStripeAccs addObject:n.stripeAccountId];
+    }
+
+    [APIManager createTransfersWithAmount:self.totalAmount toConnectedStripeAccs:connectedStripeAccs withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
+        if (err) {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        } else {
+            //do something with this transferId
+        }
     }];
 }
 

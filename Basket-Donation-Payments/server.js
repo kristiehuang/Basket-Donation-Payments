@@ -15,11 +15,11 @@ app.post("/create-payment-intent", async (req, res) => {
         amount: totalAmount,
         currency: currency,
         customer: customer,
-        transfer_group: transferGroup
     });
 
     res.send({
-    clientSecret: paymentIntent.client_secret
+        clientSecret: paymentIntent.client_secret,
+        paymentId: paymentIntent.id
     });
 });
 
@@ -38,7 +38,7 @@ app.post("/create-new-customer", async (req, res) => {
 
 app.post("/create-new-connected-account", async (req, res) => {
     const { authorizationCode, email } = req.body;
-    // Create a new Stripe Customer with the order amount and currency
+    // Create a new Stripe Connected Account with the return authorizationCode and email address.
     const response = await stripe.oauth.token({
         grant_type: 'authorization_code',
         code: authorizationCode,
@@ -47,6 +47,21 @@ app.post("/create-new-connected-account", async (req, res) => {
 
     res.send({
         connectedAccountId: response.stripe_user_id
+    });
+});
+
+app.post("/create-transfer", async (req, res) => {
+    const { amount, currency, destination, source_transaction } = req.body;
+    // Create a new Stripe Customer with the order amount and currency
+    const response = await stripe.transfers.create({
+        amount: amount,
+        currency: currency,
+        destination: destination,
+        source_transaction: source_transaction
+    });
+
+    res.send({
+        transferId: response.id
     });
 });
 

@@ -51,7 +51,7 @@
             }
             else {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:dataDict[@"clientSecret"]];
+                    [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:dataDict];
                 });
             }
         }];
@@ -66,7 +66,7 @@
         PaymentFormViewController *billingVC = [segue destinationViewController];
         billingVC.basket = self.basket;
         billingVC.totalAmount = self.totalAmount;
-        billingVC.paymentIntentClientSecret = sender;
+        billingVC.paymentIntentClientSecret = sender[@"clientSecret"];
     }
 }
 
