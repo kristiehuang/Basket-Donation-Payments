@@ -57,12 +57,11 @@
     if ([favBaskets containsObject:self.basket]) {
         [favBaskets removeObject:self.basket];
         self.basket.favoriteCount -= 1;
-        self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
     } else {
         [favBaskets addObject:self.basket];
         self.basket.favoriteCount += 1;
-        self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
     }
+    self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
     [self.basket saveInBackground];
     [[User currentUser] saveInBackground];
 }
