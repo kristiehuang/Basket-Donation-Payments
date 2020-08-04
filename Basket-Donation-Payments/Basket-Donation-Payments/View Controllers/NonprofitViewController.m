@@ -36,7 +36,12 @@
     self.nonprofitHeaderPic.image = [Utils getImageFromPFFile:self.nonprofit.headerPicFile];
     self.nonprofitProfilePic.image = [Utils getImageFromPFFile:self.nonprofit.profilePicFile];
     self.favoriteButton.selected = [[[User currentUser] favoriteNonprofits] containsObject:self.nonprofit];
-    self.totalValueDonatedLabel.text = [NSString stringWithFormat:@"$%0.2f", self.nonprofit.totalDonationsValue];
+    self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue] / 100];
+    [self.nonprofit fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue] / 100];
+        });
+    }];
     self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
     self.nonprofitCategoryLabel.text = self.nonprofit.category;
     self.nonprofitWebsiteLabel.text = self.nonprofit.websiteUrlString;
