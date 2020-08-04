@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) Basket* basket;
 @property (nonatomic, strong) NSNumber *totalAmount;
 @property (strong) NSString *paymentIntentClientSecret;
+@property (strong) NSString *paymentIntentId;
 
 @end
 

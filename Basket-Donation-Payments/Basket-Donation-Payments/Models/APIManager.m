@@ -68,7 +68,7 @@
     [task resume];
 }
 
-+ (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus, NSString *))completion {
++ (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus))completion {
     
     // Create STPPaymentIntentParams with card details
     STPPaymentMethodCardParams *cardParams = params;
@@ -79,7 +79,7 @@
     // Submit the payment
     STPPaymentHandler *paymentHandler = [STPPaymentHandler sharedHandler];
     [paymentHandler confirmPayment:paymentIntentParams withAuthenticationContext:self completion:^(STPPaymentHandlerActionStatus status, STPPaymentIntent *paymentIntent, NSError *error) {
-        completion(error, status, @"fakeChargeId");
+        completion(error, status);
     }];
 }
 
@@ -103,13 +103,35 @@
         }
         else {
             NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Created new Stripe Customer");
             completion(nil, dataDict[@"id"]);
         }
     }];
     [task resume];
+}
 
-
++ (void)getSourceChargeIdWithPaymentIntent:(NSString*)paymentIntentId withBlock:(void (^)(NSError *, NSString *))completion {
+    NSString *backendURL = [APIManager getAPISecretKeysDict][@"Backend_Server_Url"];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@get-paymentintent-charge", backendURL]];
+    NSDictionary *json = @{
+        @"payment_intent": paymentIntentId,
+    };
+    NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
+    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:body];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+        if (error != nil || httpResponse.statusCode != 200) {
+            completion(error, nil);
+        }
+        else {
+            NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"Get charge ID");
+            completion(nil, dataDict[@"chargeId"]);
+        }
+    }];
+    [task resume];
 }
 
 + (void) newNonprofitConnectedAccountWithEmail:(NSString*)email withAuthorizationCode:(NSString*)code withBlock:(void (^)(NSError *, NSString *))completion {
@@ -132,7 +154,6 @@
         }
         else {
             NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Created new Stripe connected account");
             completion(nil, dataDict[@"connectedAccountId"]);
         }
     }];
@@ -169,7 +190,6 @@
         }
         else {
             NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Created new Stripe transfer.");
             completion(nil, dataDict[@"transferId"]);
         }
     }];

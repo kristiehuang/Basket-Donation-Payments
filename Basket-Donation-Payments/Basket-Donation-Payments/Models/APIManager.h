@@ -18,13 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)createPaymentIntentWithBasket:(Basket*)basket totalAmount:(NSNumber*)totalAmount withBlock:(void (^)(NSError *, NSDictionary *))completion;
 
-+ (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus, NSString *))completion;
++ (void)submitPaymentWithCard:(STPPaymentMethodCardParams*)params clientSecret:(NSString*)clientSecret andBlock:(void (^)(NSError *, STPPaymentHandlerActionStatus))completion;
 
 + (void) newStripeCustomerIdWithName:(NSString*)fullName andEmail:(NSString*)email withBlock:(void (^)(NSError *, NSString *))completion;
 
 + (void) newNonprofitConnectedAccountWithEmail:(NSString*)email withAuthorizationCode:(NSString*)code withBlock:(void (^)(NSError *, NSString *))completion;
 
 + (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccs:(NSArray<NSString*>*)connectedStripeAccs withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion;
+
++ (void)getSourceChargeIdWithPaymentIntent:(NSString*)paymentIntentId withBlock:(void (^)(NSError *, NSString *))completion;
 
 @end
 

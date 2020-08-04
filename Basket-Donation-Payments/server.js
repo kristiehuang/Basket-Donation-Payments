@@ -65,6 +65,18 @@ app.post("/create-transfer", async (req, res) => {
     });
 });
 
+app.post("/get-paymentintent-charge", async (req, res) => {
+    const { payment_intent } = req.body;
+    // Get the charge ID associated with this paymentIntent
+    const response = await stripe.charges.list({
+        payment_intent: payment_intent,
+        limit: 1
+    });
+
+    res.send({
+        chargeId: response.data[0].id
+    });
+});
 
 const calculateTransferAmount = (totalAmount, basketItems) => {
     // Replace this constant with a calculation of the order's amount

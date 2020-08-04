@@ -37,7 +37,7 @@
 }
 
 - (void)pay {
-    [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status, NSString * chargeId) {
+    [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status) {
         dispatch_async(dispatch_get_main_queue(), ^{
             switch (status) {
                 case STPPaymentHandlerActionStatusFailed: {
@@ -52,7 +52,7 @@
                 }
                 case STPPaymentHandlerActionStatusSucceeded: {
                     [self savePaymentTxToParse];
-                    [self createTransfersWithChargeId:chargeId];
+                    [self createTransfers];
                     break;
                 }
                 default:
@@ -81,22 +81,33 @@
     }];
 }
 
-- (void)createTransfersWithChargeId:(NSString*)chargeId {
-    NSMutableArray<NSString*> *connectedStripeAccs = [NSMutableArray array];
-    for (Nonprofit* n in self.basket.nonprofits) {
-        [connectedStripeAccs addObject:n.stripeAccountId];
-    }
-
-    [APIManager createTransfersWithAmount:self.totalAmount toConnectedStripeAccs:connectedStripeAccs withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
+- (void)createTransfers {
+    [APIManager getSourceChargeIdWithPaymentIntent:self.paymentIntentId withBlock:^(NSError * err, NSString * chargeId) {
         if (err) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not get chargeId to create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:alert animated:YES completion:nil];
             });
+
         } else {
-            //do something with this transferId
+            NSMutableArray<NSString*> *connectedStripeAccs = [NSMutableArray array];
+            for (Nonprofit* n in self.basket.nonprofits) {
+                [connectedStripeAccs addObject:n.stripeAccountId];
+            }
+            [APIManager createTransfersWithAmount:self.totalAmount toConnectedStripeAccs:connectedStripeAccs withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
+                if (err) {
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:alert animated:YES completion:nil];
+                    });
+                } else {
+                    // TODO: Update nonprofits and basket total donation value
+                }
+            }];
+
         }
     }];
+
 }
 
 - (void)updateBasketFeaturedValueWeights {
