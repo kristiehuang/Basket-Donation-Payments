@@ -49,7 +49,7 @@
         @"transferGroup": @"tempTransferGroupId", //FIXME: unique transfer group
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:body];
@@ -92,7 +92,7 @@
         @"email": email
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:body];
@@ -116,7 +116,7 @@
         @"payment_intent": paymentIntentId,
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:body];
@@ -143,7 +143,7 @@
         @"email": email
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:body];
@@ -160,10 +160,10 @@
     [task resume];
 }
 
-+ (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccs:(NSArray<NSString*>*)connectedStripeAccs withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion {
-    NSInteger numberOfNonprofits = connectedStripeAccs.count;
++ (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccounts:(NSArray<NSString*>*)connectedStripeAccounts withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion {
+    NSInteger numberOfNonprofits = connectedStripeAccounts.count;
     NSInteger amountPerNonprofit = [amount intValue] / numberOfNonprofits;
-    for (NSString *connectedStripeId in connectedStripeAccs) {
+    for (NSString *connectedStripeId in connectedStripeAccounts) {
         [self createSingleTransferWithAmount:[NSNumber numberWithLong:amountPerNonprofit] toId:connectedStripeId withSourceTxId:sourceTxId withBlock:completion];
     }
 }
@@ -176,10 +176,9 @@
         @"currency": @"usd",
         @"destination": connectedId,
         @"source_transaction": sourceTxId
-
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
-    NSMutableURLRequest *request = [[NSURLRequest requestWithURL:url] mutableCopy];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:body];
