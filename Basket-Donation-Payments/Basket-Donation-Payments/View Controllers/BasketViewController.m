@@ -54,20 +54,35 @@
 }
 
 - (void)favoriteUnfavoriteBasket {
-    NSMutableArray<Basket*> *favBaskets = [[User currentUser] favoriteBaskets];
-    [self.basket fetch];
-    if ([favBaskets containsObject:self.basket]) {
-        [favBaskets removeObject:self.basket];
-        self.basket.favoriteCount -= 1;
-    } else {
-        [favBaskets addObject:self.basket];
-        self.basket.favoriteCount += 1;
-    }
-    self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
+    [[User currentUser] fetch];
+    User *u = [User currentUser];
+    NSMutableArray<Basket*> *favBaskets = u.favoriteBaskets;
 
-    [self updateBasketFeaturedValueWeights];
-    [self.basket saveInBackground];
-    [[User currentUser] saveInBackground];
+    [self.basket fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (error) {
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Couldn't save like." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        } else {
+            if ([favBaskets containsObject:self.basket]) {
+                [favBaskets removeObject:self.basket];
+                self.basket.favoriteCount -= 1;
+            } else {
+                [favBaskets addObject:self.basket];
+                self.basket.favoriteCount += 1;
+            }
+            self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
+
+            //FIXME: if user wasn't JUST logged in, permissions to update user object in Parse; object doesn't save
+            User *u = [User currentUser];
+            u.favoriteBaskets = favBaskets;
+            [self updateBasketFeaturedValueWeights];
+            if (!([self.basket save] && [u save])) {
+                NSLog(@"couldnt save");
+            }
+        }
+    }];
 }
 
 - (void)updateBasketFeaturedValueWeights {
