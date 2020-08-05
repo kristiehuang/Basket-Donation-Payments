@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Nonprofit.h"
+#import "Basket.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NonprofitViewController : UIViewController
 @property (nonatomic, strong) Nonprofit *nonprofit;
+@property (nonatomic, strong) Basket *basket;
 
 @end
 

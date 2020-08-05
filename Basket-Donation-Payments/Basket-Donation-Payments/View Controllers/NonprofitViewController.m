@@ -33,7 +33,7 @@
 }
 
 - (void)setupView {
-    self.nonprofitHeaderPic.image = [Utils getImageFromPFFile:self.nonprofit.headerPicFile];
+    self.nonprofitHeaderPic.image = [Utils getImageFromPFFile:self.basket.headerPicFile];
     self.nonprofitProfilePic.image = [Utils getImageFromPFFile:self.nonprofit.profilePicFile];
     self.favoriteButton.selected = [[[User currentUser] favoriteNonprofits] containsObject:self.nonprofit];
     self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue] / 100];

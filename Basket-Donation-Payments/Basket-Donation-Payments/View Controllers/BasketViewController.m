@@ -114,6 +114,7 @@
     if ([segue.identifier isEqualToString:@"showNonprofitDetail"]) {
         NonprofitViewController *nonprofitVC = [segue destinationViewController];
         nonprofitVC.nonprofit = self.nonprofitToSend;
+        nonprofitVC.basket = self.basket;
         self.nonprofitToSend = nil;
     } else if ([segue.identifier isEqualToString:@"BasketPaymentSegue"]) {
         PaymentPriceViewController *paymentVC = [segue destinationViewController];
