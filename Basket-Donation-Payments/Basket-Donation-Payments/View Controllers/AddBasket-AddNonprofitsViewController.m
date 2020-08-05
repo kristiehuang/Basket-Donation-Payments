@@ -33,18 +33,21 @@
 - (void)getAllNonprofitsFromParse {
     PFQuery *nonprofitQuery = [PFQuery queryWithClassName:@"Nonprofit"];
     [nonprofitQuery includeKey:@"profilePicFile"];
-    
+    UIActivityIndicatorView *loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     [nonprofitQuery findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
-        if (error != nil) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Cannot get nonprofits. Try again?" andMessage:error.localizedDescription okCompletion:^(UIAlertAction * _Nonnull action) {
-                [self getAllNonprofitsFromParse];
-            } cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-
-        } else {
-            self.allNonprofits = objects;
-            [self.selectNonprofitsTableView reloadData];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error != nil) {
+                [loadingIndicator stopAnimating];
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Cannot get nonprofits. Try again?" andMessage:error.localizedDescription okCompletion:^(UIAlertAction * _Nonnull action) {
+                    [self getAllNonprofitsFromParse];
+                } cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                self.allNonprofits = objects;
+                [self.selectNonprofitsTableView reloadData];
+                [loadingIndicator stopAnimating];
+            }
+        });
     }];
 }
 
@@ -53,16 +56,20 @@
         UIAlertController *didNotAddNonprofits = [Utils createAlertControllerWithTitle:@"Did not select nonprofits." andMessage:@"Please select at least two nonprofits you'd like donations to go towards." okCompletion:nil cancelCompletion:nil];
         [self presentViewController:didNotAddNonprofits animated:YES completion:nil];
     } else {
+        UIActivityIndicatorView *loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
         [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
-                [rootVC resetForm];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-                self.tabBarController.selectedIndex = 0;
-            } else {
-                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save Basket. Try again?" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingIndicator stopAnimating];
+                if (succeeded) {
+                    AddBasketViewController *rootVC = self.navigationController.viewControllers.firstObject;
+                    [rootVC resetForm];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    self.tabBarController.selectedIndex = 0;
+                } else {
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save Basket. Try again?" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            });
         }];
     }
 }
