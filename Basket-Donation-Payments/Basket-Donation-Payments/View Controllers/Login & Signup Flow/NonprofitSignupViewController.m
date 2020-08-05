@@ -45,9 +45,8 @@
         self.nonprofitWebsiteTextField.text = self.nonprofit.websiteUrlString;
     } else {
         self.nonprofit = [Nonprofit new];
-        self.nonprofitDescriptionTextView.placeholder = @"Describe your nonprofit in 100 words or less.";
+        self.nonprofitDescriptionTextView.placeholder = @"Describe your nonprofit.";
         self.nonprofitDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
-        //TODO: twitter-like word-limitations
         //TODO: figure out document uplaod
         // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
     }

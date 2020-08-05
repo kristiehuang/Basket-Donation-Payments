@@ -21,6 +21,7 @@
 @dynamic totalDonatedValue;
 @dynamic isFeatured;
 @dynamic nonprofits;
+@dynamic category;
 @dynamic totalFeaturedValue;
 @dynamic nonprofitPercentages;
 @dynamic createdByUser;
@@ -32,10 +33,11 @@
     return @"Basket";
 }
 
-+ (Basket*)initWithName:(NSString*)basketName description:(NSString*)basketDescription headerPicFile:(PFFileObject*)headerPicFile {
++ (Basket*)initWithName:(NSString*)basketName description:(NSString*)basketDescription headerPicFile:(PFFileObject*)headerPicFile category:(NSString*)category {
     Basket *basket = [Basket new];
     basket.name = basketName;
     basket.basketDescription = basketDescription;
+    basket.category = category;
     basket.headerPicFile = headerPicFile;
     basket.totalDonatedValue = @0;
     basket.favoriteCount = 0;

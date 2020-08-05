@@ -36,9 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger favoriteCount;
 
 @property (nonatomic, strong) User *createdByUser;
-//TODO: CATEGORY?
+@property (nonatomic, strong) NSString *category;
 
-+ (Basket*)initWithName:(NSString*)basketName description:(NSString*)basketDescription headerPicFile:(PFFileObject*)headerPicFile;
++ (Basket*)initWithName:(NSString*)basketName description:(NSString*)basketDescription headerPicFile:(PFFileObject*)headerPicFile category:(NSString*)category;
 @end
 
 NS_ASSUME_NONNULL_END

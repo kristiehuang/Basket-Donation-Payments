@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.basketDescriptionTextView.placeholder = @"Describe your basket in 100 words or less.";
+    self.basketDescriptionTextView.placeholder = @"Describe your basket.";
     self.basketDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
     self.basketNameTextField.delegate = self;
     self.basketCategoryTextField.delegate = self;
@@ -55,9 +55,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNonprofitsSegue"]) {
-
         AddBasket_AddNonprofitsViewController *nextVC = [segue destinationViewController];
-        nextVC.basket = [Basket initWithName:self.basketNameTextField.text description:self.basketDescriptionTextView.text headerPicFile:[Utils getFileFromImage:self.basketHeaderImageView.image]];
+        [Basket initWithName:self.basketNameTextField.text description:self.basketDescriptionTextView.text headerPicFile:[Utils getFileFromImage:self.basketHeaderImageView.image] category:self.basketCategoryTextField.text];
     }
 }
 
@@ -65,7 +64,7 @@
     self.basketNameTextField.text = @"";
     self.basketCategoryTextField.text = @"";
     self.basketDescriptionTextView.text = @"";
-    self.basketDescriptionTextView.placeholder = @"Describe your basket in 100 words or less.";
+    self.basketDescriptionTextView.placeholder = @"Describe your basket.";
     self.basketDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
     self.basketHeaderImageView.image = [UIImage imageNamed:@"PlaceholderHeaderPic"];
 }
