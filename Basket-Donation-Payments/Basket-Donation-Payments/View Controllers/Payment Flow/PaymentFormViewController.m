@@ -19,6 +19,7 @@
 @property (weak) STPPaymentCardTextField *cardTextField;
 @property (weak, nonatomic) IBOutlet UIButton *payButton;
 @property (weak, nonatomic) IBOutlet UIStackView *poweredByStripeStackView;
+@property (nonatomic, strong) UIActivityIndicatorView *loadingIndicator;
 
 @end
 
@@ -33,26 +34,43 @@
 
 
 - (IBAction)payButtonTapped:(id)sender {
+    self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     [self pay];
 }
 
 - (void)pay {
+    self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     [APIManager submitPaymentWithCard:self.cardTextField.cardParams clientSecret:self.paymentIntentClientSecret andBlock:^(NSError * error, STPPaymentHandlerActionStatus status) {
         dispatch_async(dispatch_get_main_queue(), ^{
             switch (status) {
                 case STPPaymentHandlerActionStatusFailed: {
+                    [self.loadingIndicator stopAnimating];
                     UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Payment failed." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
                     [self presentViewController:alert animated:YES completion:nil];
                     break;
                 }
                 case STPPaymentHandlerActionStatusCanceled: {
+                    [self.loadingIndicator stopAnimating];
                     UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Payment cancelled." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
                     [self presentViewController:alert animated:YES completion:nil];
                     break;
                 }
                 case STPPaymentHandlerActionStatusSucceeded: {
-                    [self savePaymentTxToParse];
-                    [self createTransfers];
+                    NSOperationQueue *queue = [NSOperationQueue new];
+                    __weak typeof(self) weakSelf = self;
+                    [queue addOperationWithBlock:^{
+                        [weakSelf savePaymentTxToParse];
+                    }];
+                    [queue addOperationWithBlock:^{
+                        [weakSelf createTransfers];
+                    }];
+                    [queue addOperationWithBlock:^{
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            [weakSelf.loadingIndicator stopAnimating];
+                            [self performSegueWithIdentifier:@"PaymentConfirmedSegue" sender:nil];
+                            self.tabBarController.hidesBottomBarWhenPushed = YES;
+                        }];
+                    }];
                     break;
                 }
                 default:
@@ -63,7 +81,6 @@
 }
 
 - (void)savePaymentTxToParse {
-    //FIXME: Show loading refreshing control
     BasketTransaction *basketTx = [BasketTransaction new];
     basketTx.basketRecipient = self.basket;
     basketTx.madeByUser = [User currentUser];
@@ -72,10 +89,7 @@
     [self updateBasketFeaturedValueWeights];
 
     [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            [self performSegueWithIdentifier:@"PaymentConfirmedSegue" sender:nil];
-            self.tabBarController.hidesBottomBarWhenPushed = YES;
-        } else {
+        if (!succeeded) {
             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save payment to Parse server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
             [self presentViewController:alert animated:YES completion:nil];        }
     }];
@@ -98,25 +112,20 @@
                 for (Nonprofit* n in weakSelf.basket.nonprofits) {
                     [connectedStripeAccounts addObject:n.stripeAccountId];
                 }
-                [APIManager createTransfersWithAmount:weakSelf.totalAmount toConnectedStripeAccs:connectedStripeAccounts withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
+                [APIManager createTransfersWithAmount:self.totalAmount toConnectedStripeAccounts:connectedStripeAccounts withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
                     if (err) {
                         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             [weakSelf presentViewController:alert animated:YES completion:nil];
                         });
                         [queue cancelAllOperations];
+                    } else {
+                        [weakSelf updateTotalDonationValues];
                     }
                 }];
-
             }
         }];
     }];
-
-
-    [queue addOperationWithBlock:^{
-        [weakSelf updateTotalDonationValues];
-    }];
-
 
 }
 

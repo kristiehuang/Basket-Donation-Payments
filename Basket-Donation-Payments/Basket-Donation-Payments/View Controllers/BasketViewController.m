@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalValueDonatedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *basketDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfFavesLabel;
-
+@property (nonatomic, strong) UIActivityIndicatorView *refreshIndicator;
 @property (nonatomic, strong) Nonprofit *nonprofitToSend;
 @end
 
@@ -38,27 +38,31 @@
     doubleTap.numberOfTapsRequired = 2;
     [self.view addGestureRecognizer:doubleTap];
 
+    self.refreshIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
+    [self setUpBasketView];
+}
+
+- (void)setUpBasketView {
     self.numberOfFavesLabel.text = [NSString stringWithFormat:@"%ld Favorites", (long)self.basket.favoriteCount];
     self.basketNameLabel.text = self.basket.name;
     User *createdBy = self.basket.createdByUser;
-    if (createdBy == nil) {
-        self.createdByLabel.text = @"Created by the Basket team";
-    } else {
-        self.createdByLabel.text = [NSString stringWithFormat:@"Created by %@ %@", createdBy.firstName, createdBy.lastName];
-    }
+    self.createdByLabel.text = (createdBy) ? [NSString stringWithFormat:@"Created by %@ %@", createdBy.firstName, createdBy.lastName] : @"Created by the Basket team";
     self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.basket.totalDonatedValue doubleValue] / 100];
     [self.basket fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.basket.totalDonatedValue doubleValue] / 100];
+            [self.refreshIndicator stopAnimating];
         });
     }];
     self.basketDescriptionLabel.text = self.basket.basketDescription;
 }
+
 - (IBAction)donateButtonTapped:(id)sender {
     [self performSegueWithIdentifier:@"BasketPaymentSegue" sender:nil];
 }
 
 - (void)favoriteUnfavoriteBasket {
+    [self.refreshIndicator startAnimating];
     [[User currentUser] fetch];
     User *u = [User currentUser];
     NSMutableArray<Basket*> *favBaskets = u.favoriteBaskets;
@@ -84,8 +88,12 @@
             u.favoriteBaskets = favBaskets;
             [self updateBasketFeaturedValueWeights];
             if (!([self.basket save] && [u save])) {
-                NSLog(@"couldnt save");
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Couldn't save like to server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:alert animated:YES completion:nil];
+                });
             }
+            [self.refreshIndicator stopAnimating];
         }
     }];
 }

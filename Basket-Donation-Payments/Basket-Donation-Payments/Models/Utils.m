@@ -61,4 +61,13 @@
     }
 }
 
++ (UIActivityIndicatorView *)createUIActivityIndicatorViewOnView:(UIView*)view {
+    UIActivityIndicatorView *loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+    loadingIndicator.hidesWhenStopped = YES;
+    loadingIndicator.center = view.center;
+    [view addSubview:loadingIndicator];
+    [loadingIndicator startAnimating];
+    return loadingIndicator;
+}
+
 @end
