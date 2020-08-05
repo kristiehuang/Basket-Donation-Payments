@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nonprofitWebsiteLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalDonationValueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nonprofitDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *nonprofitIsVerifiedCheckmark;
 @property (nonatomic, strong) Nonprofit *nonprofit;
 @property (weak, nonatomic) IBOutlet UITableView *foundInBasketsTableView;
 
@@ -29,8 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     if ([[User currentUser] nonprofit] != nil) {
-//        self.foundInBasketsTableView.delegate = self;
-//        self.foundInBasketsTableView.dataSource = self;
         self.nonprofit = [[User currentUser] nonprofit];
         self.nonprofit = [self queryNonprofit];
         [self setUpNonprofitView];
@@ -45,13 +42,12 @@
 
 - (void)setUpNonprofitView {
     if (self.nonprofit) {
+        self.nonprofitImageView.image = [Utils getImageFromPFFile:self.nonprofit.profilePicFile];
         self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
         self.nonprofitCategoryLabel.text = self.nonprofit.category;
-        self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue]];
+        self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue]/100];
         self.nonprofitWebsiteLabel.text = self.nonprofit.websiteUrlString;
         self.nonprofitDescriptionLabel.text = self.nonprofit.nonprofitDescription;
-                //FIXME: ISVERIFIED
-        //        self.nonprofitIsVerifiedCheckmark.hidden = !self.nonprofit.verificationFiles
     } else {
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Couldn't load nonprofit." andMessage:@"Try again?" okCompletion:^(UIAlertAction * _Nonnull action) {
             [self queryNonprofit];
@@ -62,14 +58,4 @@
     
 }
 
-- (IBAction)editButtonTapped:(id)sender {
-}
-
-//- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    //return Found in Baskets list
-//}
-//
-//- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 3;
-//}
 @end
