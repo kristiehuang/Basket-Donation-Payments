@@ -33,7 +33,7 @@
     NSMutableArray<NSDictionary*> *arrayOfNonprofits = [NSMutableArray array];
     for (Nonprofit *np in basket.nonprofits) {
         NSDictionary* merchantInfo = @{
-            @"merchantId0": np.stripeAccountId ?: @"acct_1H729uCedSPk3wZj", // FIXME: @"acct_1H729uCedSPk3wZj" is test value, need to re-create all Parse data with new nonprofits with Stripe Id
+            @"merchantId0": np.stripeAccountId,
             @"percentage": @(1 / basket.nonprofits.count)
 
             //FIXME: use user-inputted nonprofitPercentages
@@ -45,8 +45,7 @@
         @"currency": @"usd",
         @"totalAmount": totalAmount,
         @"basketItems": arrayOfNonprofits,
-        @"customer": [User currentUser].userStripeId ?: @"cus_HjQnvQtIHPPGtt", //FIXME: @"cus_HjQnvQtIHPPGtt" is test value, need to re-create all Parse data with new users with Stripe Id
-        @"transferGroup": @"tempTransferGroupId", //FIXME: unique transfer group
+        @"customer": [User currentUser].userStripeId
     };
     NSData *body = [NSJSONSerialization dataWithJSONObject:json options:0 error:nil];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
