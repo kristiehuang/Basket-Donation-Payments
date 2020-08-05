@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray<Basket*> *baskets;
 @property (nonatomic, strong) NSArray<Basket*> *featuredBaskets;
 @property (nonatomic, strong) Basket *basketToPass;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -29,11 +30,14 @@
     self.exploreBasketsTableView.delegate = self;
     self.exploreBasketsTableView.dataSource = self;
     self.exploreBasketsTableView.rowHeight = UITableViewAutomaticDimension;
-    [self getBaskets];
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self action:@selector(getBaskets) forControlEvents:UIControlEventValueChanged];
+    [self.exploreBasketsTableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self getBaskets];
     self.navigationController.navigationBar.hidden = YES;
 }
 
@@ -50,12 +54,11 @@
             [self presentViewController:alert animated:YES completion:nil];
         } else {
             self.baskets = objects;
-
-            //FIXME: if object is featured, add basket to featuredBaskets
             NSArray<Basket*> *sortedFeatured = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"totalFeaturedValue" ascending:NO]]];
             self.featuredBaskets = [sortedFeatured subarrayWithRange:NSMakeRange(0, MIN(3, sortedFeatured.count))];
             [self.exploreBasketsTableView reloadData];
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -87,7 +90,7 @@
     [self performSegueWithIdentifier:@"showBasketDetail" sender:nil];
 }
 
-/** Sections. */
+# pragma mark Sections
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSInteger numberOfSections = 2;
@@ -110,7 +113,7 @@
     }
 }
 
-/** Navigation. */
+# pragma mark Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showBasketDetail"]) {
