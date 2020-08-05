@@ -23,7 +23,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [UIView animateWithDuration:2 animations:^{
+    [super viewDidAppear:animated];
+    [UIView animateWithDuration:1.4 animations:^{
         self.confirmationCheckmarkImageView.hidden = NO;
         CGRect frame = CGRectMake(self.confirmationCheckmarkImageView.frame.origin.x, self.confirmationCheckmarkImageView.frame.origin.y, self.confirmationCheckmarkImageView.frame.size.width * 1.2, self.confirmationCheckmarkImageView.frame.size.height * 1.2);
         self.confirmationCheckmarkImageView.frame = CGRectOffset(frame, 0, 318);

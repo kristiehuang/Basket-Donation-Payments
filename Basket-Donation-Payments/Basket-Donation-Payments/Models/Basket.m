@@ -44,7 +44,6 @@
     basket.isFeatured = @NO;
     basket.totalFeaturedValue = @0;
     basket.allTransactions = [NSMutableArray array];
-    NSNumber *numOfTx = [[NSNumber alloc] initWithLong:basket.allTransactions.count];
     basket.featuredValueWeights = [FeaturedValueWeight initNewFeaturedValueWeights];
     basket.createdByUser = [User currentUser];
     basket.nonprofits = [NSMutableArray array];

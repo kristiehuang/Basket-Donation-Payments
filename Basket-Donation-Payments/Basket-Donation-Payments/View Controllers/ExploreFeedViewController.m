@@ -32,7 +32,8 @@
     self.exploreBasketsTableView.rowHeight = UITableViewAutomaticDimension;
     self.refreshControl = [UIRefreshControl new];
     [self.refreshControl addTarget:self action:@selector(getBaskets) forControlEvents:UIControlEventValueChanged];
-    [self.exploreBasketsTableView insertSubview:self.refreshControl atIndex:0];
+    self.refreshControl.backgroundColor = [UIColor whiteColor];
+    [self.exploreBasketsTableView addSubview:self.refreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

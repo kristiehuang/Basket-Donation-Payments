@@ -39,7 +39,7 @@
                                                     <constraint firstAttribute="height" constant="45" id="Eg8-La-bU9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -180,7 +180,7 @@
                                             <constraint firstAttribute="height" constant="40" id="xh4-4O-cYs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -1769,8 +1769,8 @@
                                     <action selector="nextButtonTapped:" destination="yGQ-0Y-8lu" eventType="touchUpInside" id="120-aK-E0E"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="w7B-T4-s9M">
-                                <rect key="frame" x="158.5" y="278" width="97" height="95.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="w7B-T4-s9M">
+                                <rect key="frame" x="30" y="278" width="354" height="95.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8I-Eb-R5q">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="95.5"/>
@@ -1778,10 +1778,10 @@
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oCL-4I-pCY">
-                                        <rect key="frame" x="54" y="0.0" width="43" height="95.5"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oCL-4I-pCY">
+                                        <rect key="frame" x="48" y="0.0" width="306" height="95.5"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="G8P-aD-eGn"/>
+                                            <constraint firstAttribute="height" constant="95.5" id="IUG-Di-YAj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="72"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -1797,7 +1797,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="w7B-T4-s9M" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gu8-d9-J4r" secondAttribute="leading" constant="30" id="3jB-yH-LbQ"/>
+                            <constraint firstItem="w7B-T4-s9M" firstAttribute="leading" secondItem="gu8-d9-J4r" secondAttribute="leading" constant="30" id="3jB-yH-LbQ"/>
                             <constraint firstItem="gu8-d9-J4r" firstAttribute="trailing" secondItem="vCk-wf-QcT" secondAttribute="trailing" constant="60" id="Bi6-BY-HT1"/>
                             <constraint firstItem="Qy9-kW-Frr" firstAttribute="top" secondItem="w7B-T4-s9M" secondAttribute="bottom" constant="30" id="Myk-IU-7Oe"/>
                             <constraint firstItem="vCk-wf-QcT" firstAttribute="leading" secondItem="gu8-d9-J4r" secondAttribute="leading" constant="60" id="RSB-XC-UUX"/>
@@ -1936,7 +1936,7 @@
         <segue reference="4xn-4e-bIA"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="BasketLogo" width="512" height="158"/>
+        <image name="BasketLogo" width="64" height="20"/>
         <image name="BasketWhite" width="156" height="102"/>
         <image name="CompletionCheckmark" width="173" height="173"/>
         <image name="GradientBackground" width="375" height="812"/>

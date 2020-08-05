@@ -11,7 +11,7 @@
 #import "Nonprofit.h"
 #import "Utils.h"
 
-@interface NonprofitContainerViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface NonprofitContainerViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *nonprofitImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nonprofitNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nonprofitCategoryLabel;

@@ -88,7 +88,7 @@
             u.favoriteBaskets = favBaskets;
             [self updateBasketFeaturedValueWeights];
             if (!([self.basket save] && [u save])) {
-                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Couldn't save like to server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Couldn't save like to server." andMessage:@"Try again?" okCompletion:nil cancelCompletion:nil];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentViewController:alert animated:YES completion:nil];
                 });

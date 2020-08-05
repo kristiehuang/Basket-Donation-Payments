@@ -30,7 +30,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-
+    [super viewDidAppear:animated];
     [UIView animateWithDuration:.8 animations:^{
         self.basketLogoImage.frame = CGRectOffset(self.basketLogoImage.frame, 0, 20);
     } completion:^(BOOL finished) {
