@@ -56,7 +56,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"addNonprofitsSegue"]) {
         AddBasket_AddNonprofitsViewController *nextVC = [segue destinationViewController];
-        [Basket initWithName:self.basketNameTextField.text description:self.basketDescriptionTextView.text headerPicFile:[Utils getFileFromImage:self.basketHeaderImageView.image] category:self.basketCategoryTextField.text];
+        nextVC.basket = [Basket initWithName:self.basketNameTextField.text description:self.basketDescriptionTextView.text headerPicFile:[Utils getFileFromImage:self.basketHeaderImageView.image] category:self.basketCategoryTextField.text];
     }
 }
 
