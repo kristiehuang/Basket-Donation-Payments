@@ -39,11 +39,18 @@
 
 - (IBAction)nextButtonTapped:(id)sender {
     if ([self.priceInputTextField hasText]) {
+        //FIXME: error if input text is not a number
         self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
         NSNumberFormatter *numFormat = [NSNumberFormatter new];
         numFormat.numberStyle = NSNumberFormatterDecimalStyle;
         NSNumber *inputVal = [numFormat numberFromString:self.priceInputTextField.text];
         self.totalAmount = @([inputVal floatValue] * 100);
+        if ([self.totalAmount doubleValue] < 100) {
+            [self.loadingIndicator stopAnimating];
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Value must be greater than $1." andMessage:@"Try again?" okCompletion:nil cancelCompletion:nil];
+            [self presentViewController:alert animated:YES completion:nil];
+            return;
+        }
         [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
