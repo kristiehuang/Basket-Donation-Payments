@@ -21,8 +21,6 @@
 
 @implementation PaymentPriceViewController
 
-//FIXME: limit input to 2 decimal points
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.recipientLabel.text = [NSString stringWithFormat:@"to %@", self.basket.name];
@@ -32,25 +30,17 @@
     [self.view addGestureRecognizer:tap];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
-}
-
 - (IBAction)nextButtonTapped:(id)sender {
     if ([self.priceInputTextField hasText]) {
-        //FIXME: error if input text is not a number
         self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
-        NSNumberFormatter *numFormat = [NSNumberFormatter new];
-        numFormat.numberStyle = NSNumberFormatterDecimalStyle;
-        NSNumber *inputVal = [numFormat numberFromString:self.priceInputTextField.text];
-        self.totalAmount = @([inputVal floatValue] * 100);
-        if ([self.totalAmount doubleValue] < 100) {
+        double inputVal = [self.priceInputTextField.text doubleValue];
+        if ((inputVal < 1) || (inputVal >= 999999.99)) {
             [self.loadingIndicator stopAnimating];
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Value must be greater than $1." andMessage:@"Try again?" okCompletion:nil cancelCompletion:nil];
+            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Value must be greater than $1 and less than $999,999.99." andMessage:@"Try again?" okCompletion:nil cancelCompletion:nil];
             [self presentViewController:alert animated:YES completion:nil];
             return;
         }
+        self.totalAmount = [[NSNumber alloc] initWithDouble:inputVal*100];
         [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (error) {
@@ -80,11 +70,19 @@
 }
 
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (textField.text.length == 5) { //FIXME: MUST STOP EDITING AFTER 2 DECIMAL POINTS
-        return YES;
-    }
-    return NO;
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    NSString *expression = [[@"^[0-9]" stringByAppendingString:@"*((\\.|,)"] stringByAppendingString:@"[0-9]{0,2})?$"];
+
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression options:NSRegularExpressionCaseInsensitive error:&error];
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString options:0 range:NSMakeRange(0, [newString length])];
+    return numberOfMatches != 0;
 }
 
 @end
