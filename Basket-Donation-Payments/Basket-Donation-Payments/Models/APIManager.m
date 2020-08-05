@@ -127,7 +127,6 @@
         }
         else {
             NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Get charge ID");
             completion(nil, dataDict[@"chargeId"]);
         }
     }];
@@ -161,7 +160,7 @@
 }
 
 
-+ (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccounts:(NSArray<NSString*>*)connectedStripeAccounts withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion {
++ (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccounts:(NSMutableArray<NSString*>*)connectedStripeAccounts withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion {
     NSInteger numberOfNonprofits = connectedStripeAccounts.count;
     NSInteger amountPerNonprofit = [amount doubleValue] / numberOfNonprofits;
     for (NSString *connectedStripeId in connectedStripeAccounts) {

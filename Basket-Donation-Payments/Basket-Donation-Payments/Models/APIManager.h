@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void) newNonprofitConnectedAccountWithEmail:(NSString*)email withAuthorizationCode:(NSString*)code withBlock:(void (^)(NSError *, NSString *))completion;
 
-+ (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccs:(NSArray<NSString*>*)connectedStripeAccs withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion;
++ (void)createTransfersWithAmount:(NSNumber*)amount toConnectedStripeAccounts:(NSMutableArray<NSString*>*)connectedStripeAccounts withSourceTxId:(NSString*)sourceTxId withBlock:(void (^)(NSError *, NSString *))completion;
 
 + (void)getSourceChargeIdWithPaymentIntent:(NSString*)paymentIntentId withBlock:(void (^)(NSError *, NSString *))completion;
 
