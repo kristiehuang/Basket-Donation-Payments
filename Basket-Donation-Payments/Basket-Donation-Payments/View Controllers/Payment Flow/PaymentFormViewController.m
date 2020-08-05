@@ -131,28 +131,28 @@
 
 - (void)updateTotalDonationValues {
     NSOperationQueue *queue = [NSOperationQueue new];
+    [self.loadingIndicator startAnimating];
     NSInteger numberOfNonprofits = self.basket.nonprofits.count;
     NSInteger amountPerNonprofit = [self.totalAmount intValue] / numberOfNonprofits;
     __weak typeof(self) weakSelf = self;
     [queue addOperationWithBlock:^{
         weakSelf.basket = [weakSelf.basket fetch];
         weakSelf.basket.totalDonatedValue =  [NSNumber numberWithLong:[weakSelf.basket.totalDonatedValue intValue] + [weakSelf.totalAmount intValue]];
-        [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (!succeeded) {
-                [queue cancelAllOperations];
-            }
-        }];
+        if (![self.basket save]) {
+            [queue cancelAllOperations];
+        }
     }];
     [queue addOperationWithBlock:^{
         for (Nonprofit *n in weakSelf.basket.nonprofits) {
             Nonprofit *nonprofit = [n fetch];
             nonprofit.totalDonationsValue =  [NSNumber numberWithLong:[nonprofit.totalDonationsValue intValue] + amountPerNonprofit];
-            [nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (!succeeded) {
-                    [queue cancelAllOperations];
-                }
-            }];
+            if (![nonprofit save]) {
+                [queue cancelAllOperations];
+            }
         }
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.loadingIndicator stopAnimating];
+        }];
     }];
 
 }
