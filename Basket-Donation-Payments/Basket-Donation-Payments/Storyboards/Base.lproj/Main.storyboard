@@ -156,7 +156,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZs-l2-ia1">
-                                <rect key="frame" x="50" y="374.5" width="314" height="40"/>
+                                <rect key="frame" x="50" y="450.5" width="314" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="BIp-GP-V5i"/>
                                 </constraints>
@@ -164,7 +164,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="UOh-V1-8rW">
-                                <rect key="frame" x="50" y="439.5" width="314" height="91"/>
+                                <rect key="frame" x="50" y="515.5" width="314" height="91"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kdY-nJ-vzG">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="40"/>
@@ -185,10 +185,33 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="guM-N1-5VS">
-                                <rect key="frame" x="50" y="258.5" width="314" height="91"/>
+                                <rect key="frame" x="50" y="243.5" width="314" height="182"/>
                                 <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="czP-gj-gLn">
+                                        <rect key="frame" x="0.0" y="0.0" width="314" height="80"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaceholderProfilePic" translatesAutoresizingMaskIntoConstraints="NO" id="bPy-UN-zm7">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="bPy-UN-zm7" secondAttribute="height" multiplier="1:1" id="2bj-2L-mh7"/>
+                                                    <constraint firstAttribute="width" constant="80" id="Rlx-KV-TAk"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWa-dS-oUu">
+                                                <rect key="frame" x="91" y="0.0" width="223" height="80"/>
+                                                <state key="normal" title="Add picture"/>
+                                                <connections>
+                                                    <action selector="addPictureButtonTapped:" destination="ghk-iy-fl5" eventType="touchUpInside" id="FsB-ug-bXs"/>
+                                                    <action selector="addPictureButtonTapped:" destination="BUZ-6p-IJe" eventType="touchUpInside" id="vxQ-EC-jfb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="bPy-UN-zm7" firstAttribute="width" secondItem="bPy-UN-zm7" secondAttribute="height" multiplier="1:1" id="dDp-e4-cHA"/>
+                                        </constraints>
+                                    </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oZV-Uu-3V6">
-                                        <rect key="frame" x="0.0" y="0.0" width="314" height="40"/>
+                                        <rect key="frame" x="0.0" y="91" width="314" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="CSG-lE-iND"/>
                                         </constraints>
@@ -196,7 +219,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A6S-bL-pxZ">
-                                        <rect key="frame" x="0.0" y="51" width="314" height="40"/>
+                                        <rect key="frame" x="0.0" y="142" width="314" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="zuS-A6-95U"/>
                                         </constraints>
@@ -206,7 +229,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6o-9S-otG">
-                                <rect key="frame" x="60" y="661.5" width="294" height="60"/>
+                                <rect key="frame" x="60" y="737.5" width="294" height="60"/>
                                 <color key="backgroundColor" red="0.45098039220000002" green="0.71764705880000002" blue="0.86666666670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="pC3-d8-WEq"/>
@@ -243,7 +266,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="Jat-N0-dLA">
-                                <rect key="frame" x="50" y="560.5" width="314" height="71"/>
+                                <rect key="frame" x="50" y="636.5" width="314" height="71"/>
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DGS-uM-kFS">
                                         <rect key="frame" x="0.0" y="0.0" width="34" height="31"/>
@@ -279,7 +302,7 @@
                             <constraint firstItem="kZs-l2-ia1" firstAttribute="top" secondItem="guM-N1-5VS" secondAttribute="bottom" constant="25" id="Fge-Py-AGW"/>
                             <constraint firstItem="hd4-x5-Gsu" firstAttribute="leading" secondItem="vQR-fM-bh2" secondAttribute="leading" constant="50" id="I5y-cG-2ru"/>
                             <constraint firstItem="f6o-9S-otG" firstAttribute="leading" secondItem="vQR-fM-bh2" secondAttribute="leading" constant="60" id="J7c-hQ-7Iq"/>
-                            <constraint firstItem="guM-N1-5VS" firstAttribute="top" secondItem="hd4-x5-Gsu" secondAttribute="bottom" constant="45" id="JcH-2X-ffb"/>
+                            <constraint firstItem="guM-N1-5VS" firstAttribute="top" secondItem="hd4-x5-Gsu" secondAttribute="bottom" constant="30" id="JcH-2X-ffb"/>
                             <constraint firstItem="kZs-l2-ia1" firstAttribute="width" secondItem="guM-N1-5VS" secondAttribute="width" id="SRf-wV-hHc"/>
                             <constraint firstItem="Jat-N0-dLA" firstAttribute="width" secondItem="guM-N1-5VS" secondAttribute="width" id="Tfa-LF-dPu"/>
                             <constraint firstItem="Jat-N0-dLA" firstAttribute="leading" secondItem="guM-N1-5VS" secondAttribute="leading" id="Y50-T1-qCt"/>
@@ -312,6 +335,7 @@
                         <outlet property="isNonprofitSwitch" destination="DGS-uM-kFS" id="rdA-HR-8Qm"/>
                         <outlet property="lastNameTextField" destination="A6S-bL-pxZ" id="lMP-Y3-k4X"/>
                         <outlet property="passwordTextField" destination="IsV-AE-U87" id="hME-EU-pZw"/>
+                        <outlet property="userProfilePicImage" destination="bPy-UN-zm7" id="gXb-n0-Czt"/>
                         <outlet property="usernameTextField" destination="kdY-nJ-vzG" id="C5X-hS-si5"/>
                         <segue destination="BUZ-6p-IJe" kind="show" identifier="nonprofitCreationSegue" id="wry-qs-dMe"/>
                         <segue destination="9G3-MN-Ugs" kind="showDetail" identifier="signUpSuccessSegue" id="4xn-4e-bIA"/>
@@ -1909,7 +1933,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qvz-p9-wQ3"/>
+        <segue reference="4xn-4e-bIA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BasketLogo" width="512" height="158"/>

@@ -151,7 +151,7 @@
         [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
             UIImage *im;
             if (error != nil) {
-]                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
+                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
             } else {
                 im = [UIImage imageWithData:data];
             }

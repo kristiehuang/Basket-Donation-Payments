@@ -14,13 +14,14 @@
 #import <Parse/Parse.h>
 #import "Utils.h"
 
-@interface UserSignupViewController () <UITextFieldDelegate>
+@interface UserSignupViewController () <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *firstNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *lastNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UISwitch *isNonprofitSwitch;
+@property (weak, nonatomic) IBOutlet UIImageView *userProfilePicImage;
 
 @property (nonatomic, strong) User *user;
 
@@ -32,6 +33,7 @@
     [super viewDidLoad];
     self.usernameTextField.text = self.username;
     self.passwordTextField.text = self.password;
+    self.userProfilePicImage.image = [UIImage imageNamed:@"PlaceholderProfilePic"];
     self.firstNameTextField.delegate = self;
     self.lastNameTextField.delegate = self;
     self.emailTextField.delegate = self;
@@ -39,7 +41,7 @@
     self.passwordTextField.delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
     [self.view addGestureRecognizer:tap];
-}
+} 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -52,7 +54,6 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-
     NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
     NSPredicate *emailPred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
     if (![emailPred evaluateWithObject:self.emailTextField.text]) {
@@ -95,14 +96,6 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"nonprofitCreationSegue"]) {
-        NonprofitSignupViewController *nonprofitSignupVC = [segue destinationViewController];
-        nonprofitSignupVC.user = self.user;
-        nonprofitSignupVC.nonprofit = self.user.nonprofit;
-    }
-    
-}
 
 - (void)createUserToSave {
     if (!self.user) {
@@ -113,15 +106,37 @@
     self.user.username = self.usernameTextField.text;
     self.user.password = self.passwordTextField.text;
     self.user.email = self.emailTextField.text;
-    NSData *profilePicData = UIImageJPEGRepresentation([UIImage imageNamed:@"PlaceholderProfilePic"], 1);
-    self.user.profilePicFile = [PFFileObject fileObjectWithData:profilePicData]; //TODO: implement profile pic
-    
+    self.user.profilePicFile = [Utils getFileFromImage:self.userProfilePicImage.image];
+
     self.user.recentDonations = [NSMutableArray array];
     self.user.favoriteNonprofits = [NSMutableArray array];
     self.user.favoriteBaskets = [NSMutableArray array];
 }
 
-- (IBAction)cancelButtonTapped:(id)sender {
+#pragma mark Image Picker
+
+- (IBAction)addPictureButtonTapped:(id)sender {
+    [Utils createImagePickerVCWithVC:self];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    self.userProfilePicImage.image = editedImage;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark Navigation Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"nonprofitCreationSegue"]) {
+        NonprofitSignupViewController *nonprofitSignupVC = [segue destinationViewController];
+        nonprofitSignupVC.user = self.user;
+        nonprofitSignupVC.nonprofit = self.user.nonprofit;
+    }
+    
+}
+
+- (IBAction)cancelButtonTapped:(id)sender { //FIXME: unwind segue
     UIAlertController *cancelConfirm = [Utils createAlertControllerWithTitle:@"Are you sure?" andMessage:@"You'll lose your account creation details." okCompletion:^(UIAlertAction * _Nonnull action) {
         [self performSegueWithIdentifier:@"unwindSegue" sender:nil];
     } cancelCompletion:nil];
