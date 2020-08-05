@@ -36,12 +36,14 @@
     self.userEmailLabel.text = self.user.email;
     self.userProfilePicImageView.layer.cornerRadius = self.userProfilePicImageView.frame.size.width / 2;
     [self.user.profilePicFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-        if (error != nil) {
-            self.userProfilePicImageView.image = [UIImage imageNamed:@"PlaceholderProfilePic"];
-        } else {
-            UIImage *image = [UIImage imageWithData:data];
-            self.userProfilePicImageView.image = image;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error != nil) {
+                self.userProfilePicImageView.image = [UIImage imageNamed:@"PlaceholderProfilePic"];
+            } else {
+                UIImage *image = [UIImage imageWithData:data];
+                self.userProfilePicImageView.image = image;
+            }
+        });
     }];
     self.nonprofitView.hidden = YES;
     if (self.user.nonprofit == nil) {
