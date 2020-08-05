@@ -37,8 +37,10 @@
     self.nonprofitProfilePic.image = [Utils getImageFromPFFile:self.nonprofit.profilePicFile];
     self.favoriteButton.selected = [[[User currentUser] favoriteNonprofits] containsObject:self.nonprofit];
     self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue] / 100];
+    UIActivityIndicatorView *loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     [self.nonprofit fetchInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            [loadingIndicator stopAnimating];
             self.totalValueDonatedLabel.text = [NSString stringWithFormat: @"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue] / 100];
         });
     }];
