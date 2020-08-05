@@ -50,38 +50,48 @@
     if (!([self.firstNameTextField hasText] && [self.lastNameTextField hasText] && [self.emailTextField hasText] && [self.usernameTextField hasText] && [self.passwordTextField hasText])) {
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
         [self presentViewController:alert animated:YES completion:nil];
-    } else {
-        UIActivityIndicatorView *loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
-        NSString *segueIdentifierToPerform = (self.isNonprofitSwitch.on ? @"nonprofitCreationSegue" : @"signUpSuccessSegue");
-        if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"] || [segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
+        return;
+    }
 
-            [self createUserToSave];
-            if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
-                [loadingIndicator stopAnimating];
-                [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
-            } else if ([segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
-                self.user.nonprofit = nil;
-                NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
-                [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
-                    if (err == nil) {
-                        self.user.userStripeId = stripeId;
-                        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                            [loadingIndicator stopAnimating];
-                            if (!succeeded) {
-                                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                                [self presentViewController:alert animated:YES completion:nil];
-                            } else {
-                                [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
-                            }
-                        }];
-                    } else {
+    NSString *emailRegEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}";
+    NSPredicate *emailPred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    if (![emailPred evaluateWithObject:self.emailTextField.text]) {
+        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Invalid email format." andMessage:@"Please check the email address is valid." okCompletion:nil cancelCompletion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+
+    UIActivityIndicatorView *loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
+    NSString *segueIdentifierToPerform = (self.isNonprofitSwitch.on ? @"nonprofitCreationSegue" : @"signUpSuccessSegue");
+    if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"] || [segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
+
+        [self createUserToSave];
+        if ([segueIdentifierToPerform isEqualToString:@"nonprofitCreationSegue"]) {
+            [loadingIndicator stopAnimating];
+            [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
+        } else if ([segueIdentifierToPerform isEqualToString:@"signUpSuccessSegue"]) {
+            self.user.nonprofit = nil;
+            NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
+            [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
+                if (err == nil) {
+                    self.user.userStripeId = stripeId;
+                    [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                         [loadingIndicator stopAnimating];
-                        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
-                        [self presentViewController:alert animated:YES completion:nil];
-                    }
-                }];
-            }
+                        if (!succeeded) {
+                            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                            [self presentViewController:alert animated:YES completion:nil];
+                        } else {
+                            [self performSegueWithIdentifier:segueIdentifierToPerform sender:nil];
+                        }
+                    }];
+                } else {
+                    [loadingIndicator stopAnimating];
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            }];
         }
+
     }
 }
 
