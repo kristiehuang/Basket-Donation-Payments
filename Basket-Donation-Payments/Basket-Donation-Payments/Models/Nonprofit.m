@@ -11,12 +11,11 @@
 
 @implementation Nonprofit
 
-@dynamic user; //user that owns nonprofit
+@dynamic user; //User that owns nonprofit
 @dynamic stripeAccountId;
 @dynamic nonprofitName;
 @dynamic nonprofitDescription;
 @dynamic profilePicFile;
-@dynamic headerPicFile;
 @dynamic totalDonationsValue;
 @dynamic basketTransactionsMadeToNonprofit;
 @dynamic belongsInBaskets;

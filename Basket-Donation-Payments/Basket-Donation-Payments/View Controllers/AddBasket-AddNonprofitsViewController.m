@@ -81,7 +81,7 @@
     Nonprofit *nonprofit = self.allNonprofits[indexPath.row];
     cell.nonprofitNameLabel.text = nonprofit.nonprofitName;
     cell.nonprofitDescriptionLabel.text = nonprofit.nonprofitDescription;
-    cell.nonprofitProfileImageView.image = [Utils getImageFromPFFile:nonprofit.headerPicFile];
+    cell.nonprofitProfileImageView.image = [Utils getImageFromPFFile:nonprofit.profilePicFile];
     
     NSArray<NSIndexPath *> *selectedIndexes = [tableView indexPathsForSelectedRows];
     BOOL isSelected = selectedIndexes != nil && [selectedIndexes containsObject:indexPath];
