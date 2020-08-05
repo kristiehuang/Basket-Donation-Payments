@@ -73,9 +73,6 @@
     }
     cell.basketNameLabel.text = basket.name;
     cell.basketDescriptionLabel.text = basket.basketDescription;
-    
-    //TODO: show profile pics of nonprofits
-    //FIXME: SHOW BASKET HEADER VIEW, NOT NONPROFITS
     [self getNonprofitImagesFromBasket:basket onCell:cell];
 
     return cell;
@@ -154,8 +151,7 @@
         [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
             UIImage *im;
             if (error != nil) {
-                NSLog(@"%@", error.localizedDescription);
-                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
+]                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
             } else {
                 im = [UIImage imageWithData:data];
             }
