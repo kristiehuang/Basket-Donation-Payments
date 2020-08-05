@@ -60,7 +60,6 @@
         }
         else {
             NSDictionary *dataDict =[NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"Created PaymentIntent");
             completion(nil, dataDict);
         }
     }];

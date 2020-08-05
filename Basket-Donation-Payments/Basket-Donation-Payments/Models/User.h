@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface User : PFUser<PFSubclassing>
 /** PFUser already has objectId, updaedAt, username, password, email, createdAt. */
 
-//TODO: payment info, unknown type for now
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) PFFileObject *profilePicFile;

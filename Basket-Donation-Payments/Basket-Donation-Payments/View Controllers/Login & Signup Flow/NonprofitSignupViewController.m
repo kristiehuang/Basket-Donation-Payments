@@ -47,8 +47,6 @@
         self.nonprofit = [Nonprofit new];
         self.nonprofitDescriptionTextView.placeholder = @"Describe your nonprofit.";
         self.nonprofitDescriptionTextView.placeholderColor = [UIColor lightGrayColor];
-        //TODO: figure out document uplaod
-        // https://stackoverflow.com/questions/37296929/implement-document-picker-in-swift-ios
     }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];

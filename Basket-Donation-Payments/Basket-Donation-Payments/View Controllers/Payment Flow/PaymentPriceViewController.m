@@ -24,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.recipientLabel.text = [NSString stringWithFormat:@"to %@", self.basket.name];
-    //TODO: add ability to change currency
     self.priceInputTextField.delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
     [self.view addGestureRecognizer:tap];
