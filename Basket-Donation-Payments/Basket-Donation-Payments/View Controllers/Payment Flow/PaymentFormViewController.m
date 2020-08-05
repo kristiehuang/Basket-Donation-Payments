@@ -34,7 +34,6 @@
 
 
 - (IBAction)payButtonTapped:(id)sender {
-    self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     [self pay];
 }
 
@@ -74,6 +73,7 @@
                     break;
                 }
                 default:
+                    [self.loadingIndicator stopAnimating];
                     break;
             }
         });
