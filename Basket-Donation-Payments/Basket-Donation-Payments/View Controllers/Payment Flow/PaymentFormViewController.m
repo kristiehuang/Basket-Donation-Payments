@@ -82,31 +82,6 @@
 }
 
 - (void)createTransfers {
-<<<<<<< HEAD
-    [APIManager getSourceChargeIdWithPaymentIntent:self.paymentIntentId withBlock:^(NSError * err, NSString * chargeId) {
-        if (err) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not get chargeId to create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:alert animated:YES completion:nil];
-            });
-
-        } else {
-            NSMutableArray<NSString*> *connectedStripeAccs = [NSMutableArray array];
-            for (Nonprofit* n in self.basket.nonprofits) {
-                [connectedStripeAccs addObject:n.stripeAccountId];
-            }
-            [APIManager createTransfersWithAmount:self.totalAmount toConnectedStripeAccs:connectedStripeAccs withSourceTxId:chargeId withBlock:^(NSError * err, NSString * transferId) {
-                if (err) {
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not create transfer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self presentViewController:alert animated:YES completion:nil];
-                    });
-                } else {
-                    // TODO: Update nonprofits and basket total donation value
-                }
-            }];
-
-=======
     NSOperationQueue *queue = [NSOperationQueue new];
     __weak typeof(self) weakSelf = self;
 
@@ -168,7 +143,6 @@
                     [queue cancelAllOperations];
                 }
             }];
->>>>>>> 31307d6d47bdeaaef8a0b6b0f356d5f3f04eac4d
         }
     }];
 
