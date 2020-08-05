@@ -119,10 +119,9 @@
                             [weakSelf presentViewController:alert animated:YES completion:nil];
                         });
                         [queue cancelAllOperations];
-                    } else {
-                        [weakSelf updateTotalDonationValues];
                     }
                 }];
+                [weakSelf updateTotalDonationValues];
             }
         }];
     }];
@@ -131,7 +130,11 @@
 
 - (void)updateTotalDonationValues {
     NSOperationQueue *queue = [NSOperationQueue new];
-    [self.loadingIndicator startAnimating];
+    [queue addOperationWithBlock:^{
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.loadingIndicator startAnimating];
+        }];
+    }];
     NSInteger numberOfNonprofits = self.basket.nonprofits.count;
     NSInteger amountPerNonprofit = [self.totalAmount intValue] / numberOfNonprofits;
     __weak typeof(self) weakSelf = self;

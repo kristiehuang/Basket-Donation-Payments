@@ -38,7 +38,7 @@
 
 + (void)createImagePickerVCWithVC:(UIViewController*)vc {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = vc;
+    imagePickerVC.delegate = (id<UINavigationControllerDelegate,UIImagePickerControllerDelegate>)vc;
     imagePickerVC.allowsEditing = YES;
     BOOL cameraSourceAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
     BOOL photoLibAvail = [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -58,6 +58,7 @@
         [vc presentViewController:sourceTypePicker animated:YES completion:nil];
     } else {
         imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [vc presentViewController:imagePickerVC animated:YES completion:nil];
     }
 }
 

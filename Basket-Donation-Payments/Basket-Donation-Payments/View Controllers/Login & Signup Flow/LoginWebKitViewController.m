@@ -32,9 +32,8 @@
 }
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSLog(@"%@", [navigationAction request].URL.absoluteString);
     NSString *absoluteString = [navigationAction request].URL.absoluteString;
-    BOOL finished = [[absoluteString substringToIndex:107] isEqualToString:@"https://github.com/kristiehuang/Basket-Donation-Payments/blob/master/Landing-Page-StripeConnectedAccount.md"];
+    BOOL finished = (absoluteString.length >= 107) ? [[absoluteString substringToIndex:107] isEqualToString:@"https://github.com/kristiehuang/Basket-Donation-Payments/blob/master/Landing-Page-StripeConnectedAccount.md"] : NO;
     if (finished) {
         decisionHandler(WKNavigationActionPolicyCancel);
         NSString *authorizationCode = [absoluteString stringByReplacingOccurrencesOfString:@"https://github.com/kristiehuang/Basket-Donation-Payments/blob/master/Landing-Page-StripeConnectedAccount.md?code=" withString:@""];
@@ -59,6 +58,24 @@
 }
 
 - (void)loadStripeLogin {
+
+
+    WKWebsiteDataStore *dateStore = [WKWebsiteDataStore defaultDataStore];
+    [dateStore
+     fetchDataRecordsOfTypes:[WKWebsiteDataStore allWebsiteDataTypes]
+     completionHandler:^(NSArray<WKWebsiteDataRecord *> * __nonnull records) {
+        for (WKWebsiteDataRecord *record  in records) {
+            if ( [record.displayName containsString:@"stripe"]) {
+                [[WKWebsiteDataStore defaultDataStore]
+                 removeDataOfTypes:record.dataTypes forDataRecords:@[record] completionHandler:^{
+                    //Removed cookies
+                }];
+            }
+        }
+    }
+     ];
+
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
     NSString *redirectUri = @"https://github.com/kristiehuang/Basket-Donation-Payments/blob/master/Landing-Page-StripeConnectedAccount.md";
     NSString *platformClientId = [APIManager getAPISecretKeysDict][@"Stripe_Platform_Client_Id"];
 

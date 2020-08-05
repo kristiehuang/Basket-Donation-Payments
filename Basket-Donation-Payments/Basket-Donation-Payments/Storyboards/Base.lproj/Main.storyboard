@@ -172,7 +172,7 @@
                                             <constraint firstAttribute="height" constant="40" id="8fu-2O-9HW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" textContentType="username"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IsV-AE-U87">
                                         <rect key="frame" x="0.0" y="51" width="314" height="40"/>
@@ -180,7 +180,7 @@
                                             <constraint firstAttribute="height" constant="40" id="xh4-4O-cYs"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="password"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -1932,7 +1932,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="v7c-Ou-vpx"/>
+        <segue reference="4xn-4e-bIA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BasketLogo" width="512" height="158"/>
