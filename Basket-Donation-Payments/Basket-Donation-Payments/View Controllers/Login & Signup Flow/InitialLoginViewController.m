@@ -81,12 +81,13 @@
         userSignupVC.password = inputPassword;
         
     } else if ([segue.identifier isEqualToString:@"loginSegue"]) {
+        UIActivityIndicatorView *loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
         [PFUser logInWithUsernameInBackground:inputUsername password:inputPassword block:^(PFUser * _Nullable user, NSError * _Nullable error) {
             if (error != nil) {
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Oops, couldn't log you in." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
                 [self presentViewController:alert animated:YES completion:nil];
-                
             }
+            [loadingIndicator stopAnimating];
         }];
         
     }

@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitCategoryTextField;
 @property (weak, nonatomic) IBOutlet UITextField *nonprofitWebsiteTextField;
 @property (nonatomic) BOOL finishedSavingBoth;
-
+@property (nonatomic, strong) UIActivityIndicatorView *loadingIndicator;
 
 
 @end
@@ -82,14 +82,21 @@
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"One or more text field is empty." andMessage:@"Please fill out all required info." okCompletion:nil cancelCompletion:nil];
         [self presentViewController:alert animated:YES completion:nil];
     } else {
+        self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
         NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
         //FIXME: user email must be valid otherwise server code will crash
         [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
             if (err == nil) {
                 self.user.userStripeId = stripeId;
-                [self saveNonprofitDataToNonprofitObject];
-                [self saveNonprofitToStripe];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self saveNonprofitDataToNonprofitObject];
+                    [self.loadingIndicator stopAnimating];
+
+                    // Segues to open WKWebView to load oAuth link to create Stripe Connected Account for nonprofit, then redirects back in-app with RedirectURL. Will also create Parse Nonprofit.
+                    [self performSegueWithIdentifier:@"CreateStripeAccountSegue" sender:nil];
+                });
             } else {
+                [self.loadingIndicator stopAnimating];
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
                 [self presentViewController:alert animated:YES completion:nil];
             }
@@ -97,28 +104,13 @@
     }
 }
 
-/** Creates Stripe Connected Account for nonprofit. Runs after user is saved to Stripe. After completion, will save Nonprofit & User to Parse.
- Opens WKWebView to load oAuth link, then redirects back in-app with RedirectURL.
- */
-- (void)saveNonprofitToStripe {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"CreateStripeAccountSegue" sender:nil];
-    });
-
-
-}
-
-
 - (void)saveNonprofitDataToNonprofitObject {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.nonprofit.profilePicFile = [Utils getFileFromImage:self.nonprofitProfileImageView.image];
-        self.nonprofit.nonprofitName = self.nonprofitNameTextField.text;
-        self.nonprofit.nonprofitDescription = self.nonprofitDescriptionTextView.text;
-        self.nonprofit.category = self.nonprofitCategoryTextField.text;
-        self.nonprofit.websiteUrlString = self.nonprofitWebsiteTextField.text;
-        self.user.nonprofit = self.nonprofit;
-    });
-
+    self.nonprofit.profilePicFile = [Utils getFileFromImage:self.nonprofitProfileImageView.image];
+    self.nonprofit.nonprofitName = self.nonprofitNameTextField.text;
+    self.nonprofit.nonprofitDescription = self.nonprofitDescriptionTextView.text;
+    self.nonprofit.category = self.nonprofitCategoryTextField.text;
+    self.nonprofit.websiteUrlString = self.nonprofitWebsiteTextField.text;
+    self.user.nonprofit = self.nonprofit;
 }
 
 
