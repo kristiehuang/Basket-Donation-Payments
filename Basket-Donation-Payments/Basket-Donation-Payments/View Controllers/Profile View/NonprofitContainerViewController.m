@@ -47,7 +47,7 @@
     if (self.nonprofit) {
         self.nonprofitNameLabel.text = self.nonprofit.nonprofitName;
         self.nonprofitCategoryLabel.text = self.nonprofit.category;
-        self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", self.nonprofit.totalDonationsValue];
+        self.totalDonationValueLabel.text = [NSString stringWithFormat:@"$%0.2f", [self.nonprofit.totalDonationsValue doubleValue]];
         self.nonprofitWebsiteLabel.text = self.nonprofit.websiteUrlString;
         self.nonprofitDescriptionLabel.text = self.nonprofit.nonprofitDescription;
                 //FIXME: ISVERIFIED
