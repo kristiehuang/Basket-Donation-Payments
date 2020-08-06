@@ -83,20 +83,22 @@
     self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     NSString *fullName = [NSString stringWithFormat:@"%@ %@", self.user.firstName, self.user.lastName];
     [APIManager newStripeCustomerIdWithName:fullName andEmail:self.user.email withBlock:^(NSError * err, NSString * stripeId) {
-        if (err == nil) {
-            self.user.userStripeId = stripeId;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self saveNonprofitDataToNonprofitObject];
-                [self.loadingIndicator stopAnimating];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (err == nil) {
+                self.user.userStripeId = stripeId;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self saveNonprofitDataToNonprofitObject];
+                    [self.loadingIndicator stopAnimating];
 
-                // Segues to open WKWebView to load oAuth link to create Stripe Connected Account for nonprofit, then redirects back in-app with RedirectURL. Will also create Parse Nonprofit.
-                [self performSegueWithIdentifier:@"CreateStripeAccountSegue" sender:nil];
-            });
-        } else {
-            [self.loadingIndicator stopAnimating];
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
+                    // Segues to open WKWebView to load oAuth link to create Stripe Connected Account for nonprofit, then redirects back in-app with RedirectURL. Will also create Parse Nonprofit.
+                    [self performSegueWithIdentifier:@"CreateStripeAccountSegue" sender:nil];
+                });
+            } else {
+                [self.loadingIndicator stopAnimating];
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating Stripe customer." andMessage:err.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        });
     }];
 }
 

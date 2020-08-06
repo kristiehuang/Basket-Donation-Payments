@@ -39,14 +39,16 @@
         NSString *authorizationCode = [absoluteString stringByReplacingOccurrencesOfString:@"https://github.com/kristiehuang/Basket-Donation-Payments/blob/master/Landing-Page-StripeConnectedAccount.md?code=" withString:@""];
 
         [APIManager newNonprofitConnectedAccountWithEmail:self.user.email withAuthorizationCode:authorizationCode withBlock:^(NSError * error, NSString * connectedAccountId) {
-            if (error == nil) {
-                // If successful, save account Stripe ID, save to Parse, and login segue.
-                self.nonprofit.stripeAccountId = connectedAccountId;
-                [self saveNonprofitAndUserToParse];
-            } else {
-                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit to Stripe." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (error == nil) {
+                    // If successful, save account Stripe ID, save to Parse, and login segue.
+                    self.nonprofit.stripeAccountId = connectedAccountId;
+                    [self saveNonprofitAndUserToParse];
+                } else {
+                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit to Stripe." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                    [self presentViewController:alert animated:YES completion:nil];
+                }
+            });
         }];
 
 
@@ -90,27 +92,32 @@
 -(void)saveNonprofitAndUserToParse {
 
     [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            [self.nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded) {
-                    [self performSegueWithIdentifier:@"loginSegue" sender:nil];
-                } else {
-                    [self.user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                        if (!succeeded) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (succeeded) {
+                [self.nonprofit saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if (succeeded) {
+                            [self performSegueWithIdentifier:@"loginSegue" sender:nil];
+                        } else {
+                            [self.user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                if (!succeeded) {
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                                        [self presentViewController:alert animated:YES completion:nil];
+                                    });
+                                }
+                            }];
                             UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
                             [self presentViewController:alert animated:YES completion:nil];
                         }
-                    }];
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save nonprofit." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-            }];
-        } else {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        }
+                    });
+                }];
+            } else {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save user." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        });
     }];
-
 }
 
 @end

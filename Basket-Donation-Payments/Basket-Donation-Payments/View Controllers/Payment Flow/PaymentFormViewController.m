@@ -90,8 +90,11 @@
 
     [self.basket saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!succeeded) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save payment to Parse server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];        }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Could not save payment to Parse server." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+        }
     }];
 }
 

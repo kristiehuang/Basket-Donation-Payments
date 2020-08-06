@@ -30,32 +30,34 @@
 }
 
 - (IBAction)nextButtonTapped:(id)sender {
-    if ([self.priceInputTextField hasText]) {
-        self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
-        double inputVal = [self.priceInputTextField.text doubleValue];
-        if ((inputVal < 1) || (inputVal >= 999999.99)) {
-            [self.loadingIndicator stopAnimating];
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Value must be greater than $1 and less than $999,999.99." andMessage:@"Try again?" okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-            return;
-        }
-        self.totalAmount = [[NSNumber alloc] initWithDouble:inputVal*100];
-        [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (error) {
-                    UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating payment intent." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-                    [self presentViewController:alert animated:YES completion:nil];
-                }
-                else {
-                    [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:dataDict];
-                }
-                [self.loadingIndicator stopAnimating];
-            });
-        }];
-    } else {
+    if (![self.priceInputTextField hasText]) {
         UIAlertController *alert = [Utils createAlertControllerWithTitle:@"No value input." andMessage:@"How much would you like to donate?" okCompletion:nil cancelCompletion:nil];
         [self presentViewController:alert animated:YES completion:nil];
+        return;
     }
+
+    self.loadingIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
+    double inputVal = [self.priceInputTextField.text doubleValue];
+    if ((inputVal < 1) || (inputVal >= 999999.99)) {
+        [self.loadingIndicator stopAnimating];
+        UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Value must be greater than $1 and less than $999,999.99." andMessage:@"Try again?" okCompletion:nil cancelCompletion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    self.totalAmount = [[NSNumber alloc] initWithDouble:inputVal*100];
+    [APIManager createPaymentIntentWithBasket:self.basket totalAmount:self.totalAmount withBlock:^(NSError * error, NSDictionary * dataDict) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error) {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error creating payment intent." andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            else {
+                [self performSegueWithIdentifier:@"AddBillingMethodSegue" sender:dataDict];
+            }
+            [self.loadingIndicator stopAnimating];
+        });
+    }];
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

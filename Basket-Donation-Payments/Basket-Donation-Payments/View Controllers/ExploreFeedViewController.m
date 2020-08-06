@@ -50,16 +50,18 @@
     [query includeKey:@"allTransactions"];
     [query includeKey:@"featuredValueDict"];
     [query findObjectsInBackgroundWithBlock:^(NSArray<Basket*> * _Nullable objects, NSError * _Nullable error) {
-        if (error != nil) {
-            UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
-            [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            self.baskets = objects;
-            NSArray<Basket*> *sortedFeatured = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"totalFeaturedValue" ascending:NO]]];
-            self.featuredBaskets = [sortedFeatured subarrayWithRange:NSMakeRange(0, MIN(3, sortedFeatured.count))];
-            [self.exploreBasketsTableView reloadData];
-        }
-        [self.refreshControl endRefreshing];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (error != nil) {
+                UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
+                [self presentViewController:alert animated:YES completion:nil];
+            } else {
+                self.baskets = objects;
+                NSArray<Basket*> *sortedFeatured = [objects sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"totalFeaturedValue" ascending:NO]]];
+                self.featuredBaskets = [sortedFeatured subarrayWithRange:NSMakeRange(0, MIN(3, sortedFeatured.count))];
+                [self.exploreBasketsTableView reloadData];
+            }
+            [self.refreshControl endRefreshing];
+        });
     }];
 }
 
