@@ -39,8 +39,6 @@
     self.refreshIndicator = [Utils createUIActivityIndicatorViewOnView:self.view];
     [self getBasketsAndNonprofits];
     self.searchBar.delegate = self;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)];
-    [self.view addGestureRecognizer:tap];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,6 +63,7 @@
                 [self.searchTableView reloadData];
             } else {
                 self.baskets = [NSArray array];
+                self.filteredBaskets = [NSArray array];
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:@"" okCompletion:nil cancelCompletion:nil];
                 [self presentViewController:alert animated:YES completion:nil];
             }
@@ -81,18 +80,12 @@
                 [self.searchTableView reloadData];
             } else {
                 self.nonprofits = [NSArray array];
+                self.filteredNonprofits = [NSArray array];
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:@"" okCompletion:nil cancelCompletion:nil];
                 [self presentViewController:alert animated:YES completion:nil];
             }
         }];
     }];
-}
-
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    return YES;
 }
 
 #pragma mark Table View
@@ -130,6 +123,7 @@
     if (indexPath.section == 0) {
         self.basketToPass = self.filteredBaskets[indexPath.row];
         [self performSegueWithIdentifier:@"showBasketDetail" sender:nil];
+
     } else {
         self.nonprofitToPass = self.filteredNonprofits[indexPath.row];
         [self performSegueWithIdentifier:@"showNonprofitDetail" sender:nil];
@@ -153,6 +147,10 @@
 }
 
 #pragma mark Search Bar
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     searchText = [searchText lowercaseString];
@@ -180,6 +178,7 @@
 #pragma mark Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    self.navigationController.navigationBar.hidden = NO;
     if ([segue.identifier isEqualToString:@"showBasketDetail"]) {
         BasketViewController *basketVC = [segue destinationViewController];
         basketVC.basket = self.basketToPass;
