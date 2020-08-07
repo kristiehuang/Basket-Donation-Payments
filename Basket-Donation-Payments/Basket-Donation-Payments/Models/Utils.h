@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
+#import "BasketTableViewCell.h"
+#import "Basket.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 +(UIImage*)getImageFromPFFile:(PFFileObject*)file;
 + (void)createImagePickerVCWithVC:(UIViewController*)vc;
 + (UIActivityIndicatorView *)createUIActivityIndicatorViewOnView:(UIView*)view;
++ (void)getNonprofitImagesFromBasket:(Basket*)basket onCell:(BasketTableViewCell *)cell;
++ (void)getBasketsWithCompletion:(void(^)(NSArray<Basket*> * _Nullable, NSError * _Nullable))completion;
 
 @end
 
