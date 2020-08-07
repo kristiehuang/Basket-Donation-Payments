@@ -9,6 +9,7 @@
 #import "Utils.h"
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
+#import "Nonprofit.h"
 
 @implementation Utils
 
@@ -70,5 +71,59 @@
     [loadingIndicator startAnimating];
     return loadingIndicator;
 }
+
++ (void)getNonprofitImagesFromBasket:(Basket*)basket onCell:(BasketTableViewCell *)cell {
+    cell.basketImageView0.layer.cornerRadius = 25;
+    cell.basketImageView1.layer.cornerRadius = 25;
+    cell.basketImageView2.layer.cornerRadius = 25;
+    int nonprofitsCount = (int) basket.nonprofits.count;
+    for (int i = 0; i < 3; i++) {
+        if (i >= nonprofitsCount) {
+            UIImage *im = [UIImage imageNamed:@"PlaceholderProfilePic"];
+            switch (i) {
+                case 0:
+                    cell.basketImageView0.image = im;
+                    cell.basketImageView1.image = im;
+                    cell.basketImageView2.image = im;
+                    break;
+                case 1:
+                    cell.basketImageView1.image = im;
+                    cell.basketImageView2.image = im;
+                    break;
+                case 2:
+                    cell.basketImageView2.image = im;
+                    break;
+            }
+            break;
+        }
+        Nonprofit *n = basket.nonprofits[i];
+        PFFileObject *profFile = n.profilePicFile;
+        [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
+            UIImage *im;
+            if (error != nil) {
+                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
+            } else {
+                im = [UIImage imageWithData:data];
+            }
+            switch (i) {
+                case 0: cell.basketImageView0.image = im; break;
+                case 1: cell.basketImageView1.image = im; break;
+                case 2: cell.basketImageView2.image = im; break;
+            }
+            [cell reloadInputViews];
+        }];
+    }
+}
+
++ (void)getBasketsWithCompletion:(void(^)(NSArray<Basket*> * _Nullable, NSError * _Nullable))completion {
+    PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
+    [query includeKey:@"nonprofits"];
+    [query includeKey:@"nonprofits.verificationFiles"];
+    [query includeKey:@"createdByUser"];
+    [query includeKey:@"allTransactions"];
+    [query includeKey:@"featuredValueDict"];
+    [query findObjectsInBackgroundWithBlock:completion];
+}
+
 
 @end

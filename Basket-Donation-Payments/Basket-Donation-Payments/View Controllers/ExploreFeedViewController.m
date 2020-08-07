@@ -38,18 +38,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self getBaskets];
-    self.navigationController.navigationBar.hidden = YES;
-}
-
-- (void)getBaskets {
-    PFQuery *query = [PFQuery queryWithClassName:@"Basket"];
-    [query includeKey:@"nonprofits"];
-    [query includeKey:@"nonprofits.verificationFiles"];
-    [query includeKey:@"createdByUser"];
-    [query includeKey:@"allTransactions"];
-    [query includeKey:@"featuredValueDict"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray<Basket*> * _Nullable objects, NSError * _Nullable error) {
+    [Utils getBasketsWithCompletion:^(NSArray<Basket*> * _Nullable objects, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (error != nil) {
                 UIAlertController *alert = [Utils createAlertControllerWithTitle:@"Error loading feed" andMessage:error.localizedDescription okCompletion:nil cancelCompletion:nil];
@@ -63,6 +52,7 @@
             [self.refreshControl endRefreshing];
         });
     }];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,7 +66,7 @@
     }
     cell.basketNameLabel.text = basket.name;
     cell.basketDescriptionLabel.text = basket.basketDescription;
-    [self getNonprofitImagesFromBasket:basket onCell:cell];
+    [Utils getNonprofitImagesFromBasket:basket onCell:cell];
 
     return cell;
 }
@@ -124,49 +114,6 @@
 }
 
 
-//Broken
-- (void)getNonprofitImagesFromBasket:(Basket*)basket onCell:(BasketTableViewCell *)cell {
-    cell.basketImageView0.layer.cornerRadius = 25;
-    cell.basketImageView1.layer.cornerRadius = 25;
-    cell.basketImageView2.layer.cornerRadius = 25;
-    int nonprofitsCount = (int) basket.nonprofits.count;
-    for (int i = 0; i < 3; i++) {
-        if (i >= nonprofitsCount) {
-            UIImage *im = [UIImage imageNamed:@"PlaceholderProfilePic"];
-            switch (i) {
-                case 0:
-                    cell.basketImageView0.image = im;
-                    cell.basketImageView1.image = im;
-                    cell.basketImageView2.image = im;
-                    break;
-                case 1:
-                    cell.basketImageView1.image = im;
-                    cell.basketImageView2.image = im;
-                    break;
-                case 2:
-                    cell.basketImageView2.image = im;
-                    break;
-            }
-            break;
-        }
-        Nonprofit *n = basket.nonprofits[i];
-        PFFileObject *profFile = n.profilePicFile;
-        [profFile getDataInBackgroundWithBlock:^(NSData * _Nullable data, NSError * _Nullable error) {
-            UIImage *im;
-            if (error != nil) {
-                im = [UIImage imageNamed:@"PlaceholderProfilePic"];
-            } else {
-                im = [UIImage imageWithData:data];
-            }
-            switch (i) {
-                case 0: cell.basketImageView0.image = im; break;
-                case 1: cell.basketImageView1.image = im; break;
-                case 2: cell.basketImageView2.image = im; break;
-            }
-            [cell reloadInputViews];
-        }];
-    }
-}
 
 
 @end
