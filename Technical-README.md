@@ -14,8 +14,8 @@
 ### 1. User Stories (Required and Optional)
 **Required Must-have Stories**
 * Set up Parse server & deploy with Heroku
-* User is able to signup (and adds to user database) + login with PayPal
-* Nonprofit able to signup + login with PayPal to receive
+* User is able to signup (and adds to user database) + login with Stripe
+* Nonprofit able to signup + login with Stripe to receive
 * User is able to logout
 * User able to query from Parse to see Baskets on home page
 * Basket detail view displays Basket info
@@ -144,28 +144,18 @@
 #### List of network requests by screen
 * Signup / Login
 	* User login / signup (GET or PUT new user)
-	* Nonprofit login/signup (GET or PUT new nonprofit)
-	* PayPal account creation or login (GET or PUT)
+	* Nonprofit login/signup (PUT new nonprofit)
+	* Stripe account creation or login (PUT)
 * Explore & Search
 	* (GET) Query featured baskets & recently added baskets
 * Basket Detail
 	* (GET) Query baskets & nonprofits
-	* ((FASTER TO CACHE???))
 * Nonprofit detail
 	* (GET) Nonprofit data and display
 * **Payment flow**
-    * (GET) updated PayPal info for all nonprofits
     * (POST) Create new transaction for each nonprofit (or batch tx, so you can undo entire tx if one fails)
     * (POST to Parse) Save BasketTransaction to Parse API
 * Profile page
     * Settings
-
-https://developer.paypal.com/docs/api/payments/v2/
-
-[Identity API - PayPal Developer](https://developer.paypal.com/docs/api/identity/v1/) - user authentication
-* GET */v1/identity/oauth2/userinfo*
-[Orders API - PayPal Developer](https://developer.paypal.com/docs/api/orders/v2/)
-* POST */v2/checkout/orders*
-[Payouts API - PayPal Developer](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)
-* create payment to multiple accounts
-* POST */v1/payments/payouts*
+    
+Stripe endpoints used: PaymentIntent, Customer, Connected Account, Charges.
