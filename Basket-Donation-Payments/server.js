@@ -52,7 +52,7 @@ app.post("/create-new-connected-account", async (req, res) => {
 
 app.post("/create-transfer", async (req, res) => {
     const { amount, currency, destination, source_transaction } = req.body;
-    // Create a new Stripe Customer with the order amount and currency
+    // Create a new Stripe transfer with the order amount and currency
     const response = await stripe.transfers.create({
         amount: amount,
         currency: currency,
